@@ -3,21 +3,21 @@ import useTheme from "../hooks/useThem";
 import Navbar from "../components/common/Navbar";
 import Sidebar from "../components/common/Sidebar";
 import useSidebar from "./../hooks/useSidebar";
-import Hero from "../features/Home/Hero";
+import Hero from "../features/Home/components/Hero";
+import Home from "../features/Home/Home";
+import AppRoutes from "../routes/AppRoutes";
 
 function App() {
   const { dark, setDark } = useTheme();
   const { open, toggleMenu } = useSidebar();
   return (
     <>
-      <Navbar dark={dark} setDark={setDark} />
-      <Sidebar
-        open={open}
-        toggleMenu={toggleMenu}
+      <AppRoutes
         dark={dark}
         setDark={setDark}
+        open={open}
+        toggleMenu={toggleMenu}
       />
-      <Hero dark={dark} setDark={setDark} />
     </>
   );
 }

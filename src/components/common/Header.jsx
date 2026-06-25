@@ -20,7 +20,7 @@ const Header = ({ open, toggleMenu, dark, setDark }) => {
         onClick={toggleMenu}
         className="text-(--text-rimary) bg-(--bg-primary)"
       >
-        {open ? <RxHamburgerMenu /> : <RxCross2 />}{" "}
+        {open ? <RxCross2 /> : <RxHamburgerMenu />}{" "}
       </span>
     </div>
   );

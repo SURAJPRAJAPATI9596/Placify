@@ -4,7 +4,10 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 const Sidebar = ({ dark, setDark, open, toggleMenu }) => {
   return (
-    <div className="flex flex-col lg:hidden">
+    <div
+      className="flex flex-col lg:hidden  
+fixed inset-0"
+    >
       <Header
         open={open}
         toggleMenu={toggleMenu}
@@ -27,16 +30,8 @@ const Sidebar = ({ dark, setDark, open, toggleMenu }) => {
             <span>Tracker</span>
           </div>
           <div className="items-center cursor-pointer flex flex-row justify-around w-full">
-            <span
-              className="text-3xl"
-              onClick={() => {
-                setDark(!dark);
-              }}
-            >
-              {" "}
-              {dark ? <CiLight /> : <MdOutlineDarkMode />}
-            </span>
-            <span>S</span>
+            <span className="text-3xl">S</span>
+            <span className="text-3xl">S</span>
           </div>
         </div>
       ) : (

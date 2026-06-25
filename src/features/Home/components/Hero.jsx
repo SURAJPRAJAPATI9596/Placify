@@ -1,22 +1,11 @@
 import React, { useState, useEffect } from "react";
-import HeroImage from "../../components/ui/HeroImage";
+import HeroImage from "../../../components/ui/HeroImage";
 
 const Hero = ({ dark, setDark }) => {
   return (
     <section
-      className={`
-min-h-screen
-
-${dark ? "bg-[#080816] text-white" : "text-black bg-white"}
-
-
-relative
-overflow-hidden
-px-6
-lg:px-24
-flex
-items-center
-`}
+      className="min-h-screen relative overflow-hidden px-6 lg:px-24 flex items-center    bg-(--bg-primary)
+    text-(--text-primary) mt-8"
     >
       {/* glow */}
 
@@ -68,6 +57,7 @@ text-5xl
 md:text-7xl
 font-bold
 leading-[1.05]
+text-[1.5rem]
 "
           >
             Your Complete
