@@ -4,7 +4,8 @@ import Home from "../features/Home/Home";
 import About from "../features/about/About";
 import Ats from "../features/Ats/Ats";
 import Resume from "../features/resume/Resume";
-import Roadmaps from "../features/roadmap/Roadmaps";
+import Roadmaps from "../features/roadmap/pages/Roadmaps";
+import RoadmapDetail from "../features/roadmap/pages/RoadmapDetail";
 const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
   return (
     <Routes>
@@ -25,6 +26,7 @@ const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
         <Route path="/Placify/ats" element={<Ats />} />
         <Route path="/Placify/resume" element={<Resume />} />
         <Route path="/Placify/roadmaps" element={<Roadmaps />} />
+        <Route path="/Placify/roadmaps/detail" element={<RoadmapDetail />} />
       </Route>
     </Routes>
   );
