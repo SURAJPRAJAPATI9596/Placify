@@ -174,12 +174,9 @@ const InputField = ({ dark }) => {
       <div className="grid lg:grid-cols-2 gap-8">
         {/* Editor */}
 
-        <div className="space-y-6">
+        <div className="space-y-6 bg-(--bg-primary) text-(--text-primary)">
           {fields.Personal ? (
-            <Section
-              title="Personal Details"
-              className="bg-(--bg-primary) text-(--text-primary)"
-            >
+            <Section title="Personal Details">
               <Input placeholder="Full Name" />
 
               <Input placeholder="Email" />
@@ -197,7 +194,7 @@ const InputField = ({ dark }) => {
           )}
 
           {fields.Summary ? (
-            <Section title="Professional Summary" dark={dark}>
+            <Section title="Professional Summary">
               <textarea
                 placeholder="Write summary..."
                 className="
@@ -221,7 +218,7 @@ const InputField = ({ dark }) => {
           )}
 
           {fields.experience ? (
-            <Section title="Experience" dark={dark}>
+            <Section title="Experience">
               {experience.map((e, i) => (
                 <div key={i} className="space-y-3">
                   <Input placeholder="Company" />
@@ -253,7 +250,7 @@ const InputField = ({ dark }) => {
             ""
           )}
           {fields.Projects ? (
-            <Section title="Projects" dark={dark}>
+            <Section title="Projects">
               {projects.map((p, i) => (
                 <div key={i} className="space-y-3">
                   <Input placeholder="Project Name" />
@@ -297,7 +294,7 @@ const InputField = ({ dark }) => {
             ""
           )}
           {fields.Skills ? (
-            <Section title="Skills" dark={dark}>
+            <Section title="Skills">
               <Input placeholder="React, Javascript, Node" />
 
               <button
@@ -313,7 +310,7 @@ const InputField = ({ dark }) => {
             ""
           )}
           {fields.Education ? (
-            <Section title="Education" dark={dark}>
+            <Section title="Education">
               {education.map((v, i) => {
                 return (
                   <div key={i} className="space-y-3">
@@ -342,7 +339,7 @@ const InputField = ({ dark }) => {
           )}
 
           {fields.Achievements ? (
-            <Section title="Achievements" dark={dark}>
+            <Section title="Achievements">
               {achievement.map((v, i) => {
                 return (
                   <div key={i} className="space-y-3">
@@ -368,7 +365,7 @@ const InputField = ({ dark }) => {
             ""
           )}
           {fields.Languages ? (
-            <Section title="Language" dark={dark}>
+            <Section title="Language">
               {language.map((v, i) => {
                 return (
                   <div key={i} className="space-y-3">
@@ -392,7 +389,7 @@ const InputField = ({ dark }) => {
           )}
 
           {fields.Certifications ? (
-            <Section title="Certifications" dark={dark}>
+            <Section title="Certifications">
               {certificate.map((v, i) => {
                 return (
                   <div key={i} className="space-y-3">
@@ -429,8 +426,8 @@ const InputField = ({ dark }) => {
   );
 };
 
-const Section = ({ title, children, dark }) => (
-  <div className={`p-5 rounded-xl ${dark ? "bg-gray-900" : "bg-white"}`}>
+const Section = ({ title, children }) => (
+  <div className="p-5 rounded-xl">
     <h2 className="text-2xl font-bold mb-4">{title}</h2>
 
     <div className="space-y-4">{children}</div>
