@@ -26,10 +26,14 @@ fixed inset-0"
             ATS
           </NavLink>
         </span>
-        <span>Interview </span>
+        <span>
+          <NavLink to={"/Placify/interview"}>Interview</NavLink>
+        </span>
         <span>Coding </span>
         <span>Jobs </span>
-        <span>Tracker</span>
+        <span>
+          <NavLink to={"/Placify/tracker"}>Tracker</NavLink>
+        </span>
         <span>
           <NavLink to={"/Placify/about"} className={NavStyle}>
             About

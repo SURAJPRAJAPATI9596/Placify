@@ -6,6 +6,8 @@ import Ats from "../features/Ats/Ats";
 import Resume from "../features/resume/Resume";
 import Roadmaps from "../features/roadmap/pages/Roadmaps";
 import RoadmapDetail from "../features/roadmap/pages/RoadmapDetail";
+import AIInterviewRoom from "../features/interview/pages/interview";
+import Tracker from "../features/tracker/pages/Tracker";
 const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
   return (
     <Routes>
@@ -27,6 +29,8 @@ const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
         <Route path="/Placify/resume" element={<Resume />} />
         <Route path="/Placify/roadmaps" element={<Roadmaps />} />
         <Route path="/Placify/roadmaps/detail" element={<RoadmapDetail />} />
+        <Route path="/Placify/interview" element={<AIInterviewRoom />} />
+        <Route path="/Placify/tracker" element={<Tracker />} />
       </Route>
     </Routes>
   );
