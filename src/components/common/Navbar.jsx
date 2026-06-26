@@ -6,7 +6,7 @@ import NavStyle from "../../utils/NavStylel";
 const Navbar = ({ dark, setDark }) => {
   return (
     <div
-      className="bg-(--bg-primary) text-(--text-primary) flex-row justify-around  h-12.5 items-center text-[14px] hidden lg:flex z-0  
+      className="bg-(--bg-primary) text-(--text-primary) flex-row justify-around  h-12.5 items-center text-[14px] hidden lg:flex z-50  
 fixed inset-0"
     >
       <span className="text-[30px] cursor-pointer">

@@ -6,7 +6,7 @@ const Sidebar = ({ dark, setDark, open, toggleMenu }) => {
   return (
     <div
       className="flex flex-col lg:hidden  
-fixed inset-0"
+fixed inset-0 z-50"
     >
       <Header
         open={open}

@@ -6,7 +6,7 @@ import { CiLight } from "react-icons/ci";
 
 const Header = ({ open, toggleMenu, dark, setDark }) => {
   return (
-    <div className="lg:hiddenw-screen bg-(--bg-primary) text-(--text-primary) flex flex-row justify-around items-center">
+    <div className="lg:hiddenw-screen bg-(--bg-primary) text-(--text-primary) flex flex-row justify-around items-center fixed inset-0 z-50 h-12">
       <span className="text-[20px]">Placify</span>
       <span
         className="text-3xl"

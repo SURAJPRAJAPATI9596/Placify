@@ -4,7 +4,7 @@ import HeroImage from "../../../components/ui/HeroImage";
 const Hero = ({ dark, setDark }) => {
   return (
     <section
-      className="min-h-screen relative overflow-hidden px-6 lg:px-24 flex items-center    bg-(--bg-primary)
+      className="min-h-screen relative overflow-hidden px-2 pt-14 lg:px-24 flex items-center    bg-(--bg-primary)
     text-(--text-primary) mt-8"
     >
       {/* glow */}
@@ -36,21 +36,7 @@ w-full
         {/* LEFT */}
 
         <div>
-          <div
-            className="
-inline-flex
-border
-border-purple-500/40
-px-5
-py-2
-rounded-full
-text-purple-400
-mb-8
-"
-          >
-            ✨ Trusted by 50,000+ students
-          </div>
-
+          {" "}
           <h1
             className="
 text-5xl
@@ -78,7 +64,6 @@ bg-clip-text
             <br />
             Platform
           </h1>
-
           <p
             className="
 mt-8
@@ -91,7 +76,6 @@ leading-8
             Learn skills, build resumes, prepare for interviews, practice
             coding, and land your dream job — all in one place.
           </p>
-
           <div
             className="
 flex
@@ -103,8 +87,10 @@ flex-wrap
             <button
               className="
 bg-purple-600
-px-8
-py-4
+lg:px-8
+lg:py-4
+px-4
+py-2
 rounded-xl
 font-semibold
 hover:scale-105
@@ -118,8 +104,10 @@ transition
               className="
 border
 border-gray-700
-px-8
-py-4
+lg:px-8
+lg:py-4
+px-4
+py-2
 rounded-xl
 hover:bg-white
 hover:text-black

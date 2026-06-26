@@ -15,7 +15,7 @@ const MainLayout = ({ dark, setDark, open, toggleMenu }) => {
         setDark={setDark}
       />
 
-      <main className="flex-1 -z-50">
+      <main className="flex-1 relative z-0">
         <Outlet />
       </main>
       <Footer />

@@ -1,11 +1,7 @@
 import "./../App.css";
 import useTheme from "../hooks/useThem";
-import Navbar from "../components/common/Navbar";
-import Sidebar from "../components/common/Sidebar";
 import useSidebar from "./../hooks/useSidebar";
-import Hero from "../features/Home/components/Hero";
-import Home from "../features/Home/Home";
-import AppRoutes from "../routes/AppRoutes";
+import AppRoutes from "./../routes/AppRoutes";
 
 function App() {
   const { dark, setDark } = useTheme();
