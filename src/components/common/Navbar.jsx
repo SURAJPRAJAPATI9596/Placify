@@ -14,9 +14,13 @@ fixed inset-0"
       </span>
       <div className="w-[60%] flex justify-around cursor-pointer">
         <span>Dashboard</span>
-        <span>Roadmaps</span>
+        <span>
+          <NavLink to={"/placify/roadmaps "}>Roadmap</NavLink>
+        </span>
         <span>Resources</span>
-        <span>Resume</span>
+        <span>
+          <NavLink to={"/placify/resume"}>Resume</NavLink>
+        </span>
         <span>
           <NavLink to={"/placify/ats"} className={NavStyle}>
             ATS

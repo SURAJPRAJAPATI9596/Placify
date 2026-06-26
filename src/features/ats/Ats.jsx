@@ -14,7 +14,7 @@ const Ats = ({ dark }) => {
       className="
       min-h-screen
       px-5
-      py-10
+      py-40
       bg-(--bg-primary)
       text-(--text-primary)
       "
