@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import FieldSection from "./components/FieldSection";
 import TemplateSection from "./components/TemplateSection";
 import FormSection from "./components/FormSection";
+import PreviewSection from "./components/PreviewSection";
+
 const Resume = () => {
+  const [data, setData] = useState();
+  const sendData = (resumeData) => {
+    return setData(resumeData);
+  };
+
   const [fields, setFields] = useState({
     Personal: false,
     Summary: false,
@@ -52,71 +59,13 @@ gap-8
 "
       >
         {/* FORM */}
-        <FormSection fields={fields} />
+        <FormSection fields={fields} sendData={sendData} />
 
         {/* PREVIEW */}
-
-        <div>
-          <div
-            className="
-sticky
-top-5
-rounded-xl
-p-8
-min-h-screen
-bg-(--bg-primary)
-text-(--text-primary)
-border
-"
-          >
-            <div className="text-center">
-              <h1 className="text-3xl font-bold">Preview</h1>
-
-              <p>Frontend Developer</p>
-            </div>
-
-            <hr className="my-5" />
-
-            <Preview title="SUMMARY" />
-
-            <Preview title="SKILLS" />
-
-            <Preview title="PROJECTS" />
-
-            <Preview title="EXPERIENCE" />
-
-            <button
-              className="
-mt-8
-w-full
-bg-blue-600
-text-white
-py-3
-rounded-xl
-"
-            >
-              Download PDF
-            </button>
-          </div>
-        </div>
+        <PreviewSection data={data} />
       </div>
     </div>
   );
 };
-
-const Preview = ({ title }) => (
-  <div className="mb-6">
-    <h2 className="text-xl font-bold">{title}</h2>
-
-    <div
-      className="
-h-3
-bg-gray-300
-rounded-full
-mt-2
-"
-    />
-  </div>
-);
 
 export default Resume;
