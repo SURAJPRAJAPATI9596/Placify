@@ -1,6 +1,6 @@
 import React from "react";
 import Hero from "./components/Hero";
-import NumberHilight from "../../components/ui/cards/NumberHilight";
+import NumberHilight from "./components/NumberHilight";
 import Features from "./components/Features";
 import ProcessSteps from "./components/Process";
 import NumberListData from "./components/NumberListData";

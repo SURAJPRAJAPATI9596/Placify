@@ -1,4 +1,5 @@
 import processSteps from "../../../../src/data/processSteps";
+import animation from "../../../styles/CardAnimation";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 
@@ -48,6 +49,7 @@ gap-5
         {processSteps.map((step, index) => (
           <React.Fragment key={step.id}>
             <div
+              data-aos={animation.card}
               className="
 group
 relative

@@ -1,6 +1,6 @@
 import NumberCard from "./NumberCard";
 import React from "react";
-import NumberListData from "../../../features/Home/components/NumberListData";
+import NumberListData from "./NumberListData";
 
 const NumberHilight = ({ NumberListData }) => {
   return (

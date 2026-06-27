@@ -1,5 +1,6 @@
 import React from "react";
 import { X } from "lucide-react";
+import animation from "./../../../styles/CardAnimation";
 
 const InputModel = ({
   editId,
@@ -11,6 +12,7 @@ const InputModel = ({
 }) => {
   return (
     <div
+      data-aos={animation.card}
       className="
 fixed
 inset-0
@@ -25,6 +27,7 @@ p-5
       <div
         className="
 bg-(--bg-primary)
+text-(--text-primary)
 w-full
 max-w-md
 rounded-2xl

@@ -1,10 +1,13 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
-
+import animation from "../../../styles/CardAnimation";
 const RoadmapCard = ({ item }) => {
   return (
-    <div className="group relative overflow-hidden rounded-3xl border border-white/10 bg-(--bg-primary) text-(--text-primary) p-5 shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl">
+    <div
+      data-aos={animation.card}
+      className="group relative overflow-hidden rounded-3xl border border-white/10 bg-(--bg-primary) text-(--text-primary) p-5 shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+    >
       {/* Image Section */}
 
       <div className=" relative h-52 overflow-hidden rounded-2xl">
