@@ -6,7 +6,7 @@ const Sidebar = ({ dark, setDark, open, toggleMenu }) => {
   return (
     <div
       className="flex flex-col lg:hidden  
-fixed inset-0 z-50"
+fixed inset-0 "
     >
       <Header
         open={open}
@@ -21,13 +21,31 @@ fixed inset-0 z-50"
           </span>
           <div className="ml-[10%] h-[50%] flex flex-col cursor-pointer justify-around">
             <span>Dashboard</span>
-            <span>Roadmaps</span>
+            <span>
+              <NavLink to={"/placify/roadmaps "}>Roadmap</NavLink>
+            </span>
             <span>Resources</span>
-            <span>Resume</span>
-            <span>Interview </span>
+            <span>
+              <NavLink to={"/placify/resume"}>Resume</NavLink>
+            </span>
+            <span>
+              <NavLink to={"/placify/ats"} className={NavStyle}>
+                ATS
+              </NavLink>
+            </span>
+            <span>
+              <NavLink to={"/Placify/interview"}>Interview</NavLink>
+            </span>
             <span>Coding </span>
             <span>Jobs </span>
-            <span>Tracker</span>
+            <span>
+              <NavLink to={"/Placify/tracker"}>Tracker</NavLink>
+            </span>
+            <span>
+              <NavLink to={"/Placify/about"} className={NavStyle}>
+                About
+              </NavLink>
+            </span>
           </div>
           <div className="items-center cursor-pointer flex flex-row justify-around w-full">
             <span className="text-3xl">S</span>

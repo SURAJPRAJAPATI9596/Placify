@@ -1,72 +1,7 @@
 import { useReactToPrint } from "react-to-print";
 import React from "react";
 import { useRef } from "react";
-const placeHOlderData = {
-  personal: {
-    name: "Your Name",
-    email: "your@email.com",
-    phone: "Your Phone Number",
-    location: "Your Location",
-    github: "Your Github URL",
-    linkedin: "Your LinkedIn URL",
-  },
-
-  summary: "Write your professional summary here...",
-
-  skills: ["Skill 1", "Skill 2", "Skill 3"],
-
-  projects: [
-    {
-      name: "Project Name",
-      tech: "Technologies Used",
-      description: "Project description goes here...",
-    },
-  ],
-
-  experience: [
-    {
-      company: "Company Name",
-      role: "Your Role",
-      description: "Your work experience description...",
-    },
-  ],
-
-  education: [
-    {
-      degree: "Degree Name",
-      college: "College Name",
-      year: "Passing Year",
-      cgpa: "CGPA / Percentage",
-    },
-  ],
-
-  certifications: [
-    {
-      name: "Certification Name",
-      organization: "Organization Name",
-      date: "Certification Date",
-      credentialId: "Credential ID",
-      url: "Certification URL",
-    },
-  ],
-
-  achievements: [
-    {
-      title: "Achievement Title",
-      description: "Achievement description...",
-      date: "Achievement Date",
-    },
-  ],
-
-  languages: [
-    {
-      name: "Language Name",
-      level: "Language Level",
-    },
-  ],
-};
-
-const PreviewSection = ({ data = placeHOlderData }) => {
+const PreviewSection = ({ data }) => {
   const resumeRef = useRef(null);
   const handlePrint = useReactToPrint({
     contentRef: resumeRef,
@@ -85,7 +20,7 @@ const PreviewSection = ({ data = placeHOlderData }) => {
       border
       "
     >
-      <div ref={resumeRef}>
+      <div ref={resumeRef} className="pl-10">
         {/* PERSONAL */}
 
         <div className="text-center">
