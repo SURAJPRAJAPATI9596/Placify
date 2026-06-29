@@ -3,7 +3,7 @@ const Section = ({ title, children }) => (
     className="
 p-5
 rounded-xl
-border
+border-[0.4px]
 bg-(--bg-primary)
 text-(--text-primary)
 "

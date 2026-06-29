@@ -436,7 +436,7 @@ rounded-xl
       {fields.Education && (
         <Section title="Education">
           {resumeData.education.map((item, index) => (
-            <div key={index}>
+            <div key={index} className="flex flex-col gap-y-2">
               <Input
                 placeholder="Degree"
                 onChange={(e) => {

@@ -1,6 +1,6 @@
 import React from "react";
 
-const TemplateSection = () => {
+const TemplateSection = ({ templateButton = [], setTemplateButton }) => {
   return (
     <div
       className="
@@ -15,19 +15,27 @@ text-(--text-primary)
       <h2 className="text-2xl font-bold">Choose Template</h2>
 
       <div className="flex gap-5 mt-5 flex-wrap">
-        {["Modern", "Minimal", "Professional", "Developer"].map((item) => (
+        {templateButton.map((item, index) => (
           <button
-            key={item}
-            className="
-px-6
+            onClick={() => {
+              setTemplateButton((prev) =>
+                prev.map((template, i) => ({
+                  ...template,
+                  selected: i === index,
+                })),
+              );
+            }}
+            key={index}
+            className={`
+              ${item.selected ? "bg-blue-600" : ""}
+cursor-pointer
+              px-6
 py-3
 border
 rounded-xl
-hover:bg-blue-600
-hover:text-white
-"
+`}
           >
-            {item}
+            {item.name}
           </button>
         ))}
       </div>

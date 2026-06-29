@@ -5,6 +5,31 @@ import FormSection from "./components/FormSection";
 import PreviewSection from "./components/PreviewSection";
 
 const Resume = () => {
+  const [templateButton, setTemplateButton] = useState([
+    {
+      name: "Default",
+      selected: true,
+    },
+    {
+      name: "Modern",
+      selected: false,
+    },
+
+    {
+      name: "Minimal",
+      selected: false,
+    },
+
+    {
+      name: "Professional",
+      selected: false,
+    },
+
+    {
+      name: "Developer",
+      selected: false,
+    },
+  ]);
   const [data, setData] = useState();
   const sendData = (resumeData) => {
     return setData(resumeData);
@@ -48,21 +73,27 @@ text-(--text-primary)
       {/* Sections */}
       <FieldSection fields={fields} selectField={selectField} />
       {/* Template */}
-      <TemplateSection />
+      <TemplateSection
+        templateButton={templateButton}
+        setTemplateButton={setTemplateButton}
+      />
       {/* FORM + PREVIEW */}
 
       <div
         className="
-grid
-lg:grid-cols-2
-gap-8
+    
+         grid grid-cols-1 lg:grid-cols-[40%_60%] gap-4
 "
       >
         {/* FORM */}
         <FormSection fields={fields} sendData={sendData} />
 
         {/* PREVIEW */}
-        <PreviewSection data={data} fields={fields} />
+        <PreviewSection
+          data={data}
+          fields={fields}
+          templateButton={templateButton}
+        />
       </div>
     </div>
   );
