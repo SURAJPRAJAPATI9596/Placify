@@ -2,22 +2,24 @@ import React from "react";
 import Header from "./Header";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
+import { NavLink } from "react-router-dom";
+import NavStyle from "../../utils/NavStylel";
 const Sidebar = ({ dark, setDark, open, toggleMenu }) => {
   return (
-    <div
-      className="flex flex-col lg:hidden  
-fixed inset-0 "
-    >
+    <>
       <Header
         open={open}
         toggleMenu={toggleMenu}
         dark={dark}
         setDark={setDark}
       />
-      {open ? (
-        <div className="  border-b-blue-50 bg-(--bg-primary) text-(--text-primary) flex flex-col justify-between items-start h-screen  w-50  text-[14px]">
+
+      {open && (
+        <div className=" lg:hidden border-b-blue-50 bg-(--bg-primary) text-(--text-primary) flex flex-col justify-between items-start h-screen  w-50  text-[14px] z-50 fixed">
           <span className="text-[30px] cursor-pointer mt-10 ml-[10%]">
-            Placify
+            <NavLink to={"/Placify/"} className={`NavStyle cursor-pointer`}>
+              Placify
+            </NavLink>
           </span>
           <div className="ml-[10%] h-[50%] flex flex-col cursor-pointer justify-around">
             <span>Dashboard</span>
@@ -52,10 +54,8 @@ fixed inset-0 "
             <span className="text-3xl">S</span>
           </div>
         </div>
-      ) : (
-        ""
       )}
-    </div>
+    </>
   );
 };
 

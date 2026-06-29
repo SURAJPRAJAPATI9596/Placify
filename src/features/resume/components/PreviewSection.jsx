@@ -1,12 +1,13 @@
 import { useReactToPrint } from "react-to-print";
 import React from "react";
 import { useRef } from "react";
-const PreviewSection = ({ data }) => {
+const PreviewSection = ({ data = {}, fields }) => {
   const resumeRef = useRef(null);
   const handlePrint = useReactToPrint({
     contentRef: resumeRef,
-    documentTitle: "Placify_Resume",
+    documentTitle: "${data.personal.name}",
   });
+  console.log(data);
   return (
     <div
       className="
@@ -20,7 +21,7 @@ const PreviewSection = ({ data }) => {
       border
       "
     >
-      <div ref={resumeRef} className="pl-10">
+      <div ref={resumeRef} className="pl-6">
         {/* PERSONAL */}
 
         <div className="text-center">
@@ -45,9 +46,13 @@ const PreviewSection = ({ data }) => {
           </p>
 
           <div className="mt-3 flex justify-center gap-4">
-            {data.personal?.github && <span>Github</span>}
-
-            {data.personal?.linkedin && <span>LinkedIn</span>}
+            {data.personal?.github && (
+              <span>Github : {data.personal?.github}</span>
+            )}
+            {"|"}
+            {data.personal?.linkedin && (
+              <span>LinkedIn: {data.personal?.linkedin}</span>
+            )}
           </div>
         </div>
 
@@ -103,7 +108,7 @@ const PreviewSection = ({ data }) => {
 
         {/* EXPERIENCE */}
 
-        <Section title="EXPERIENCE">
+        {/* <Section title="EXPERIENCE">
           {data.experience?.map((item, index) => (
             <div key={index} className="mb-5">
               <h3 className="font-bold">{item.role}</h3>
@@ -113,7 +118,7 @@ const PreviewSection = ({ data }) => {
               <p>{item.description}</p>
             </div>
           ))}
-        </Section>
+        </Section> */}
 
         {/* EDUCATION */}
 
@@ -137,7 +142,7 @@ const PreviewSection = ({ data }) => {
 
         {/* CERTIFICATIONS */}
 
-        <Section title="CERTIFICATIONS">
+        {/* <Section title="CERTIFICATIONS">
           {data.certifications?.map((item, index) => (
             <div key={index} className="mb-3">
               <h3 className="font-bold">{item.name}</h3>
@@ -149,10 +154,10 @@ const PreviewSection = ({ data }) => {
               <p>{item.credentialId}</p>
             </div>
           ))}
-        </Section>
+        </Section> */}
 
         {/* ACHIEVEMENTS */}
-
+        {/* 
         <Section title="ACHIEVEMENTS">
           {data.achievements?.map((item, index) => (
             <div key={index}>
@@ -163,7 +168,7 @@ const PreviewSection = ({ data }) => {
               <p>{item.date}</p>
             </div>
           ))}
-        </Section>
+        </Section> */}
 
         {/* LANGUAGES */}
 

@@ -11,6 +11,7 @@ const FormSection = ({ fields, sendData }) => {
       location: "",
       github: "",
       linkedin: "",
+      Github: "",
     },
 
     summary: "",
@@ -203,6 +204,19 @@ const FormSection = ({ fields, sendData }) => {
           />
 
           <Input
+            placeholder="linkedin"
+            value={resumeData.personal.linkedin}
+            onChange={(e) =>
+              handleChange("personal", "linkedin", e.target.value)
+            }
+          />
+
+          <Input
+            placeholder="github"
+            value={resumeData.personal.github}
+            onChange={(e) => handleChange("personal", "github", e.target.value)}
+          />
+          <Input
             placeholder="Phone"
             value={resumeData.personal.phone}
             onChange={(e) => handleChange("personal", "phone", e.target.value)}
@@ -271,18 +285,6 @@ rounded-xl
 "
           >
             + Add Skill
-          </button>
-
-          <button
-            className="
-bg-purple-600
-text-white
-px-5
-py-3
-rounded-xl
-"
-          >
-            Suggest Skills
           </button>
         </Section>
       )}
@@ -365,13 +367,14 @@ rounded-xl
       {fields.Experience && (
         <Section title="Experience">
           {resumeData.experience.map((item, index) => (
-            <div key={index}>
+            <div key={index} className="space-y-3">
               <Input
+                value={item.company}
                 placeholder="Company"
                 onChange={(e) => {
                   const copy = [...resumeData.experience];
 
-                  copy[index].experience = e.target.value;
+                  copy[index].company = e.target.value;
 
                   setResumeData((prev) => ({
                     ...prev,
@@ -380,17 +383,31 @@ rounded-xl
                 }}
               />
 
-              <Input placeholder="Role" />
+              <Input
+                placeholder="role"
+                value={item.role}
+                onChange={(e) => {
+                  const copy = [...resumeData.experience];
+
+                  copy[index].role = e.target.value;
+
+                  setResumeData((prev) => ({
+                    ...prev,
+                    experience: copy,
+                  }));
+                }}
+              />
 
               <textarea
+                value={item.description}
                 onChange={(e) => {
-                  const copy = [...resumeData.projects];
+                  const copy = [...resumeData.experience];
 
                   copy[index].description = e.target.value;
 
                   setResumeData((prev) => ({
                     ...prev,
-                    projects: copy,
+                    experience: copy,
                   }));
                 }}
                 placeholder="Description"
@@ -425,7 +442,7 @@ rounded-xl
                 onChange={(e) => {
                   const copy = [...resumeData.education];
 
-                  copy[index].education = e.target.value;
+                  copy[index].degree = e.target.value;
 
                   setResumeData((prev) => ({
                     ...prev,
@@ -439,7 +456,7 @@ rounded-xl
                 onChange={(e) => {
                   const copy = [...resumeData.education];
 
-                  copy[index].education = e.target.value;
+                  copy[index].college = e.target.value;
 
                   setResumeData((prev) => ({
                     ...prev,
@@ -453,7 +470,7 @@ rounded-xl
                 onChange={(e) => {
                   const copy = [...resumeData.education];
 
-                  copy[index].education = e.target.value;
+                  copy[index].year = e.target.value;
 
                   setResumeData((prev) => ({
                     ...prev,
@@ -497,6 +514,81 @@ rounded-xl
 
       {fields.Certifications && (
         <Section title="Certifications">
+          {resumeData.certifications.map((item, index) => (
+            <div key={index} className="grid grid-cols-1 gap-2">
+              <Input
+                placeholder={"Name"}
+                value={item.name}
+                onChange={(e) => {
+                  const copy = [...resumeData.certifications];
+
+                  copy[index].name = e.target.value;
+
+                  setResumeData((prev) => ({
+                    ...prev,
+                    certifications: copy,
+                  }));
+                }}
+              />
+              <Input
+                placeholder="Organization"
+                value={item.organization}
+                onChange={(e) => {
+                  const copy = [...resumeData.certifications];
+
+                  copy[index].organization = e.target.value;
+
+                  setResumeData((prev) => ({
+                    ...prev,
+                    certifications: copy,
+                  }));
+                }}
+              />
+              <Input
+                value={item.date}
+                placeholder="Date"
+                onChange={(e) => {
+                  const copy = [...resumeData.certifications];
+
+                  copy[index].date = e.target.value;
+
+                  setResumeData((prev) => ({
+                    ...prev,
+                    certifications: copy,
+                  }));
+                }}
+              />
+              <Input
+                placeholder="credentialId"
+                value={item.credentialId}
+                onChange={(e) => {
+                  const copy = [...resumeData.certifications];
+
+                  copy[index].credentialId = e.target.value;
+
+                  setResumeData((prev) => ({
+                    ...prev,
+                    certifications: copy,
+                  }));
+                }}
+              />
+              <Input
+                placeholder="Url"
+                value={item.url}
+                onChange={(e) => {
+                  const copy = [...resumeData.certifications];
+
+                  copy[index].url = e.target.value;
+
+                  setResumeData((prev) => ({
+                    ...prev,
+                    certifications: copy,
+                  }));
+                }}
+              />
+            </div>
+          ))}
+
           <button
             onClick={addCertification}
             className="
@@ -512,10 +604,54 @@ rounded-xl
         </Section>
       )}
 
-      {/* ACHIEVEMENTS */}
-
       {fields.Achievements && (
         <Section title="Achievements">
+          {resumeData.achievements.map((item, index) => (
+            <div key={index} className="grid grid-cols-1 gap-2">
+              <Input
+                placeholder="title"
+                value={item.title}
+                onChange={(e) => {
+                  const copy = [...resumeData.achievements];
+
+                  copy[index].title = e.target.value;
+
+                  setResumeData((prev) => ({
+                    ...prev,
+                    achievements: copy,
+                  }));
+                }}
+              />
+              <Input
+                placeholder="description"
+                value={item.description}
+                onChange={(e) => {
+                  const copy = [...resumeData.achievements];
+
+                  copy[index].description = e.target.value;
+
+                  setResumeData((prev) => ({
+                    ...prev,
+                    achievements: copy,
+                  }));
+                }}
+              />{" "}
+              <Input
+                placeholder="date"
+                value={item.date}
+                onChange={(e) => {
+                  const copy = [...resumeData.achievements];
+
+                  copy[index].date = e.target.value;
+
+                  setResumeData((prev) => ({
+                    ...prev,
+                    achievements: copy,
+                  }));
+                }}
+              />
+            </div>
+          ))}
           <button
             onClick={addAchievement}
             className="
@@ -535,6 +671,38 @@ rounded-xl
 
       {fields.Languages && (
         <Section title="Languages">
+          {resumeData.languages.map((item, index) => (
+            <div key={index} className="grid grid-cols-1 gap-2">
+              <Input
+                placeholder="name"
+                value={item.name}
+                onChange={(e) => {
+                  const copy = [...resumeData.languages];
+
+                  copy[index].name = e.target.value;
+
+                  setResumeData((prev) => ({
+                    ...prev,
+                    languages: copy,
+                  }));
+                }}
+              />
+              <Input
+                placeholder="level"
+                value={item.level}
+                onChange={(e) => {
+                  const copy = [...resumeData.languages];
+
+                  copy[index].level = e.target.value;
+
+                  setResumeData((prev) => ({
+                    ...prev,
+                    languages: copy,
+                  }));
+                }}
+              />
+            </div>
+          ))}
           <button
             onClick={addLanguage}
             className="
