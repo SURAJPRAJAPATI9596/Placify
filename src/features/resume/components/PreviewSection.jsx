@@ -13,7 +13,7 @@ const PreviewSection = ({ data = {}, fields = {}, templateButton = [] }) => {
   const resumeRef = useRef(null);
   const handlePrint = useReactToPrint({
     contentRef: resumeRef,
-    documentTitle: data.personal?.name || "Resume",
+    documentTitle: data.personal?.name + "_Placify_Resume" || "Resume",
   });
   const selectedTemplate = templateButton.find((item) => item.selected)?.name;
 
