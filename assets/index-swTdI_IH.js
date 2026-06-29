@@ -624,7 +624,7 @@ font-bold\r
 border-b\r
 pb-2\r
 mb-4\r
-`,children:e}),t]}),ap=({data:e={},fields:t={},templateButton:n=[]})=>{let r=(0,_.useRef)(null),i=qf({contentRef:r,documentTitle:e.personal?.name||`Resume`}),a=n.find(e=>e.selected)?.name;return(0,M.jsxs)(`div`,{className:`\r
+`,children:e}),t]}),ap=({data:e={},fields:t={},templateButton:n=[]})=>{let r=(0,_.useRef)(null),i=qf({contentRef:r,documentTitle:e.personal?.name+`_Placify_Resume`||`Resume`}),a=n.find(e=>e.selected)?.name;return(0,M.jsxs)(`div`,{className:`\r
       sticky\r
       top-5\r
       rounded-xl\r
