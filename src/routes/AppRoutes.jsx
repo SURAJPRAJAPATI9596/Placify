@@ -11,6 +11,7 @@ import Tracker from "../features/tracker/pages/Tracker";
 import ProblemDetail from "./../features/coding/pages/ProblemDetail";
 import Problems from "../features/coding/pages/Problems";
 import CodingTabs from "../features/coding/components/TabBar";
+import ProfileMenu from "../features/profile/ProfileMenu";
 const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
   return (
     <Routes>
@@ -37,6 +38,7 @@ const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
         <Route path="/Placify/coding" element={<CodingTabs />} />
         <Route path="/Placify/problem/:id" element={<ProblemDetail />} />
         <Route path="/Placify/Problems" element={<Problems />} />
+        <Route path="/Placify/profile" element={<ProfileMenu />} />
       </Route>
     </Routes>
   );

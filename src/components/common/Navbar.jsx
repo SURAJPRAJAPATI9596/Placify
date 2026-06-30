@@ -3,6 +3,8 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 import NavStyle from "../../utils/NavStylel";
+import ProfileMenu from "../../features/profile/ProfileMenu";
+import ProfileDialog from "../../features/profile/ProfileDialog";
 const Navbar = ({ dark, setDark }) => {
   return (
     <div
@@ -51,7 +53,9 @@ fixed inset-0"
         >
           {dark ? <CiLight /> : <MdOutlineDarkMode />}
         </span>
-        <span>Login</span>
+        <span>
+          <ProfileDialog />
+        </span>
       </div>
     </div>
   );
