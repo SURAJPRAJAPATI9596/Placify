@@ -484,7 +484,7 @@ rounded-xl
                 onChange={(e) => {
                   const copy = [...resumeData.education];
 
-                  copy[index].education = e.target.value;
+                  copy[index].cgpa = e.target.value;
 
                   setResumeData((prev) => ({
                     ...prev,

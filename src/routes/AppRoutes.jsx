@@ -8,6 +8,9 @@ import Roadmaps from "../features/roadmap/pages/Roadmaps";
 import RoadmapDetail from "../features/roadmap/pages/RoadmapDetail";
 import AIInterviewRoom from "../features/interview/pages/interview";
 import Tracker from "../features/tracker/pages/Tracker";
+import ProblemDetail from "./../features/coding/pages/ProblemDetail";
+
+import CodingTabs from "../features/coding/components/TabBar";
 const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
   return (
     <Routes>
@@ -31,6 +34,8 @@ const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
         <Route path="/Placify/roadmaps/detail" element={<RoadmapDetail />} />
         <Route path="/Placify/interview" element={<AIInterviewRoom />} />
         <Route path="/Placify/tracker" element={<Tracker />} />
+        <Route path="/Placify/coding" element={<CodingTabs />} />
+        <Route path="/Placify/problmeDetial" element={<ProblemDetail />} />
       </Route>
     </Routes>
   );

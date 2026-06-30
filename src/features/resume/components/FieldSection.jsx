@@ -17,8 +17,8 @@ border
       <div
         className="
 grid
-grid-cols-2
-md:grid-cols-4
+grid-cols-1
+md:grid-cols-6
 gap-4
 "
       >

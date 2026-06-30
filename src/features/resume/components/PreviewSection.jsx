@@ -53,7 +53,7 @@ const PreviewSection = ({ data = {}, fields = {}, templateButton = [] }) => {
         <CreativeTemplate data={data} fields={fields} resumeRef={resumeRef} />
       )}
       <hr />
-      <div className="flex gap-x-1 mt-2">
+      <div className="flex gap-x-28 mt-2 pl-10 pr-10">
         <button
           onClick={handlePrint}
           className="

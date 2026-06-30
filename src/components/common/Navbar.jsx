@@ -29,7 +29,9 @@ fixed inset-0"
         <span>
           <NavLink to={"/Placify/interview"}>Interview</NavLink>
         </span>
-        <span>Coding </span>
+        <span>
+          <NavLink to={"/Placify/coding"}>Coding</NavLink>
+        </span>
         <span>Jobs </span>
         <span>
           <NavLink to={"/Placify/tracker"}>Tracker</NavLink>

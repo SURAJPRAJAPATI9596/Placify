@@ -1,6 +1,9 @@
 import React from "react";
 
 const DefaultTemplate = ({ resumeRef, fields, data }) => {
+  {
+    console.log(data.education);
+  }
   return (
     <div ref={resumeRef} className="pl-6">
       {/* PERSONAL */}

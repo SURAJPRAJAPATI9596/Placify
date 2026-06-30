@@ -337,10 +337,10 @@ export default function AIInterviewRoom() {
     <div ref={containerRef} className="relative">
       {/* Setup Screen */}
       {!isInterviewActive && (
-        <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900/60 to-slate-800 text-slate-100 p-8">
+        <div className="min-h-screen bg-linear-to-b from-slate-900 via-slate-900/60 to-slate-800 text-slate-100 p-8">
           <header className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-4">
-              <div className="rounded-full bg-gradient-to-br from-indigo-600 to-purple-600 w-12 h-12 flex items-center justify-center shadow-lg">
+              <div className="rounded-full bg-linear-to-br from-indigo-600 to-purple-600 w-12 h-12 flex items-center justify-center shadow-lg">
                 <Robot className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -506,7 +506,7 @@ export default function AIInterviewRoom() {
           <div className="w-2/3 p-8 flex flex-col gap-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-4">
-                <div className="rounded-full w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-xl">
+                <div className="rounded-full w-16 h-16 bg-linear-to-br from-indigo-500 to-purple-500 flex items-center justify-center shadow-xl">
                   <Robot className="w-9 h-9 text-white" />
                 </div>
                 <div>
@@ -533,15 +533,15 @@ export default function AIInterviewRoom() {
               </div>
             </div>
 
-            <div className="flex-1 rounded-2xl bg-gradient-to-b from-black/50 to-black/30 border border-white/8 p-8 shadow-2xl relative overflow-hidden">
+            <div className="flex-1 rounded-2xl bg-linear-to-b from-black/50 to-black/30 border border-white/8 p-8 shadow-2xl relative overflow-hidden">
               {/* Glassmorphism card */}
-              <div className="absolute inset-0 bg-gradient-to-t from-white/3 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-linear-to-t from-white/3 via-transparent to-transparent pointer-events-none" />
 
               <div className="flex gap-8 h-full">
                 {/* AI Panel */}
                 <div className="w-2/3 flex flex-col justify-center">
                   <div className="flex items-center gap-6">
-                    <div className="w-36 h-36 rounded-full bg-gradient-to-br from-indigo-600 to-violet-600 flex items-center justify-center shadow-2xl border-2 border-white/6">
+                    <div className="w-36 h-36 rounded-full bg-linear-to-br from-indigo-600 to-violet-600 flex items-center justify-center shadow-2xl border-2 border-white/6">
                       <Robot className="w-14 h-14 text-white" />
                     </div>
                     <div className="flex-1">
@@ -606,7 +606,7 @@ export default function AIInterviewRoom() {
           </div>
 
           {/* Right: Candidate Camera Feed */}
-          <div className="w-1/3 p-8 flex flex-col items-center gap-6 border-l border-white/6 bg-gradient-to-t from-black/40 to-black/20">
+          <div className="w-1/3 p-8 flex flex-col items-center gap-6 border-l border-white/6 bg-linear-to-t from-black/40 to-black/20">
             <div className="w-full rounded-xl bg-white/4 border border-white/6 p-4 flex flex-col items-center">
               <div className="w-full flex justify-between items-start">
                 <div>
