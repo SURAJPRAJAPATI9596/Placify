@@ -1,389 +1,246 @@
 import React from "react";
-import { Trophy, Flame, Target, Code2, TrendingUp } from "lucide-react";
 
-const CodingDashboard = () => {
-  const stats = [
-    {
-      title: "Solved",
-      value: "245",
-      icon: Trophy,
-    },
-    {
-      title: "Streak",
-      value: "18 Days",
-      icon: Flame,
-    },
-    {
-      title: "Accuracy",
-      value: "89%",
-      icon: Target,
-    },
-    {
-      title: "Rating",
-      value: "1820",
-      icon: Code2,
-    },
-  ];
-
+const Progress = () => {
   const skills = [
     {
       name: "DSA",
-      progress: 72,
+      value: 72,
     },
 
     {
       name: "Frontend",
-      progress: 88,
+      value: 88,
     },
 
     {
       name: "Backend",
-      progress: 48,
+      value: 45,
     },
 
     {
       name: "AI",
-      progress: 25,
+      value: 25,
     },
   ];
 
-  const getColor = (value) => {
-    if (value >= 75) return "bg-green-500";
+  const getGradient = (value) => {
+    if (value >= 75) return "#22c55e";
 
-    if (value >= 40) return "bg-yellow-500";
+    if (value >= 40) return "#eab308";
 
-    return "bg-red-500";
+    return "#ef4444";
+  };
+
+  const ProgressCircle = ({ value, name }) => {
+    return (
+      <div
+        className="
+      flex
+      flex-col
+      items-center
+      gap-4
+      "
+      >
+        <div
+          className="
+      w-36
+      h-36
+      rounded-full
+      flex
+      items-center
+      justify-center
+      "
+          style={{
+            background: `conic-gradient(${getGradient(value)} ${value}%, #222 0)`,
+          }}
+        >
+          <div
+            className="
+        w-28
+        h-28
+        rounded-full
+        bg-(--bg-primary)
+        flex
+        flex-col
+        items-center
+        justify-center
+        "
+          >
+            <h2
+              className="
+        text-3xl
+        font-bold
+        "
+            >
+              {value}%
+            </h2>
+          </div>
+        </div>
+
+        <h3
+          className="
+      text-lg
+      font-semibold
+      "
+        >
+          {name}
+        </h3>
+      </div>
+    );
   };
 
   return (
     <div
       className="
-min-h-screen
-bg-(--bg-primary)
-text-(--text-primary)
-p-6
-py-32
-"
+      min-h-screen
+      bg-(--bg-primary)
+      text-(--text-primary)
+      p-6
+      pt-24
+      "
     >
-      <div
-        className="
-max-w-7xl
-mx-auto
-"
-      >
-        {/* Header */}
+      <div className="max-w-7xl mx-auto">
+        <h1
+          className="
+        text-4xl
+        font-bold
+        "
+        >
+          Your Progress
+        </h1>
+
+        <p className="mt-3 opacity-70">
+          Analyze your preparation and improve weak areas
+        </p>
+
+        {/* Skill Analytics */}
 
         <div
           className="
-flex
-justify-between
-items-center
-"
+        mt-10
+        bg-white/10
+        rounded-3xl
+        p-8
+        "
         >
-          <div>
-            <h1
-              className="
-text-4xl
-font-bold
-"
-            >
-              Coding Dashboard 🚀
-            </h1>
-
-            <p
-              className="
-opacity-70
-mt-2
-"
-            >
-              Track your preparation and improve daily
-            </p>
-          </div>
+          <h2
+            className="
+          text-2xl
+          font-bold
+          "
+          >
+            Skill Analytics
+          </h2>
 
           <div
             className="
-hidden md:flex
-items-center
-gap-3
-bg-blue-600/20
-px-5
-py-3
-rounded-xl
-"
+          grid
+          grid-cols-2
+          md:grid-cols-4
+          gap-10
+          mt-10
+          "
           >
-            <TrendingUp />
-            Level 12
+            {skills.map((skill) => (
+              <ProgressCircle
+                key={skill.name}
+                value={skill.value}
+                name={skill.name}
+              />
+            ))}
           </div>
         </div>
 
-        {/* Stats */}
+        {/* Problem Distribution */}
 
         <div
           className="
-grid
-grid-cols-2
-lg:grid-cols-4
-gap-5
-mt-10
-"
+        grid
+        lg:grid-cols-3
+        gap-6
+        mt-10
+        "
         >
-          {stats.map((item) => (
+          {[
+            ["Easy", "120", "#22c55e"],
+            ["Medium", "80", "#eab308"],
+            ["Hard", "20", "#ef4444"],
+          ].map((item) => (
             <div
-              key={item.title}
+              key={item[0]}
               className="
-rounded-3xl
-p-6
-bg-white/10
-border
-border-white/10
-hover:-translate-y-2
-transition
-"
+          bg-white/10
+          rounded-3xl
+          p-8
+          "
             >
-              <item.icon size={32} />
+              <h2 className="text-xl">{item[0]}</h2>
 
-              <p
+              <h1
                 className="
-mt-5
-opacity-70
-"
+          text-5xl
+          font-bold
+          mt-4
+          "
               >
-                {item.title}
-              </p>
+                {item[1]}
+              </h1>
 
-              <h2
+              <div
                 className="
-text-4xl
-font-bold
-mt-2
-"
-              >
-                {item.value}
-              </h2>
+          h-2
+          rounded-full
+          mt-6
+          "
+                style={{
+                  background: item[2],
+                }}
+              />
             </div>
           ))}
         </div>
 
-        {/* Main Grid */}
+        {/* Weak Areas */}
 
         <div
           className="
-grid
-lg:grid-cols-2
-gap-8
-mt-12
-"
-        >
-          {/* Skill progress */}
-
-          <div
-            className="
-bg-white/10
-rounded-3xl
-p-8
-"
-          >
-            <h2
-              className="
-text-2xl
-font-bold
-"
-            >
-              Skill Progress
-            </h2>
-
-            <div
-              className="
-mt-8
-space-y-7
-"
-            >
-              {skills.map((skill) => (
-                <div key={skill.name}>
-                  <div
-                    className="
-flex
-justify-between
-"
-                  >
-                    <span>{skill.name}</span>
-
-                    <span>{skill.progress}%</span>
-                  </div>
-
-                  <div
-                    className="
-h-3
-bg-black/30
-rounded-full
-mt-2
-overflow-hidden
-"
-                  >
-                    <div
-                      className={`
-h-full
-${getColor(skill.progress)}
-rounded-full
-transition-all
-`}
-                      style={{
-                        width: `${skill.progress}%`,
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Circular analytics */}
-
-          <div
-            className="
-bg-white/10
-rounded-3xl
-p-8
-"
-          >
-            <h2
-              className="
-text-2xl
-font-bold
-"
-            >
-              Weekly Activity
-            </h2>
-
-            <div
-              className="
-flex
-items-center
-justify-center
-mt-8
-"
-            >
-              <div
-                className="
-relative
-w-44
-h-44
-rounded-full
-bg-linear-to-r
-from-blue-500
-to-purple-500
-flex
-items-center
-justify-center
-"
-              >
-                <div
-                  className="
-w-32
-h-32
-rounded-full
-bg-(--bg-primary)
-flex
-flex-col
-items-center
-justify-center
-"
-                >
-                  <h2
-                    className="
-text-3xl
-font-bold
-"
-                  >
-                    86%
-                  </h2>
-
-                  <p>Consistency</p>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="
-grid
-grid-cols-7
-gap-3
-mt-10
-"
-            >
-              {[30, 70, 40, 90, 60, 80, 50].map((x, i) => (
-                <div
-                  key={i}
-                  className="
-flex
-flex-col
-items-center
-gap-2
-"
-                >
-                  <div
-                    className="
-w-5
-rounded-full
-bg-blue-500
-"
-                    style={{
-                      height: `${x}px`,
-                    }}
-                  />
-
-                  <span className="text-sm">M</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Continue learning */}
-
-        <div
-          className="
-mt-10
-bg-linear-to-r
-from-blue-600
-to-purple-600
-rounded-3xl
-p-8
-"
+        mt-10
+        bg-white/10
+        rounded-3xl
+        p-8
+        "
         >
           <h2
             className="
-text-3xl
-font-bold
-"
+        text-2xl
+        font-bold
+        "
           >
-            Continue Learning
+            Improve Next
           </h2>
-
-          <p
-            className="
-mt-3
-"
-          >
-            React Interview Preparation
-          </p>
 
           <div
             className="
-h-3
-bg-white/30
-rounded-full
-mt-6
-"
+        flex
+        gap-3
+        flex-wrap
+        mt-6
+        "
           >
-            <div
-              className="
-h-full
-bg-white
-rounded-full
-w-[70%]
-"
-            />
+            {["Graphs", "Dynamic Programming", "System Design"].map((x) => (
+              <span
+                key={x}
+                className="
+          px-5
+          py-2
+          rounded-full
+          bg-red-500/20
+          text-red-300
+          "
+              >
+                {x}
+              </span>
+            ))}
           </div>
         </div>
       </div>
@@ -391,4 +248,4 @@ w-[70%]
   );
 };
 
-export default CodingDashboard;
+export default Progress;

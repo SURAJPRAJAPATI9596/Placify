@@ -381,7 +381,7 @@ border-white/10
           <div className="overflow-scroll h-screen  overflow-x-hidden ">
             {filtered.map((problem) => (
               <NavLink
-                to={"/Placify/problmeDetial"}
+                to={`/Placify/problem/${problem.id}`}
                 className="cursor-pointer"
                 key={problem.id}
               >

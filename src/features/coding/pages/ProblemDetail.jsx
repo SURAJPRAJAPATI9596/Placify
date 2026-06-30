@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Play, Send, GripVertical } from "lucide-react";
+import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ProblemDetail = () => {
+  const navigate = useNavigate();
   const [leftWidth, setLeftWidth] = useState(45);
 
   const [language, setLanguage] = useState("JavaScript");
@@ -67,14 +70,28 @@ p-6
 overflow-y-auto
 "
       >
-        <h1
-          className="
+        <div className="flex justify-around items-center">
+          <h1
+            className="
 text-3xl
 font-bold
 "
-        >
-          Two Sum
-        </h1>
+          >
+            Two Sum
+          </h1>
+          <button
+            onClick={() => {
+              navigate("/Placify/coding", {
+                state: {
+                  tab: 1,
+                },
+              });
+            }}
+            className="group flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 border border-white/10 hover:bg-blue-600 hover:border-blue-500 transition-all duration-300 shadow-lg hover:shadow-blue-500/30 text-sm font-semibold"
+          >
+            Problems
+          </button>
+        </div>
 
         <div
           className="
