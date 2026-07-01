@@ -1,130 +1,223 @@
-import React from "react";
-import MailBox from "./MailBox";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+
 const Footer = () => {
   return (
-    <footer className="bg-(--bg-primary) text-(--text-primary)px-5 sm:px-10 py-14">
-      <div className="max-w-7xl mx-auto">
-        {/* Main footer card */}
+    <footer
+      className="
+      bg-(--card-bg)
+      text-(--text-primary)
+      border-t
+border(--border-color)
+      "
+    >
+      <div
+        className="
+        max-w-7xl
+        mx-auto
+        px-6
+        py-14
+        grid
+        md:grid-cols-4
+        gap-10
+        "
+      >
+        {/* Brand */}
 
-        <div className="bg-(--bg-primary) text-(--text-primary) border border-white/10 rounded-3xl p-6 md:p-12">
-          <div
+        <div>
+          <h1
             className="
-            grid
-            lg:grid-cols-2
-            gap-12
+            text-3xl
+            font-bold
             "
           >
-            {/* Left section */}
+            Placify
+          </h1>
 
-            <div>
-              <h2 className=" text-3xl md:text-5xl font-bold">
-                Build Your Career
-                <span className="text-purple-500"> With Placify</span>
-              </h2>
+          <p
+            className="
+            mt-4
+            opacity-70
+            leading-7
+            "
+          >
+            Build skills, prepare interviews, track progress and achieve your
+            career goals.
+          </p>
 
-              <p
+          <div
+            className="
+            flex
+            gap-4
+            mt-6
+            "
+          >
+            {[FaGithub, FaLinkedin, FaTwitter].map((Icon, index) => (
+              <div
+                key={index}
                 className="
-                text-gray-400
-                mt-5
-                leading-7
+                p-3
+                rounded-full
+          bg-(--bg-primary)
+                border
+          border(--border-color)
+                hover:bg-blue-600
+                hover:text-white
+                transition
+                cursor-pointer
                 "
               >
-                Create resumes, prepare interviews, improve skills and find your
-                dream job from one platform.
-              </p>
-
-              {/* Contact */}
-
-              <div className="mt-8 space-y-4">
-                <div>
-                  <h3 className="text-purple-400 font-semibold">Email</h3>
-
-                  <p className="text-gray-300">surajprajapatijob@gmail.com</p>
-                </div>
-
-                <div>
-                  <h3 className="text-purple-400 font-semibold">WhatsApp</h3>
-
-                  <p className="text-gray-300">8737003813</p>
-                </div>
+                <Icon size={18} />
               </div>
-            </div>
-
-            {/* Mailing Section (kept) */}
-            <MailBox />
+            ))}
           </div>
+        </div>
 
-          {/* Links */}
+        {/* Product */}
+
+        <div>
+          <h3
+            className="
+            font-bold
+            text-lg
+            "
+          >
+            Product
+          </h3>
+
+          <ul
+            className="
+            mt-5
+            space-y-3
+            opacity-70
+            "
+          >
+            <li>Resume Builder</li>
+            <li>AI Interview</li>
+            <li>Coding Practice</li>
+            <li>Roadmaps</li>
+            <li>Tracker</li>
+          </ul>
+        </div>
+
+        {/* Company */}
+
+        <div>
+          <h3
+            className="
+            font-bold
+            text-lg
+            "
+          >
+            Company
+          </h3>
+
+          <ul
+            className="
+            mt-5
+            space-y-3
+            opacity-70
+            "
+          >
+            <li>About</li>
+            <li>Contact</li>
+            <li>Privacy Policy</li>
+            <li>Terms</li>
+          </ul>
+        </div>
+
+        {/* Contact Section */}
+
+        <div>
+          <h3
+            className="
+            text-xl
+            font-bold
+            flex
+            gap-3
+            items-center
+            "
+          >
+            <span>📩</span>
+            Get In Touch
+          </h3>
 
           <div
             className="
-            mt-14
-            pt-10
-            border-t
-            border-white/10
-            grid
-            grid-cols-2
-            md:grid-cols-4
-            gap-8
+            mt-6
+            space-y-5
             "
           >
-            <div>
-              <h3 className="font-bold mb-4">Platform</h3>
+            <input
+              placeholder="Enter your email"
+              className="
+              w-full
+              h-16
+              px-6
+              rounded-2xl
+              bg-transparent
+              border
+        border(--border-color)
+              outline-none
+        text-(--text-primary)
+              placeholder:text-gray-400
+              focus:border-purple-500
+              transition
+              "
+            />
 
-              <p className="text-gray-400">Resume Builder</p>
-              <p className="text-gray-400">Jobs</p>
-              <p className="text-gray-400">Interview Prep</p>
-              <p className="text-gray-400">Coding</p>
-            </div>
+            <textarea
+              placeholder="Write your message..."
+              className="
+              w-full
+              h-40
+              px-6
+              py-5
+              rounded-2xl
+              bg-transparent
+              border
+        border(--border-color)
+              outline-none
+              resize-none
+        text-(--text-primary)
+              placeholder:text-gray-400
+              focus:border-purple-500
+              transition
+              "
+            />
 
-            <div>
-              <h3 className="font-bold mb-4">Resources</h3>
-
-              <p className="text-gray-400">Roadmaps</p>
-              <p className="text-gray-400">Courses</p>
-              <p className="text-gray-400">Notes</p>
-              <p className="text-gray-400">Blogs</p>
-            </div>
-
-            <div>
-              <h3 className="font-bold mb-4">Company</h3>
-
-              <p className="text-gray-400">About</p>
-
-              <p className="text-gray-400">Contact</p>
-
-              <p className="text-gray-400">Privacy</p>
-            </div>
-
-            <div>
-              <h3 className="font-bold mb-4">Follow</h3>
-
-              <a href="https://www.linkedin.com/in/suraj-prajapati9596 ">
-                <p className="text-gray-400">LinkedIn</p>
-              </a>
-              <p className="text-gray-400">Github</p>
-
-              <p className="text-gray-400">Twitter</p>
-            </div>
+            <button
+              className="
+              w-full
+              h-16
+              rounded-2xl
+              bg-linear-to-r
+              from-purple-600
+              to-blue-600
+              text-white
+              font-bold
+              text-lg
+              hover:scale-[1.02]
+              transition
+              "
+            >
+              Send Message
+            </button>
           </div>
         </div>
+      </div>
 
-        {/* Bottom */}
+      {/* Bottom */}
 
-        <div
-          className="
-          text-center
-          mt-8
-          pt-6
-          border-t
-          border-white/10
-          text-gray-400
-          "
-        >
-          © 2026
-          <span className="text-purple-400 font-bold"> Placify</span>. All
-          Rights Reserved.
-        </div>
+      <div
+        className="
+        border-t
+  border(--border-color)
+        py-5
+        text-center
+        opacity-60
+        "
+      >
+        © 2026 Placify. All rights reserved.
       </div>
     </footer>
   );

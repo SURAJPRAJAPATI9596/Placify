@@ -53,9 +53,7 @@ fixed inset-0"
         >
           {dark ? <CiLight /> : <MdOutlineDarkMode />}
         </span>
-        <span>
-          <ProfileDialog />
-        </span>
+        <ProfileDialog />
       </div>
     </div>
   );

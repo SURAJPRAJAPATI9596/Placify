@@ -6,7 +6,7 @@ const RoadmapCard = ({ item }) => {
   return (
     <div
       data-aos={animation.card}
-      className="group relative overflow-hidden rounded-3xl border border-white/10 bg-(--bg-primary) text-(--text-primary) p-5 shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
+      className=" bg-(--card-bg) border-(--border-color) group relative overflow-hidden rounded-3xl border  text-(--text-primary) p-5 shadow-lg transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl"
     >
       {/* Image Section */}
 

@@ -51,14 +51,13 @@ gap-5
             <div
               data-aos={animation.card}
               className="
+              bg-(--card-bg) border-(--border-color)
 group
 relative
 w-full
 lg:w-64
-bg-white/5
 backdrop-blur-xl
 border
-border-white/10
 rounded-3xl
 p-8
 hover:-translate-y-3

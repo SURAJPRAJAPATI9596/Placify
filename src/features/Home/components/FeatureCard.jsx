@@ -5,7 +5,7 @@ const FeatureCard = ({ image, title, description, icon: Icon }) => {
   return (
     <div
       data-aos={animation.card}
-      className="group relative overflow-hidden rounded-[28px] border border-white/10 bg-(--bg-primary) text-(--text-primary) transition-all duration-500 hover:-translate-y-3 hover:border-purple-500/40 hover:shadow-[0_20px_60px_rgba(168,85,247,0.25)] "
+      className=" bg-(--card-bg) border-(--border-color)  group relative overflow-hidden rounded-[28px] border    text-(--text-primary) transition-all duration-500 hover:-translate-y-3 hover:border-purple-500/40 hover:shadow-[0_20px_60px_rgba(168,85,247,0.25)] "
     >
       {/* Image */}
       <div className="h-65 overflow-hidden">

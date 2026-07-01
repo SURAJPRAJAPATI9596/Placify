@@ -15,10 +15,10 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const ProfileMenu = () => {
   return (
-    <div className="space-y-6">
+    <div className="space-y-2 bg-(--bg-primary) text-(--text-primary)">
       {/* Header */}
 
-      <div className="flex items-center gap-5">
+      <div className="flex flex-col items-center gap-5">
         <img
           src="https://i.pravatar.cc/150"
           className="
@@ -76,7 +76,7 @@ const ProfileMenu = () => {
 
       {/* Career */}
 
-      <div
+      {/* <div
         className="
         bg-white/5
         rounded-2xl
@@ -96,7 +96,7 @@ const ProfileMenu = () => {
             <span className="text-blue-400 ml-2">Google</span>
           </p>
         </div>
-      </div>
+      </div> */}
 
       {/* Stats */}
 

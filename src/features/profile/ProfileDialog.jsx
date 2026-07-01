@@ -66,9 +66,12 @@ export default function ProfileDialog() {
   return (
     <div>
       <br />
-      <Button variant="outlined" onClick={handleClickOpen}>
-        suraj
-      </Button>
+      <img
+        className="rounded-full h-8 -mt-3.75"
+        variant="outlined"
+        onClick={handleClickOpen}
+        src="https://i.pravatar.cc/150"
+      />
       <SimpleDialog open={open} onClose={handleClose} />
     </div>
   );
