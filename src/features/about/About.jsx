@@ -1,93 +1,407 @@
 import React from "react";
-import AboutData from "../../data/AboutData";
+import {
+  FaFileAlt,
+  FaCode,
+  FaRobot,
+  FaBriefcase,
+  FaRoute,
+  FaChartLine,
+  FaUserGraduate,
+  FaCheckCircle,
+  FaRocket,
+} from "react-icons/fa";
 
-const About = ({ dark }) => {
+const About = () => {
+  const features = [
+    {
+      icon: FaFileAlt,
+      title: "Smart Resume Builder",
+      desc: "Create professional resumes with ATS optimization and industry focused templates.",
+    },
+
+    {
+      icon: FaCode,
+      title: "Coding Practice",
+      desc: "Improve DSA, programming skills and prepare for real technical interviews.",
+    },
+
+    {
+      icon: FaRobot,
+      title: "AI Career Assistant",
+      desc: "Get AI based suggestions to improve resume, skills and interview preparation.",
+    },
+
+    {
+      icon: FaRoute,
+      title: "Career Roadmaps",
+      desc: "Follow structured learning paths according to your target role.",
+    },
+
+    {
+      icon: FaBriefcase,
+      title: "Job Preparation",
+      desc: "Track applications, interviews and opportunities from one place.",
+    },
+
+    {
+      icon: FaChartLine,
+      title: "Progress Analytics",
+      desc: "Understand your growth with detailed career insights.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-(--bg-primary) text-(--text-primary)">
-      {/* Hero Section */}
-      <section className="py-20 px-6 text-center">
-        <h1 className="text-5xl font-bold mb-6">
-          About <span className="text-blue-600">Placify</span>
+    <div
+      className="
+min-h-screen
+bg-(--bg-primary)
+text-(--text-primary)
+"
+    >
+      {/* HERO */}
+
+      <section
+        className="
+px-6
+py-24
+text-center
+"
+      >
+        <h1
+          className="
+text-5xl
+font-bold
+"
+        >
+          Build Your Career With
+          <span className="text-blue-600">Placify</span>
         </h1>
 
-        <p className="max-w-3xl mx-auto text-lg leading-relaxed text-left">
-          Placement Help is an AI-powered career support platform designed
-          specifically for college students. Our mission is to simplify
-          placement preparation by providing resume building, ATS analysis, mock
-          interviews, study materials, and career guidance—all in one place.
+        <p
+          className="
+max-w-3xl
+mx-auto
+mt-6
+text-lg
+opacity-70
+leading-8
+"
+        >
+          Placify is a modern career development platform that helps students
+          build skills, create professional resumes, prepare for interviews and
+          reach their dream jobs.
         </p>
       </section>
 
-      {/* Mission Section */}
-      <section className="max-w-6xl mx-auto px-6 py-16">
-        <div className=" rounded-2xl p-8 shadow-lg bg-(--bg-primary) text-(--text-primary)">
-          <h2 className="text-3xl font-bold mb-4 text-center">Our Mission</h2>
+      {/* PROBLEM */}
 
-          <p className="text-lg leading-relaxed text-left">
-            Many students struggle with placement preparation because they don't
-            know where to start. Placement Help aims to bridge this gap by
-            providing smart tools and personalized guidance that help students
-            become industry-ready and confident.
+      <section
+        className="
+max-w-6xl
+mx-auto
+px-6
+py-16
+"
+      >
+        <div
+          className="
+bg-(--card-bg)
+border
+border-(--border-color)
+rounded-3xl
+p-10
+"
+        >
+          <h2 className="text-3xl font-bold">The Problem We Solve</h2>
+
+          <p
+            className="
+mt-5
+opacity-70
+leading-8
+"
+          >
+            Students often use different platforms for resumes, coding practice,
+            interview preparation and job searching. Placify combines everything
+            into one personalized career system.
           </p>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-16 px-6 bg-(--bg-primary) text-(--text-primary)">
-        <h2 className="text-4xl font-bold text-center mb-12">What We Offer</h2>
+      {/* FEATURES */}
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto ">
-          {AboutData.map((item, index) => (
+      <section
+        className="
+px-6
+py-20
+"
+      >
+        <h2
+          className="
+text-4xl
+font-bold
+text-center
+mb-12
+"
+        >
+          Everything You Need For Career Growth
+        </h2>
+
+        <div
+          className="
+max-w-7xl
+mx-auto
+grid
+md:grid-cols-3
+gap-8
+"
+        >
+          {features.map((item, index) => {
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={index}
+                className="
+bg-(--card-bg)
+border
+border-(--border-color)
+rounded-3xl
+p-7
+hover:-translate-y-2
+transition
+"
+              >
+                <Icon
+                  className="
+text-blue-600
+text-4xl
+"
+                />
+
+                <h3
+                  className="
+text-xl
+font-bold
+mt-5
+"
+                >
+                  {item.title}
+                </h3>
+
+                <p
+                  className="
+mt-3
+opacity-70
+leading-7
+"
+                >
+                  {item.desc}
+                </p>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+
+      <section
+        className="
+max-w-6xl
+mx-auto
+px-6
+py-20
+"
+      >
+        <h2
+          className="
+text-4xl
+font-bold
+text-center
+"
+        >
+          Your Journey With Placify
+        </h2>
+
+        <div
+          className="
+grid
+md:grid-cols-4
+gap-6
+mt-12
+"
+        >
+          {[
+            "Create Profile",
+            "Build Skills",
+            "Prepare Interviews",
+            "Get Hired",
+          ].map((item, index) => (
             <div
-              key={index}
-              className="p-6 rounded-xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 bg-(--bg-primary) text-(--text-primary)"
+              key={item}
+              className="
+bg-(--card-bg)
+rounded-2xl
+p-6
+text-center
+"
             >
-              <div className="text-4xl text-blue-600 mb-4">{item.icon}</div>
+              <div
+                className="
+text-3xl
+font-bold
+text-blue-500
+"
+              >
+                0{index + 1}
+              </div>
 
-              <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-
-              <p>{item.desc}</p>
+              <h3 className="mt-3 font-bold">{item}</h3>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="max-w-6xl mx-auto py-16 px-6">
-        <h2 className="text-4xl font-bold text-center mb-10">
-          Why Choose Placify?
-        </h2>
+      {/* AI SECTION */}
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="p-8 rounded-xl  shadow-md bg-(--bg-primary) text-(--text-primary)">
-            <h3 className="text-2xl font-semibold mb-4">All-in-One Platform</h3>
+      <section
+        className="
+px-6
+py-20
+"
+      >
+        <div
+          className="
+max-w-6xl
+mx-auto
+rounded-3xl
+bg-gradient-to-r
+from-blue-600
+to-purple-600
+p-10
+text-white
+"
+        >
+          <div className="flex gap-5 items-center">
+            <FaRobot className="text-5xl" />
 
-            <p>
-              No need to switch between multiple websites. Everything related to
-              placement preparation is available in a single platform.
-            </p>
+            <h2
+              className="
+text-3xl
+font-bold
+"
+            >
+              AI Powered Career Guidance
+            </h2>
           </div>
 
-          <div className="p-8 rounded-xl shadow-md bg-(--bg-primary) text-(--text-primary)">
-            <h3 className="text-2xl font-semibold mb-4">AI-Powered Support</h3>
-
-            <p>
-              Smart recommendations, resume analysis, ATS scoring, and interview
-              preparation powered by AI technology.
-            </p>
-          </div>
+          <p
+            className="
+mt-5
+leading-8
+"
+          >
+            Placify analyzes your progress and provides personalized
+            recommendations to help you become industry ready.
+          </p>
         </div>
       </section>
 
-      {/* Vision Section */}
-      <section className="py-20 px-6 text-center">
-        <h2 className="text-4xl font-bold mb-6">Our Vision</h2>
+      {/* WHY */}
 
-        <p className="max-w-4xl mx-auto text-lg leading-relaxed">
-          We envision a future where every student has equal access to quality
-          placement preparation resources. Placement Help aims to become the
-          go-to platform for students seeking jobs, internships, and career
-          growth opportunities.
+      <section
+        className="
+max-w-6xl
+mx-auto
+px-6
+py-20
+"
+      >
+        <h2
+          className="
+text-4xl
+font-bold
+text-center
+"
+        >
+          Why Choose Placify?
+        </h2>
+
+        <div
+          className="
+grid
+md:grid-cols-3
+gap-6
+mt-12
+"
+        >
+          {[
+            "One complete career platform",
+            "Personalized learning paths",
+            "Industry focused preparation",
+          ].map((item) => (
+            <div
+              className="
+p-6
+rounded-2xl
+bg-(--card-bg)
+border
+border-(--border-color)
+"
+            >
+              <FaCheckCircle
+                className="
+text-green-500
+text-2xl
+"
+              />
+
+              <p className="mt-4">{item}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* VISION */}
+
+      <section
+        className="
+py-24
+px-6
+text-center
+"
+      >
+        <FaRocket
+          className="
+mx-auto
+text-blue-600
+text-5xl
+"
+        />
+
+        <h2
+          className="
+text-4xl
+font-bold
+mt-6
+"
+        >
+          Our Vision
+        </h2>
+
+        <p
+          className="
+max-w-4xl
+mx-auto
+mt-5
+opacity-70
+leading-8
+"
+        >
+          Our vision is to make career preparation accessible, personalized and
+          practical for every student by combining technology, AI and structured
+          learning.
         </p>
       </section>
     </div>

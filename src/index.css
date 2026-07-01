@@ -7,3 +7,15 @@ html,
 body {
   overflow-x: hidden;
 }
+.CircularProgressbar-path {
+  stroke: #6366f1 !important;
+}
+
+.CircularProgressbar-trail {
+  stroke: #1f2937 !important;
+}
+
+.CircularProgressbar-text {
+  fill: white !important;
+  font-weight:700;
+}

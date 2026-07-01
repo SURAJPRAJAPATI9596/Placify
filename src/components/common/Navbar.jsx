@@ -15,13 +15,21 @@ fixed inset-0"
         <NavLink to={"/Placify/"}>Placify</NavLink>
       </span>
       <div className="w-[60%] flex justify-around cursor-pointer">
-        <span>Dashboard</span>
         <span>
-          <NavLink to={"/placify/roadmaps "}>Roadmap</NavLink>
+          <NavLink to={"/Placify/dashboard"} className={NavStyle}>
+            Dashboard
+          </NavLink>
+        </span>
+        <span>
+          <NavLink to={"/placify/roadmaps "} className={NavStyle}>
+            Roadmap
+          </NavLink>
         </span>
         <span>Resources</span>
         <span>
-          <NavLink to={"/placify/resume"}>Resume</NavLink>
+          <NavLink to={"/placify/resume"} className={NavStyle}>
+            Resume
+          </NavLink>
         </span>
         <span>
           <NavLink to={"/placify/ats"} className={NavStyle}>
@@ -29,14 +37,24 @@ fixed inset-0"
           </NavLink>
         </span>
         <span>
-          <NavLink to={"/Placify/interview"}>Interview</NavLink>
+          <NavLink to={"/Placify/interview"} className={NavStyle}>
+            Interview
+          </NavLink>
         </span>
         <span>
-          <NavLink to={"/Placify/coding"}>Coding</NavLink>
+          <NavLink to={"/Placify/coding"} className={NavStyle}>
+            Coding
+          </NavLink>
         </span>
-        <span>Jobs </span>
         <span>
-          <NavLink to={"/Placify/tracker"}>Tracker</NavLink>
+          <NavLink className={NavStyle} to={"/Placify/jobs"}>
+            Jobs
+          </NavLink>
+        </span>
+        <span>
+          <NavLink to={"/Placify/tracker"} className={NavStyle}>
+            Tracker
+          </NavLink>
         </span>
         <span>
           <NavLink to={"/Placify/about"} className={NavStyle}>

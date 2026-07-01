@@ -99,7 +99,7 @@ const ProfileMenu = () => {
       </div> */}
 
       {/* Stats */}
-
+      {/* 
       <div
         className="
         grid
@@ -130,7 +130,7 @@ const ProfileMenu = () => {
 
           <p className="text-xs opacity-70">Streak</p>
         </div>
-      </div>
+      </div> */}
 
       {/* Actions */}
 

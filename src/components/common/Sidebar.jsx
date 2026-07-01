@@ -4,6 +4,7 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import { NavLink } from "react-router-dom";
 import NavStyle from "../../utils/NavStylel";
+import ProfileDialog from "./../../features/profile/ProfileDialog";
 const Sidebar = ({ dark, setDark, open, toggleMenu }) => {
   return (
     <>
@@ -24,11 +25,15 @@ const Sidebar = ({ dark, setDark, open, toggleMenu }) => {
           <div className="ml-[10%] h-[50%] flex flex-col cursor-pointer justify-around">
             <span>Dashboard</span>
             <span>
-              <NavLink to={"/placify/roadmaps "}>Roadmap</NavLink>
+              <NavLink to={"/placify/roadmaps "} className={NavStyle}>
+                Roadmap
+              </NavLink>
             </span>
             <span>Resources</span>
             <span>
-              <NavLink to={"/placify/resume"}>Resume</NavLink>
+              <NavLink to={"/placify/resume"} className={NavStyle}>
+                Resume
+              </NavLink>
             </span>
             <span>
               <NavLink to={"/placify/ats"} className={NavStyle}>
@@ -36,12 +41,20 @@ const Sidebar = ({ dark, setDark, open, toggleMenu }) => {
               </NavLink>
             </span>
             <span>
-              <NavLink to={"/Placify/interview"}>Interview</NavLink>
+              <NavLink to={"/Placify/interview"} className={NavStyle}>
+                Interview
+              </NavLink>
             </span>
-            <span>Coding </span>
+            <span>
+              <NavLink to={"/Placify/coding"} className={NavStyle}>
+                Coding
+              </NavLink>
+            </span>
             <span>Jobs </span>
             <span>
-              <NavLink to={"/Placify/tracker"}>Tracker</NavLink>
+              <NavLink to={"/Placify/tracker"} className={NavStyle}>
+                Tracker
+              </NavLink>
             </span>
             <span>
               <NavLink to={"/Placify/about"} className={NavStyle}>
@@ -50,8 +63,10 @@ const Sidebar = ({ dark, setDark, open, toggleMenu }) => {
             </span>
           </div>
           <div className="items-center cursor-pointer flex flex-row justify-around w-full">
-            <span className="text-3xl">S</span>
-            <span className="text-3xl">S</span>
+            <span className="text-3xl">
+              {" "}
+              <ProfileDialog />
+            </span>
           </div>
         </div>
       )}

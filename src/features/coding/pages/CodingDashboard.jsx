@@ -57,7 +57,7 @@ text-4xl
 font-bold
 "
             >
-              Coding Dashboard 🚀
+              Coding Dashboard
             </h1>
 
             <p

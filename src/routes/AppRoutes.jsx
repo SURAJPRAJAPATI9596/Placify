@@ -12,6 +12,8 @@ import ProblemDetail from "./../features/coding/pages/ProblemDetail";
 import Problems from "../features/coding/pages/Problems";
 import CodingTabs from "../features/coding/components/TabBar";
 import ProfileMenu from "../features/profile/ProfileMenu";
+import Jobs from "../features/jobs/pages/Jobs";
+import Dashboard from "../features/dashboard/pages/dashboard";
 const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
   return (
     <Routes>
@@ -39,6 +41,8 @@ const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
         <Route path="/Placify/problem/:id" element={<ProblemDetail />} />
         <Route path="/Placify/Problems" element={<Problems />} />
         <Route path="/Placify/profile" element={<ProfileMenu />} />
+        <Route path="/Placify/jobs" element={<Jobs />} />
+        <Route path="/Placify/dashboard" element={<Dashboard />} />
       </Route>
     </Routes>
   );
