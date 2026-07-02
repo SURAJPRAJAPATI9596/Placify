@@ -8,6 +8,7 @@ import {
   Calculator,
   Code2,
 } from "lucide-react";
+import { TfiDashboard } from "react-icons/tfi";
 
 const featuresData = [
   {
@@ -72,6 +73,13 @@ const featuresData = [
     featureTitle: "Project Ideas",
     featureDescription:
       "Explore beginner to advanced project ideas to strengthen your portfolio.",
+  },
+  {
+    featureImg: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
+    icon: TfiDashboard,
+    featureTitle: "Personal dashboard",
+    featureDescription:
+      "Her you can track your progress, next step, you will be guided by AI, but it is our paid feature",
   },
 ];
 

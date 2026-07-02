@@ -65,7 +65,7 @@ const FeatureCard = ({ image, title, description, icon: Icon }) => {
         >
           {description}
         </p>
-
+        {/* 
         <button
           className="
           mt-8
@@ -81,7 +81,7 @@ const FeatureCard = ({ image, title, description, icon: Icon }) => {
         >
           Explore
           <ArrowRight size={20} />
-        </button>
+        </button> */}
       </div>
 
       {/* hover glow */}

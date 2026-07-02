@@ -93,7 +93,7 @@ const FAQSection = () => {
               key={index}
               className="bg-[var(--card-bg)] border border-[var(--border-color)] rounded-3xl overflow-hidden transition-all duration-300"
             >
-              <button
+              <p
                 onClick={() => toggleFAQ(index)}
                 className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-[var(--bg-primary)] transition"
               >
@@ -105,7 +105,7 @@ const FAQSection = () => {
                 >
                   <FaChevronDown />
                 </div>
-              </button>
+              </p>
 
               <div
                 className={`overflow-hidden transition-all duration-300 ${

@@ -86,7 +86,7 @@ flex-wrap
           >
             <button
               className="
-bg-purple-600
+ bg-purple-600!
 lg:px-8
 lg:py-4
 px-4
@@ -99,7 +99,7 @@ transition
             >
               Get Started Free →
             </button>
-
+            {/* 
             <button
               className="
 border
@@ -115,7 +115,7 @@ transition
 "
             >
               Explore Roadmaps
-            </button>
+            </button> */}
           </div>
         </div>
 
