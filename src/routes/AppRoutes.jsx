@@ -6,7 +6,7 @@ import Ats from "../features/Ats/Ats";
 import Resume from "../features/resume/Resume";
 import Roadmaps from "../features/roadmap/pages/Roadmaps";
 import RoadmapDetail from "../features/roadmap/pages/RoadmapDetail";
-import AIInterviewRoom from "../features/interview/pages/interview";
+import Interview from "../features/interview/pages/interview";
 import Tracker from "../features/tracker/pages/Tracker";
 import ProblemDetail from "./../features/coding/pages/ProblemDetail";
 import Problems from "../features/coding/pages/Problems";
@@ -14,6 +14,8 @@ import CodingTabs from "../features/coding/components/TabBar";
 import ProfileMenu from "../features/profile/ProfileMenu";
 import Jobs from "../features/jobs/pages/Jobs";
 import Dashboard from "../features/dashboard/pages/dashboard";
+import Resources from "../features/resources/pages/Resources";
+import TopicComponents from "../features/roadmap/pages/TopicComponent";
 const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
   return (
     <Routes>
@@ -35,7 +37,11 @@ const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
         <Route path="/Placify/resume" element={<Resume />} />
         <Route path="/Placify/roadmaps" element={<Roadmaps />} />
         <Route path="/Placify/roadmaps/detail" element={<RoadmapDetail />} />
-        <Route path="/Placify/interview" element={<AIInterviewRoom />} />
+        <Route
+          path="/Placify/roadmaps/detail/topic"
+          element={<TopicComponents />}
+        />
+        <Route path="/Placify/interview" element={<Interview />} />
         <Route path="/Placify/tracker" element={<Tracker />} />
         <Route path="/Placify/coding" element={<CodingTabs />} />
         <Route path="/Placify/problem/:id" element={<ProblemDetail />} />
@@ -43,6 +49,7 @@ const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
         <Route path="/Placify/profile" element={<ProfileMenu />} />
         <Route path="/Placify/jobs" element={<Jobs />} />
         <Route path="/Placify/dashboard" element={<Dashboard />} />
+        <Route path="/Placify/resources" element={<Resources />} />
       </Route>
     </Routes>
   );

@@ -1,251 +1,263 @@
-import React, { useEffect, useState } from "react";
-import { Search, Trash2, Edit, Calendar, X } from "lucide-react";
-import Status from "../components/Status";
-import SearchBar from "../components/Search";
-import InputModel from "../components/InputModel";
-import AddCardButton from "../components/AddCardButton";
-import AddButton from "../../roadmap/components/AddButton";
+import { useState } from "react";
+import { Plus, Download } from "lucide-react";
 
-const Tracker = () => {
-  const [applications, setApplications] = useState([]);
+const PlacementTracker = () => {
+  const [applications, setApplications] = useState([
+    {
+      id: 1,
+      company: "Google",
+      role: "SWE Intern",
+      date: "2025-01-15",
+      stage: "HR Round",
+      action: "Prepare HR answers",
+    },
+    {
+      id: 2,
+      company: "Microsoft",
+      role: "Frontend Dev",
+      date: "2025-01-10",
+      stage: "Offer Received",
+      action: "Sign & accept",
+    },
+    {
+      id: 3,
+      company: "Amazon",
+      role: "Backend Intern",
+      date: "2025-01-08",
+      stage: "OA Cleared",
+      action: "Prepare for DSA round",
+    },
+    {
+      id: 4,
+      company: "Flipkart",
+      role: "Full Stack",
+      date: "2024-12-28",
+      stage: "Technical Round",
+      action: "Practice system design",
+    },
+  ]);
 
-  const [open, setOpen] = useState(false);
-
-  const [editId, setEditId] = useState(null);
-
-  const [search, setSearch] = useState("");
-
-  const [form, setForm] = useState({
-    role: "",
+  const [showForm, setShowForm] = useState(false);
+  const [newApp, setNewApp] = useState({
     company: "",
-    status: "Applied",
-    time: "",
+    role: "",
+    date: "",
+    stage: "Applications Sent",
+    action: "",
   });
 
-  const columns = ["Applied", "Online Test", "Interview", "Offer"];
+  const funnelData = [
+    {
+      label: "Applications Sent",
+      count: applications.length,
+      percent: "100%",
+      color: "#6C3AFA",
+    },
+    { label: "OA Cleared", count: 22, percent: "45.8%", color: "#10B981" },
+    { label: "Interviews", count: 11, percent: "23%", color: "#F59E0B" },
+    { label: "Offers", count: 3, percent: "6%", color: "#EF4444" },
+  ];
 
-  const changeHandler = (e) => {
-    setForm({
-      ...form,
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!newApp.company || !newApp.role || !newApp.date) return;
 
-      [e.target.name]: e.target.value,
-    });
-  };
+    const application = {
+      id: Date.now(),
+      ...newApp,
+    };
 
-  const saveApplication = () => {
-    if (!form.role || !form.company) return;
-
-    if (editId) {
-      setApplications((prev) =>
-        prev.map((item) =>
-          item.id === editId
-            ? {
-                ...item,
-                ...form,
-              }
-            : item,
-        ),
-      );
-    } else {
-      setApplications((prev) => [
-        ...prev,
-
-        {
-          id: Date.now(),
-          ...form,
-        },
-      ]);
-    }
-
-    setForm({
-      role: "",
+    setApplications([application, ...applications]);
+    setNewApp({
       company: "",
-      status: "Applied",
-      time: "",
+      role: "",
+      date: "",
+      stage: "Applications Sent",
+      action: "",
     });
-
-    setEditId(null);
-
-    setOpen(false);
+    setShowForm(false);
   };
-
-  const editApplication = (item) => {
-    setForm({
-      role: item.role,
-      company: item.company,
-      status: item.status,
-      time: item.time,
-    });
-
-    setEditId(item.id);
-
-    setOpen(true);
-  };
-
-  const deleteApplication = (id) => {
-    setApplications((prev) => prev.filter((x) => x.id !== id));
-  };
-
-  const count = (status) => {
-    return applications.filter((x) => x.status === status).length;
-  };
-
-  const filtered = applications.filter(
-    (item) =>
-      item.company.toLowerCase().includes(search.toLowerCase()) ||
-      item.role.toLowerCase().includes(search.toLowerCase()),
-  );
 
   return (
-    <>
-      <div
-        className="
-min-h-screen
-bg-(--bg-primary)
-text-(--text-primary)
-p-5
-pt-40
-"
-      >
-        <div className="max-w-7xl mx-auto">
-          {/* HEADER */}
+    <div className="max-w-screen mx-auto px-6 pt-40 pb-24 bg-[var(--bg-primary)] min-h-screen">
+      <div className="flex justify-between items-end mb-10">
+        <div>
+          <h1 className="text-5xl font-bold text-[var(--text-primary)]">
+            Placement Tracker
+          </h1>
+          <p className="text-xl text-[var(--text-primary)] opacity-75 mt-2">
+            Full application pipeline visibility — from applied to offer
+          </p>
+        </div>
 
-          <div
-            className="
-flex
-flex-col
-md:flex-row
-justify-between
-gap-5
-"
-          >
-            <div>
-              <p className="text-purple-400 font-bold">PLACEMENT</p>
+        <button
+          onClick={() => setShowForm(!showForm)}
+          className="flex items-center gap-3 bg-[var(--primary-violet)] hover:bg-[var(--secondary-violet)] text-white px-6 py-4 rounded-2xl font-medium transition-all active:scale-95"
+        >
+          <Plus size={24} />
+          Add New Application
+        </button>
+      </div>
 
-              <h1
-                className="
-text-4xl
-font-bold
-"
+      {/* Add New Application Form */}
+      {showForm && (
+        <div className="bg-[var(--card-bg)] border border-[var(--border-color)] rounded-3xl p-8 mb-12">
+          <h3 className="text-2xl font-semibold mb-6 text-[var(--text-primary)]">
+            Add New Application
+          </h3>
+
+          <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-6">
+            <input
+              type="text"
+              placeholder="Company Name *"
+              value={newApp.company}
+              onChange={(e) =>
+                setNewApp({ ...newApp, company: e.target.value })
+              }
+              className="p-4 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] focus:outline-none focus:border-[var(--primary-violet)]"
+              required
+            />
+
+            <input
+              type="text"
+              placeholder="Role / Position *"
+              value={newApp.role}
+              onChange={(e) => setNewApp({ ...newApp, role: e.target.value })}
+              className="p-4 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] focus:outline-none focus:border-[var(--primary-violet)]"
+              required
+            />
+
+            <input
+              type="date"
+              value={newApp.date}
+              onChange={(e) => setNewApp({ ...newApp, date: e.target.value })}
+              className="p-4 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] focus:outline-none focus:border-[var(--primary-violet)]"
+              required
+            />
+
+            <select
+              value={newApp.stage}
+              onChange={(e) => setNewApp({ ...newApp, stage: e.target.value })}
+              className="p-4 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] focus:outline-none focus:border-[var(--primary-violet)]"
+            >
+              <option value="Applications Sent">Applications Sent</option>
+              <option value="OA Cleared">OA Cleared</option>
+              <option value="Technical Interview">Technical Interview</option>
+              <option value="HR Interview">HR Interview</option>
+              <option value="Offer Received">Offer Received</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+
+            <input
+              type="text"
+              placeholder="Next Action"
+              value={newApp.action}
+              onChange={(e) => setNewApp({ ...newApp, action: e.target.value })}
+              className="md:col-span-2 p-4 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-primary)] focus:outline-none focus:border-[var(--primary-violet)]"
+            />
+
+            <div className="md:col-span-2 flex gap-4">
+              <button
+                type="submit"
+                className="flex-1 bg-[var(--primary-violet)] text-white py-4 rounded-2xl font-medium hover:bg-[var(--secondary-violet)] transition"
               >
-                Tracker
-              </h1>
+                Save Application
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowForm(false)}
+                className="flex-1 border border-[var(--border-color)] py-4 rounded-2xl font-medium hover:bg-[var(--card-bg)] transition"
+              >
+                Cancel
+              </button>
             </div>
-          </div>
+          </form>
+        </div>
+      )}
 
-          {/* STATS */}
-          <Status columns={columns} count={count} />
-
-          {/* SEARCH */}
-          <SearchBar setSearch={setSearch} />
-
-          {/* ADD BUTTON */}
-          <AddButton setOpen={setOpen} />
-          {/* BOARD */}
-
-          <div
-            className="
-grid
-grid-cols-1
-md:grid-cols-2
-lg:grid-cols-4
-gap-5
-mt-8
-"
-          >
-            {columns.map((column) => (
+      {/* Funnel Statistics */}
+      <div className="mb-16">
+        <h2 className="text-2xl font-semibold mb-8 text-[var(--text-primary)]">
+          Funnel Statistics
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {funnelData.map((item, i) => (
+            <div
+              key={i}
+              className="bg-[var(--card-bg)] border border-[var(--border-color)] rounded-3xl p-8 hover:shadow-xl transition-all"
+            >
               <div
-                key={column}
-                className="
-bg-white/5
-rounded-2xl
-p-4
-min-h-400px
-"
+                className="text-6xl font-bold mb-3"
+                style={{ color: item.color }}
               >
-                <h2
-                  className="
-font-bold
-text-xl
-mb-5
-"
-                >
-                  {column}
-                </h2>
-
-                {filtered
-                  .filter((x) => x.status === column)
-                  .map((item) => (
-                    <div
-                      key={item.id}
-                      className="
-bg-black/20
-rounded-xl
-p-4
-mb-3
-"
-                    >
-                      <div
-                        className="
-flex
-justify-between
-"
-                      >
-                        <h3 className="font-bold">{item.role}</h3>
-
-                        <div className="flex gap-2">
-                          <button onClick={() => editApplication(item)}>
-                            <Edit size={15} />
-                          </button>
-
-                          <button onClick={() => deleteApplication(item.id)}>
-                            <Trash2 size={15} className="text-red-400" />
-                          </button>
-                        </div>
-                      </div>
-
-                      <p>{item.company}</p>
-
-                      <p
-                        className="
-text-purple-400
-mt-3
-text-sm
-flex
-gap-2
-"
-                      >
-                        <Calendar size={14} />
-
-                        {item.time}
-                      </p>
-                    </div>
-                  ))}
-                <AddCardButton
-                  setForm={setForm}
-                  setOpen={setOpen}
-                  column={column}
-                />
+                {item.count}
               </div>
-            ))}
-          </div>
+              <div className="font-semibold text-lg text-[var(--text-primary)]">
+                {item.label}
+              </div>
+              <div className="text-sm opacity-70 mt-1">{item.percent}</div>
+              <div className="mt-6 h-2.5 bg-[var(--border-color)] rounded-full overflow-hidden">
+                <div
+                  className="h-full"
+                  style={{ width: item.percent, backgroundColor: item.color }}
+                ></div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* MODAL OUTSIDE */}
+      {/* Application History */}
+      <div>
+        <div className="flex justify-between items-center mb-6">
+          <h2 className="text-2xl font-semibold text-[var(--text-primary)]">
+            Application History
+          </h2>
+          <button className="flex items-center gap-2 px-5 py-3 border border-[var(--border-color)] rounded-2xl hover:bg-[var(--card-bg)] transition">
+            <Download size={18} /> Export
+          </button>
+        </div>
 
-      {open && (
-        <InputModel
-          editId={editId}
-          changeHandler={changeHandler}
-          columns={columns}
-          form={form}
-          setOpen={setOpen}
-          saveApplication={saveApplication}
-        />
-      )}
-    </>
+        <div className="bg-[var(--card-bg)] border border-[var(--border-color)] rounded-3xl overflow-hidden">
+          <table className="w-full">
+            <thead>
+              <tr className="bg-[var(--bg-primary)] border-b border-[var(--border-color)]">
+                <th className="text-left p-6 font-semibold">Company</th>
+                <th className="text-left p-6 font-semibold">Role</th>
+                <th className="text-left p-6 font-semibold">Applied On</th>
+                <th className="text-left p-6 font-semibold">Stage</th>
+                <th className="text-left p-6 font-semibold">Next Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-[var(--border-color)]">
+              {applications.map((app) => (
+                <tr
+                  key={app.id}
+                  className="hover:bg-[var(--bg-primary)] transition"
+                >
+                  <td className="p-6 font-medium text-[var(--text-primary)]">
+                    {app.company}
+                  </td>
+                  <td className="p-6 text-[var(--text-primary)]">{app.role}</td>
+                  <td className="p-6 text-[var(--text-primary)] opacity-75">
+                    {app.date}
+                  </td>
+                  <td className="p-6">
+                    <span className="px-4 py-2 text-sm rounded-2xl border border-[var(--border-color)]">
+                      {app.stage}
+                    </span>
+                  </td>
+                  <td className="p-6 text-sm text-[var(--text-primary)]">
+                    {app.action}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default Tracker;
+export default PlacementTracker;

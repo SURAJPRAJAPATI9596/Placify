@@ -276,7 +276,7 @@ py-20
 max-w-6xl
 mx-auto
 rounded-3xl
-bg-gradient-to-r
+bg-linear-to-r
 from-blue-600
 to-purple-600
 p-10

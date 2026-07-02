@@ -1,72 +1,47 @@
-import React, { useState } from "react";
-import { CheckCircle, Lock, PlayCircle, ArrowRight } from "lucide-react";
-
-const roadmap = {
-  title: "Frontend Developer",
-
-  image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085",
-
-  description:
-    "Become a frontend developer by learning HTML, CSS, JavaScript and React.",
-
-  modules: [
-    {
-      title: "HTML Fundamentals",
-      status: "completed",
-
-      topics: ["HTML Tags", "Forms", "Semantic HTML", "Accessibility"],
-    },
-
-    {
-      title: "CSS Mastery",
-      status: "completed",
-
-      topics: ["Flexbox", "Grid", "Responsive Design", "Animations"],
-    },
-
-    {
-      title: "JavaScript",
-      status: "progress",
-
-      topics: ["Variables", "Functions", "DOM", "Async JavaScript"],
-    },
-
-    {
-      title: "React",
-      status: "locked",
-
-      topics: ["Components", "Hooks", "Router", "State Management"],
-    },
-  ],
-};
+import React from "react";
+import {
+  FaPlay,
+  FaBook,
+  FaCode,
+  FaCheckCircle,
+  FaLock,
+  FaProjectDiagram,
+  FaArrowLeft,
+} from "react-icons/fa";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const RoadmapDetail = () => {
-  const [completed, setCompleted] = useState([]);
+  const navigate = useNavigate();
 
-  const toggleTopic = (topic) => {
-    if (completed.includes(topic)) {
-      setCompleted(completed.filter((item) => item !== topic));
-    } else {
-      setCompleted([...completed, topic]);
-    }
-  };
+  const modules = [
+    {
+      title: "HTML & CSS Fundamentals",
+      status: "completed",
+      topics: ["HTML Structure", "CSS Layout", "Responsive Design"],
+      progress: 100,
+    },
 
-  // calculate progress automatically
+    {
+      title: "JavaScript Mastery",
+      status: "current",
+      topics: ["Variables", "Functions", "Async JS", "DOM"],
+      progress: 60,
+    },
 
-  const totalTopics = roadmap.modules.reduce(
-    (total, item) => total + item.topics.length,
-    0,
-  );
+    {
+      title: "React Development",
+      status: "locked",
+      topics: ["Components", "Hooks", "State Management"],
+      progress: 0,
+    },
 
-  const progress = Math.round((completed.length / totalTopics) * 100);
-
-  const icons = {
-    completed: <CheckCircle className="text-green-500" />,
-
-    progress: <PlayCircle className="text-yellow-400" />,
-
-    locked: <Lock className="text-gray-400" />,
-  };
+    {
+      title: "Real World Project",
+      status: "locked",
+      topics: ["Build UI", "API Integration", "Deployment"],
+      progress: 0,
+    },
+  ];
 
   return (
     <div
@@ -75,177 +50,323 @@ min-h-screen
 bg-(--bg-primary)
 text-(--text-primary)
 px-6
-py-10
-pt-40
+py-24
 "
     >
-      <div className="max-w-6xl mx-auto">
-        <img
-          src={roadmap.image}
+      <div className="max-w-7xl mx-auto">
+        <button
+          onClick={() => navigate(-1)}
           className="
-w-full
-h-80
-rounded-3xl
-object-cover
+flex
+items-center
+gap-2
+opacity-70
+mb-6
 "
-        />
+        >
+          <FaArrowLeft />
+          Back
+        </button>
 
-        <h1
+        {/* HERO */}
+
+        <div
           className="
+bg-linear-to-r
+from-purple-700
+to-indigo-700
+rounded-3xl
+p-10
+text-white
+"
+        >
+          <h1
+            className="
 text-5xl
 font-bold
-mt-10
 "
-        >
-          {roadmap.title}
-        </h1>
+          >
+            Frontend Development
+          </h1>
 
-        <p
-          className="
+          <p
+            className="
 mt-4
-opacity-70
+opacity-90
+max-w-2xl
 "
-        >
-          {roadmap.description}
-        </p>
-
-        {/* Progress */}
-
-        <div className="mt-8">
-          <div className="flex justify-between">
-            <span>Progress</span>
-
-            <span>{progress}%</span>
-          </div>
+          >
+            Become a professional frontend developer by mastering modern web
+            technologies and building real projects.
+          </p>
 
           <div
             className="
-h-3
-bg-gray-700
-rounded-full
-mt-2
+grid
+md:grid-cols-3
+gap-5
+mt-8
 "
           >
             <div
               className="
-h-full
-bg-blue-600
-rounded-full
-transition-all
+bg-white/20
+p-5
+rounded-2xl
 "
-              style={{
-                width: `${progress}%`,
-              }}
-            />
+            >
+              <h3>Duration</h3>
+
+              <h2 className="font-bold text-2xl">12 Weeks</h2>
+            </div>
+
+            <div
+              className="
+bg-white/20
+p-5
+rounded-2xl
+"
+            >
+              <h3>Level</h3>
+
+              <h2 className="font-bold text-2xl">Beginner</h2>
+            </div>
+
+            <div
+              className="
+bg-white/20
+p-5
+rounded-2xl
+"
+            >
+              <h3>Progress</h3>
+
+              <h2 className="font-bold text-2xl">72%</h2>
+            </div>
           </div>
         </div>
 
-        {/* Steps */}
+        {/* CURRENT */}
 
-        <div className="mt-16">
-          {roadmap.modules.map((step, index) => (
-            <div
-              key={index}
+        <div
+          className="
+mt-10
+bg-(--card-bg)
+border
+border-(--border-color)
+rounded-3xl
+p-8
+"
+        >
+          <div
+            className="
+flex
+justify-between
+items-center
+"
+          >
+            <div>
+              <h2 className="text-2xl font-bold">Continue Learning</h2>
+
+              <p className="opacity-70 mt-2">JavaScript Async Programming</p>
+            </div>
+
+            <button
               className="
-relative
-pl-12
-pb-14
-border-l-2
-border-blue-500
+bg-purple-600
+px-6
+py-3
+rounded-xl
+flex
+gap-2
+"
+            >
+              <FaPlay />
+              Continue
+            </button>
+          </div>
+        </div>
+
+        {/* MODULES */}
+
+        <h2
+          className="
+text-3xl
+font-bold
+mt-14
+"
+        >
+          Learning Path
+        </h2>
+
+        <div
+          className="
+mt-8
+space-y-6
+"
+        >
+          {modules.map((module, index) => (
+            <div
+              key={module.title}
+              className="
+bg-(--card-bg)
+border
+border-(--border-color)
+rounded-3xl
+p-7
 "
             >
               <div
                 className="
-absolute
--left-4.25
-top-0
-w-8
-h-8
-rounded-full
-bg-blue-600
-text-white
 flex
-items-center
-justify-center
-"
-              >
-                {index + 1}
-              </div>
-
-              <div
-                className="
-bg-white/5
-p-6
-rounded-2xl
-shadow-lg
+justify-between
 "
               >
                 <div
                   className="
 flex
-justify-between
+gap-4
 items-center
 "
                 >
-                  <h2 className="text-2xl font-bold">{step.title}</h2>
-
-                  {icons[step.status]}
-                </div>
-
-                {/* Topics Checkbox */}
-
-                <div className="mt-5 space-y-3">
-                  {step.topics.map((topic) => (
-                    <label
-                      key={topic}
-                      className="
+                  <div
+                    className="
+w-12
+h-12
+rounded-full
+bg-purple-600/20
 flex
 items-center
-gap-3
-cursor-pointer
+justify-center
+"
+                  >
+                    {module.status === "locked" ? (
+                      <FaLock />
+                    ) : (
+                      <FaCheckCircle />
+                    )}
+                  </div>
+
+                  <div>
+                    <h2
+                      className="
+text-xl
+font-bold
 "
                     >
-                      <input
-                        type="checkbox"
-                        checked={completed.includes(topic)}
-                        onChange={() => toggleTopic(topic)}
-                        className="
-w-5
-h-5
-accent-blue-600
+                      {index + 1}. {module.title}
+                    </h2>
+
+                    <p
+                      className="
+opacity-60
 "
-                      />
-
-                      <span
-                        className={
-                          completed.includes(topic)
-                            ? "line-through opacity-50"
-                            : ""
-                        }
-                      >
-                        {topic}
-                      </span>
-                    </label>
-                  ))}
+                    >
+                      {module.status === "locked"
+                        ? "Complete previous module"
+                        : "Available"}
+                    </p>
+                  </div>
                 </div>
+              </div>
 
-                <button
-                  className="
+              <div
+                className="
+grid
+md:grid-cols-2
+gap-4
 mt-6
-flex
-items-center
-gap-2
-bg-blue-600
-px-5
-py-3
+"
+              >
+                {module.topics.map((topic) => (
+                  <div
+                    key={topic}
+                    className="
+bg-(--bg-primary)
+p-4
 rounded-xl
-text-white
+flex
+gap-3
+items-center
+"
+                  >
+                    <NavLink to={"/Placify/roadmaps/detail/topic"}>
+                      <FaBook className="text-purple-500" />
+
+                      {topic}
+                    </NavLink>
+                  </div>
+                ))}
+              </div>
+
+              <div
+                className="
+mt-6
+"
+              >
+                <div
+                  className="
+h-3
+bg-black/20
+rounded-full
 "
                 >
-                  Start Learning
-                  <ArrowRight size={18} />
-                </button>
+                  <div
+                    className="
+h-full
+bg-purple-600
+rounded-full
+"
+                    style={{
+                      width: `${module.progress}%`,
+                    }}
+                  />
+                </div>
               </div>
+            </div>
+          ))}
+        </div>
+
+        {/* RESOURCES */}
+
+        <div
+          className="
+mt-14
+grid
+md:grid-cols-3
+gap-6
+"
+        >
+          {[
+            ["Video Lessons", FaPlay],
+            ["Practice Problems", FaCode],
+            ["Projects", FaProjectDiagram],
+          ].map(([title, Icon]) => (
+            <div
+              key={title}
+              className="
+bg-(--card-bg)
+border
+border-(--border-color)
+p-7
+rounded-3xl
+"
+            >
+              <Icon size={30} />
+
+              <h2
+                className="
+font-bold
+text-xl
+mt-4
+"
+              >
+                {title}
+              </h2>
+
+              <p className="opacity-70 mt-2">
+                Practice and improve your skills.
+              </p>
             </div>
           ))}
         </div>

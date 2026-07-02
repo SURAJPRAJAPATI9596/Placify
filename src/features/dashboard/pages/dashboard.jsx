@@ -78,9 +78,9 @@ const Card = ({ children, className = "" }) => {
   return (
     <div
       className={`
-bg-[var(--card-bg)]
+bg-(--card-bg)
 border
-border-[var(--border-color)]
+border-(--border-color)
 rounded-3xl
 p-6
 ${className}
@@ -122,8 +122,8 @@ const Dashboard = () => {
     <div
       className="
 min-h-screen
-bg-[var(--bg-primary)]
-text-[var(--text-primary)]
+bg-(--bg-primary)
+`text-(--text-primary)
 p-5
 md:p-10
 space-y-8

@@ -25,7 +25,12 @@ fixed inset-0"
             Roadmap
           </NavLink>
         </span>
-        <span>Resources</span>
+
+        <span>
+          <NavLink to={"/Placify/resources"} className={NavStyle}>
+            Resources
+          </NavLink>
+        </span>
         <span>
           <NavLink to={"/placify/resume"} className={NavStyle}>
             Resume
