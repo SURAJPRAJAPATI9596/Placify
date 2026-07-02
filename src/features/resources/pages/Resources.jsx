@@ -87,19 +87,19 @@ const Resources = () => {
   });
 
   return (
-    <div className="w-full mx-auto px-6 py-10 bg-[var(--bg-primary)] min-h-screen pt-28">
+    <div className="w-full mx-auto px-6 py-10 bg-(--bg-primary) min-h-screen pt-28">
       <div className="mb-12">
-        <h1 className="text-5xl font-bold text-[var(--text-primary)] mb-4">
+        <h1 className="text-5xl font-bold text-(--text-primary) mb-4">
           Resources Hub
         </h1>
-        <p className="text-xl text-[var(--text-primary)] opacity-75">
+        <p className="text-xl text-(--text-primary) opacity-75">
           Curated study materials with powerful search & multi-filter
         </p>
       </div>
 
       {/* Sticky Filters */}
-      <div className="static top-20 z-40 bg-[var(--bg-primary)] py-8 border-b border-[var(--border-color)] mb-12">
-        <div className="bg-[var(--card-bg)] p-6 rounded-3xl border border-[var(--border-color)]">
+      <div className="static top-20 z-40 bg-(--bg-primary) py-8 border-b border-(--border-color) mb-12">
+        <div className="bg-(--card-bg) p-6 rounded-3xl border border-(--border-color)">
           <div className="flex flex-col lg:flex-row gap-4">
             {/* Search */}
             <div className="flex-1 relative">
@@ -112,7 +112,7 @@ const Resources = () => {
                 placeholder="Search resources, topics..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-14 pr-6 py-4 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-2xl focus:outline-none focus:border-violet-500 text-[var(--text-primary)]"
+                className="w-full pl-14 pr-6 py-4 bg-(--bg-primary) border border-(--border-color) rounded-2xl focus:outline-none focus:border-violet-500 text-(--text-primary)"
               />
             </div>
 
@@ -120,7 +120,7 @@ const Resources = () => {
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
-              className="px-6 py-4 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-2xl text-[var(--text-primary)] focus:outline-none focus:border-violet-500"
+              className="px-6 py-4 bg-(--bg-primary) border border-(--border-color) rounded-2xl text-(--text-primary) focus:outline-none focus:border-violet-500"
             >
               {categories.map((cat) => (
                 <option key={cat} value={cat}>
@@ -132,7 +132,7 @@ const Resources = () => {
             <select
               value={selectedDifficulty}
               onChange={(e) => setSelectedDifficulty(e.target.value)}
-              className="px-6 py-4 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-2xl text-[var(--text-primary)] focus:outline-none focus:border-violet-500"
+              className="px-6 py-4 bg-(--bg-primary) border border-(--border-color) rounded-2xl text-(--text-primary) focus:outline-none focus:border-violet-500"
             >
               {difficulties.map((diff) => (
                 <option key={diff} value={diff}>
@@ -144,7 +144,7 @@ const Resources = () => {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-6 py-4 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-2xl text-[var(--text-primary)] focus:outline-none focus:border-violet-500"
+              className="px-6 py-4 bg-(--bg-primary) border border-(--border-color) rounded-2xl text-(--text-primary) focus:outline-none focus:border-violet-500"
             >
               <option value="Most Popular">Most Popular</option>
               <option value="Newest">Newest</option>
@@ -167,7 +167,7 @@ const Resources = () => {
                 className={`px-6 py-3 rounded-2xl text-sm font-medium transition-all border ${
                   selectedType.includes(type)
                     ? "bg-violet-600 text-white border-violet-600"
-                    : "bg-[var(--bg-primary)] border-[var(--border-color)] hover:border-violet-400 text-[var(--text-primary)]"
+                    : "bg-(--bg-primary) border-(--border-color) hover:border-violet-400 text-(--text-primary)"
                 }`}
               >
                 {type}
@@ -184,7 +184,7 @@ const Resources = () => {
             <ResourceCard resource={resource} key={resource.thumbnail} />
           ))
         ) : (
-          <div className="col-span-3 text-center py-20 text-[var(--text-primary)] opacity-70">
+          <div className="col-span-3 text-center py-20 text-(--text-primary) opacity-70">
             No resources found matching your filters.
           </div>
         )}

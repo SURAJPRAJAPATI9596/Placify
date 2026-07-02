@@ -1,11 +1,14 @@
 import React from "react";
 import FeatureCard from "./FeatureCard";
 import featuresData from "../../../data/featuresData";
-
+import animation from "../../../styles/CardAnimation";
 // (image, title, description);
 const Features = () => {
   return (
-    <section className="bg-(--bg-primary) text-(--text-primary) w-screen mt-24 sm:pl-10 sm:pr-10">
+    <section
+      data-aos={animation.card}
+      className="bg-(--bg-primary) text-(--text-primary) w-screen mt-24 sm:pl-10 sm:pr-10"
+    >
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-5xl font-bold">
           Everything you need. One platform.

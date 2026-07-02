@@ -1,223 +1,145 @@
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import React, { useState } from "react";
+import MailBox from "./MailBox";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaInstagram,
+  FaYoutube,
+  FaArrowRight,
+} from "react-icons/fa";
 
 const Footer = () => {
+  const socialLinks = [
+    { icon: <FaGithub size={22} />, url: "#" },
+    { icon: <FaLinkedin size={22} />, url: "#" },
+    { icon: <FaTwitter size={22} />, url: "#" },
+    { icon: <FaInstagram size={22} />, url: "#" },
+    { icon: <FaYoutube size={22} />, url: "#" },
+  ];
+
   return (
-    <footer
-      className="
-      bg-(--card-bg)
-      text-(--text-primary)
-      border-t
-border(--border-color)
-      "
-    >
-      <div
-        className="
-        max-w-7xl
-        mx-auto
-        px-6
-        py-14
-        grid
-        md:grid-cols-4
-        gap-10
-        "
-      >
-        {/* Brand */}
-
-        <div>
-          <h1
-            className="
-            text-3xl
-            font-bold
-            "
-          >
-            Placify
-          </h1>
-
-          <p
-            className="
-            mt-4
-            opacity-70
-            leading-7
-            "
-          >
-            Build skills, prepare interviews, track progress and achieve your
-            career goals.
-          </p>
-
-          <div
-            className="
-            flex
-            gap-4
-            mt-6
-            "
-          >
-            {[FaGithub, FaLinkedin, FaTwitter].map((Icon, index) => (
-              <div
-                key={index}
-                className="
-                p-3
-                rounded-full
-          bg-(--bg-primary)
-                border
-          border(--border-color)
-                hover:bg-blue-600
-                hover:text-white
-                transition
-                cursor-pointer
-                "
-              >
-                <Icon size={18} />
+    <footer className="bg-[#0A0A0A] text-white pt-20 pb-12 border-t border-white/10">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid md:grid-cols-12 gap-16">
+          {/* BRAND SECTION */}
+          <div className="md:col-span-5">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center text-2xl font-bold">
+                P
               </div>
-            ))}
+              <span className="text-4xl font-bold tracking-tighter">
+                Placify
+              </span>
+            </div>
+
+            <p className="text-lg text-gray-400 max-w-md leading-relaxed">
+              Placify is an AI-powered placement preparation platform helping
+              students build skills, optimize resumes, crack interviews, and
+              land their dream jobs.
+            </p>
+
+            <div className="flex gap-5 mt-10">
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.url}
+                  className="w-12 h-12 bg-white/10 hover:bg-white/20 backdrop-blur-xl border border-white/10 rounded-2xl flex items-center justify-center transition-all hover:scale-110 hover:rotate-6"
+                >
+                  {social.icon}
+                </a>
+              ))}
+            </div>
+
+            {/* Contact Details */}
+            <div className="mt-12 text-sm text-gray-400 space-y-2">
+              <div>
+                <strong>Email:</strong> support@placify.com
+              </div>
+              <div>
+                <strong>Business:</strong> business@placify.com
+              </div>
+              <div>
+                <strong>Location:</strong> India
+              </div>
+              <div>
+                <strong>Response Time:</strong> Usually within 24 hours
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* Product */}
-
-        <div>
-          <h3
-            className="
-            font-bold
-            text-lg
-            "
-          >
-            Product
-          </h3>
-
-          <ul
-            className="
-            mt-5
-            space-y-3
-            opacity-70
-            "
-          >
-            <li>Resume Builder</li>
-            <li>AI Interview</li>
-            <li>Coding Practice</li>
-            <li>Roadmaps</li>
-            <li>Tracker</li>
-          </ul>
-        </div>
-
-        {/* Company */}
-
-        <div>
-          <h3
-            className="
-            font-bold
-            text-lg
-            "
-          >
-            Company
-          </h3>
-
-          <ul
-            className="
-            mt-5
-            space-y-3
-            opacity-70
-            "
-          >
-            <li>About</li>
-            <li>Contact</li>
-            <li>Privacy Policy</li>
-            <li>Terms</li>
-          </ul>
-        </div>
-
-        {/* Contact Section */}
-
-        <div>
-          <h3
-            className="
-            text-xl
-            font-bold
-            flex
-            gap-3
-            items-center
-            "
-          >
-            <span>📩</span>
-            Get In Touch
-          </h3>
-
-          <div
-            className="
-            mt-6
-            space-y-5
-            "
-          >
-            <input
-              placeholder="Enter your email"
-              className="
-              w-full
-              h-16
-              px-6
-              rounded-2xl
-              bg-transparent
-              border
-        border(--border-color)
-              outline-none
-        text-(--text-primary)
-              placeholder:text-gray-400
-              focus:border-purple-500
-              transition
-              "
-            />
-
-            <textarea
-              placeholder="Write your message..."
-              className="
-              w-full
-              h-40
-              px-6
-              py-5
-              rounded-2xl
-              bg-transparent
-              border
-        border(--border-color)
-              outline-none
-              resize-none
-        text-(--text-primary)
-              placeholder:text-gray-400
-              focus:border-purple-500
-              transition
-              "
-            />
-
-            <button
-              className="
-              w-full
-              h-16
-              rounded-2xl
-              bg-linear-to-r
-              from-purple-600
-              to-blue-600
-              text-white
-              font-bold
-              text-lg
-              hover:scale-[1.02]
-              transition
-              "
-            >
-              Send Message
-            </button>
+          {/* QUICK LINKS */}
+          <div className="md:col-span-2">
+            <h4 className="font-semibold text-lg mb-6 text-white">Platform</h4>
+            <div className="space-y-4 text-gray-400">
+              {[
+                "Roadmaps",
+                "Resources",
+                "Resume Builder",
+                "AI Interview",
+                "Coding Practice",
+                "Job Portal",
+                "Tracker",
+              ].map((link, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="block hover:text-white transition"
+                >
+                  {link}
+                </a>
+              ))}
+            </div>
           </div>
+
+          {/* RESOURCES */}
+          <div className="md:col-span-2">
+            <h4 className="font-semibold text-lg mb-6 text-white">Resources</h4>
+            <div className="space-y-4 text-gray-400">
+              {[
+                "Frontend Roadmap",
+                "DSA Mastery",
+                "System Design",
+                "Interview Prep",
+                "Resume Tips",
+                "Career Blogs",
+              ].map((link, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="block hover:text-white transition"
+                >
+                  {link}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* CONTACT FORM */}
+          <MailBox />
         </div>
-      </div>
 
-      {/* Bottom */}
+        {/* BOTTOM BAR */}
+        <div className="mt-20 pt-8 border-t border-white/10 flex flex-col justify-between items-center text-sm text-gray-400 gap-4">
+          <div>© 2026 Placify. Built with ❤️ for students worldwide.</div>
 
-      <div
-        className="
-        border-t
-  border(--border-color)
-        py-5
-        text-center
-        opacity-60
-        "
-      >
-        © 2026 Placify. All rights reserved.
+          <div className="flex gap-8">
+            <a href="#" className="hover:text-white transition">
+              Privacy
+            </a>
+            <a href="#" className="hover:text-white transition">
+              Terms
+            </a>
+            <a href="#" className="hover:text-white transition">
+              Cookies
+            </a>
+            <a href="#" className="hover:text-white transition">
+              Status
+            </a>
+          </div>
+
+          <div className="text-xs opacity-60">v1.0.0</div>
+        </div>
       </div>
     </footer>
   );

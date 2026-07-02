@@ -6,6 +6,7 @@
 }
 
 .dark {
+  --secondary-violet: violet;
   --bg-primary: #111827;
   --text-primary: #ffffff;
   --card-bg: #1e293b;

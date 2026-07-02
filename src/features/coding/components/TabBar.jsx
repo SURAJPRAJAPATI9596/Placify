@@ -4,7 +4,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import CodingDashboard from "./../pages/CodingDashboard";
 import Problems from "./../pages/Problems";
-import Progress from "./../pages/Progress";
+import Progress from "../pages/Progress";
 function CustomTabPanel({ children, value, index, ...other }) {
   return (
     <div

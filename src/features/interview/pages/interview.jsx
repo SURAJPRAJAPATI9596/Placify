@@ -1,12 +1,8 @@
 import React from "react";
+import PremiumFeature from "../../../components/common/PremiumFeature";
 
 const Interview = () => {
-  return (
-    <div className="text-center mt-20 bg-(--bg-primary) text-(--text-primary)">
-      This is our premium feature if you want to use this feature you can
-      purchase our preminum
-    </div>
-  );
+  return <PremiumFeature />;
 };
 
 export default Interview;

@@ -2,14 +2,14 @@ import React from "react";
 import { Search, Bookmark, Clock, Star, PlayCircle } from "lucide-react";
 const ResourceCard = ({ resource }) => {
   return (
-    <div className="bg-[var(--card-bg)] border border-[var(--border-color)] rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+    <div className="bg-(--card-bg) border border-(--border-color) rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
       <div className="relative h-52">
         <img
           src={resource.thumbnail}
           alt={resource.title}
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
 
         <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 text-xs font-semibold rounded-full text-gray-800">
           {resource.category}
@@ -28,7 +28,7 @@ const ResourceCard = ({ resource }) => {
 
       <div className="p-6">
         <div className="flex justify-between items-center mb-4">
-          <span className="text-xs font-semibold px-4 py-1 bg-[var(--bg-primary)] border border-[var(--border-color)] rounded-full">
+          <span className="text-xs font-semibold px-4 py-1 bg-(--bg-primary) border border-(--border-color) rounded-full">
             {resource.difficulty}
           </span>
           <div className="flex items-center gap-1 text-sm text-gray-500">
@@ -37,18 +37,18 @@ const ResourceCard = ({ resource }) => {
           </div>
         </div>
 
-        <h3 className="font-semibold text-xl leading-tight mb-4 text-[var(--text-primary)] line-clamp-2">
+        <h3 className="font-semibold text-xl leading-tight mb-4 text-(--text-primary) line-clamp-2">
           {resource.title}
         </h3>
 
-        <p className="text-[var(--text-primary)] opacity-75 text-sm line-clamp-3 mb-6">
+        <p className="text-(--text-primary) opacity-75 text-sm line-clamp-3 mb-6">
           {resource.description}
         </p>
 
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-1">
             <Star className="text-yellow-500" size={20} fill="currentColor" />
-            <span className="font-medium text-[var(--text-primary)]">
+            <span className="font-medium text-(--text-primary)">
               {resource.rating}
             </span>
           </div>
