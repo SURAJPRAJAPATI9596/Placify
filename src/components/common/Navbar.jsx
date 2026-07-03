@@ -76,7 +76,10 @@ fixed inset-0"
         >
           {dark ? <CiLight /> : <MdOutlineDarkMode />}
         </span>
-        <ProfileDialog />
+        <NavLink to={"/Placify/login"}>
+          <button className="h-8! ">login</button>
+        </NavLink>
+        {/* <ProfileDialog /> */}
       </div>
     </div>
   );

@@ -69,7 +69,7 @@ const FAQSection = () => {
   };
 
   return (
-    <div className="bg-[var(--bg-primary)] pt-10" data-aos={animation.card}>
+    <div className="bg-(--bg-primary) pt-10" data-aos={animation.card}>
       <div className="max-w-5xl mx-auto px-6 pb-10">
         {/* Header */}
         <div className="text-center mb-16">
@@ -77,10 +77,10 @@ const FAQSection = () => {
             <span className="text-3xl">❓</span>
             <span className="font-semibold tracking-widest">FAQs</span>
           </div>
-          <h2 className="text-5xl font-bold text-[var(--text-primary)] mb-4">
+          <h2 className="text-5xl font-bold text-(--text-primary) mb-4">
             Frequently Asked Questions
           </h2>
-          <p className="text-xl text-[var(--text-primary)] opacity-70 max-w-2xl mx-auto">
+          <p className="text-xl text-(--text-primary) opacity-70 max-w-2xl mx-auto">
             Everything you need to know about Placify before starting your
             placement journey
           </p>
@@ -91,13 +91,13 @@ const FAQSection = () => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-[var(--card-bg)] border border-[var(--border-color)] rounded-3xl overflow-hidden transition-all duration-300"
+              className="bg-(--card-bg) border border-(--border-color) rounded-3xl overflow-hidden transition-all duration-300"
             >
-              <p
+              <h1
                 onClick={() => toggleFAQ(index)}
-                className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-[var(--bg-primary)] transition"
+                className="w-full px-8 py-6 flex items-center justify-between text-left hover:bg-(--bg-primary) transition"
               >
-                <span className="text-lg font-medium text-[var(--text-primary)] pr-8">
+                <span className="text-lg font-medium text-(--text-primary) pr-8">
                   {faq.question}
                 </span>
                 <div
@@ -105,7 +105,7 @@ const FAQSection = () => {
                 >
                   <FaChevronDown />
                 </div>
-              </p>
+              </h1>
 
               <div
                 className={`overflow-hidden transition-all duration-300 ${
@@ -114,7 +114,7 @@ const FAQSection = () => {
                     : "max-h-0 opacity-0"
                 }`}
               >
-                <div className="px-8 pb-8 text-[var(--text-primary)] opacity-80 leading-relaxed border-t border-[var(--border-color)]">
+                <div className="px-8 pb-8 text-(--text-primary) opacity-80 leading-relaxed border-t border-(--border-color)">
                   {faq.answer}
                 </div>
               </div>
@@ -123,7 +123,7 @@ const FAQSection = () => {
         </div>
 
         {/* Still Have Questions */}
-        <div className="bg-gradient-to-br from-violet-600 to-fuchsia-600 text-white rounded-3xl p-12 text-center">
+        <div className="bg-linear-to-br from-violet-600 to-fuchsia-600 text-white rounded-3xl p-12 text-center">
           <h3 className="text-3xl font-semibold mb-4">Still have questions?</h3>
           <p className="text-xl opacity-90 mb-10">
             Didn't find the answer you were looking for? Reach out to our team
@@ -148,10 +148,10 @@ const FAQSection = () => {
                 <FaStar key={i} />
               ))}
             </div>
-            <div className="text-3xl font-bold text-[var(--text-primary)]">
+            <div className="text-3xl font-bold text-(--text-primary)">
               4.9/5
             </div>
-            <div className="text-sm text-[var(--text-primary)] opacity-70">
+            <div className="text-sm text-(--text-primary) opacity-70">
               Average Rating
             </div>
           </div>
@@ -159,7 +159,7 @@ const FAQSection = () => {
             <div className="text-5xl font-bold text-[var(--primary-violet)]">
               10,000+
             </div>
-            <div className="text-sm text-[var(--text-primary)] opacity-70">
+            <div className="text-sm text-(--text-primary) opacity-70">
               Students
             </div>
           </div>
@@ -167,7 +167,7 @@ const FAQSection = () => {
             <div className="text-5xl font-bold text-[var(--primary-violet)]">
               250+
             </div>
-            <div className="text-sm text-[var(--text-primary)] opacity-70">
+            <div className="text-sm text-(--text-primary) opacity-70">
               Companies
             </div>
           </div>
@@ -175,7 +175,7 @@ const FAQSection = () => {
             <div className="text-5xl font-bold text-[var(--primary-violet)]">
               Thousands
             </div>
-            <div className="text-sm text-[var(--text-primary)] opacity-70">
+            <div className="text-sm text-(--text-primary) opacity-70">
               Placements
             </div>
           </div>

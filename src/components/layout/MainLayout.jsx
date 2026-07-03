@@ -15,7 +15,7 @@ const MainLayout = ({ dark, setDark, open, toggleMenu }) => {
         setDark={setDark}
       />
       <FloatingAIAssistant />
-      <main className="flex-1 relative z-0 fixed min-h-screen">
+      <main className="flex-1 relative z-0 fixed min-h-screen overflow-y-hidden">
         <Outlet />
       </main>
       <Footer />

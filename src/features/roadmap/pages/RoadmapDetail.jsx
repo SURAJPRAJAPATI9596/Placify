@@ -279,9 +279,10 @@ mt-6
 "
               >
                 {module.topics.map((topic) => (
-                  <div
-                    key={topic}
-                    className="
+                  <NavLink to={"/Placify/roadmaps/detail/topic"}>
+                    <div
+                      key={topic}
+                      className="
 bg-(--bg-primary)
 p-4
 rounded-xl
@@ -289,13 +290,12 @@ flex
 gap-3
 items-center
 "
-                  >
-                    <NavLink to={"/Placify/roadmaps/detail/topic"}>
+                    >
                       <FaBook className="text-purple-500" />
 
                       {topic}
-                    </NavLink>
-                  </div>
+                    </div>
+                  </NavLink>
                 ))}
               </div>
 

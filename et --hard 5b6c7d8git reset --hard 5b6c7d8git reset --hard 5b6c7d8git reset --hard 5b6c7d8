@@ -1,0 +1,31 @@
+[33m7a34cb3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m refixed project on previous version
+[33m34ef4da[m fixing api proble
+[33ma2dd55a[m remove api call in frontend
+[33m878fd4e[m remove apikey
+[33me61be27[m removed api key because github was not allowing to push
+[33m2f48f4b[m fiexd chatbot but still I have to protect my api key
+[33ma386a35[m[33m ([m[1;31morigin/main[m[33m)[m added chatbot features still api implementation is remianing
+[33m45145ff[m not remember what changes I made /🤣🤣🤣
+[33m2662b25[m added and enhanced features
+[33m9d06e60[m Added pages still I have to split them into components
+[33m50a324e[m modified profile menu
+[33m92d25c9[m added profile dialog for desktop
+[33m533d632[m modified coding section
+[33m5467743[m added coding pages, still it is remianing to fix functionality
+[33m17e040b[m added brand name for pdf download
+[33mfaa7ec8[m added resume templates
+[33md888c97[m Fixed z-index problem by suraj
+[33m42227e1[m added Links in sidebar
+[33mc580a52[m implemented pdf priting functionality but still it has some error
+[33me938653[m modified redme.md file
+[33ma56a957[m fixed bug in resume page which was given by gpt
+[33me9e5cd5[m  restored resume page on previous version
+[33m40692d5[m added tracker page and distructed it in form of components by suraj with the help of GPT
+[33ma968e4e[m fixed  colorign problem of resumePage by suraj
+[33mfc01d67[m added page
+[33m5365d00[m fixed problem related to Animztion not showing by suraj
+[33mf60bfb0[m some modification
+[33m6010b6d[m fixed problem in download section
+[33ma1d1eb3[m copied about section from previous project as well as T
+[33md039730[m first commit
+[33m6454d81[m initial commit

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import HeroImage from "../../../components/ui/HeroImage";
+import { NavLink } from "react-router-dom";
 
 const Hero = ({ dark, setDark }) => {
   return (
     <section
-      className="min-h-screen relative overflow-hidden px-2 pt-14 lg:px-24 flex items-center    bg-(--bg-primary)
+      className="min-h-screen relative min-w-screen overflow-hidden px-2 pt-14 lg:px-24 flex items-center    bg-(--bg-primary)
     text-(--text-primary) mt-8"
     >
       {/* glow */}
@@ -84,7 +85,8 @@ mt-10
 flex-wrap
 "
           >
-            <button
+            <NavLink
+              to={"/Placify/register"}
               className="
  bg-purple-600!
 lg:px-8
@@ -98,7 +100,7 @@ transition
 "
             >
               Get Started Free →
-            </button>
+            </NavLink>
             {/* 
             <button
               className="

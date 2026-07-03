@@ -79,6 +79,19 @@ const TopicComponents = () => {
       pt-24
       "
     >
+      <button
+        onClick={() => navigate(-1)}
+        className="
+flex
+items-center
+gap-2
+opacity-70
+mb-6
+"
+      >
+        <FaArrowLeft />
+        Back
+      </button>
       <div
         className="
       max-w-5xl

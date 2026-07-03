@@ -16,6 +16,8 @@ import Jobs from "../features/jobs/pages/Jobs";
 import Dashboard from "../features/dashboard/pages/dashboard";
 import Resources from "../features/resources/pages/Resources";
 import TopicComponents from "../features/roadmap/pages/TopicComponent";
+import Register from "./../features/auth/pages/Register";
+import Login from "../features/auth/pages/Login";
 const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
   return (
     <Routes>
@@ -50,6 +52,8 @@ const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
         <Route path="/Placify/jobs" element={<Jobs />} />
         <Route path="/Placify/dashboard" element={<Dashboard />} />
         <Route path="/Placify/resources" element={<Resources />} />
+        <Route path="/Placify/register" element={<Register />} />
+        <Route path="/Placify/login" element={<Login />} />
       </Route>
     </Routes>
   );
