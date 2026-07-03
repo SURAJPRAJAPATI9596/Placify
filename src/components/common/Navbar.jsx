@@ -15,57 +15,42 @@ fixed inset-0"
         <NavLink to={"/Placify/"}>Placify</NavLink>
       </span>
       <div className="w-[60%] flex justify-around cursor-pointer">
-        <span>
-          <NavLink to={"/Placify/dashboard"} className={NavStyle}>
-            Dashboard
-          </NavLink>
-        </span>
-        <span>
-          <NavLink to={"/placify/roadmaps "} className={NavStyle}>
-            Roadmap
-          </NavLink>
-        </span>
+        <NavLink to={"/Placify/dashboard"} className={NavStyle}>
+          Dashboard
+        </NavLink>
 
-        <span>
-          <NavLink to={"/Placify/resources"} className={NavStyle}>
-            Resources
-          </NavLink>
-        </span>
-        <span>
-          <NavLink to={"/placify/resume"} className={NavStyle}>
-            Resume
-          </NavLink>
-        </span>
-        <span>
-          <NavLink to={"/placify/ats"} className={NavStyle}>
-            ATS
-          </NavLink>
-        </span>
-        <span>
-          <NavLink to={"/Placify/interview"} className={NavStyle}>
-            Interview
-          </NavLink>
-        </span>
-        <span>
-          <NavLink to={"/Placify/coding"} className={NavStyle}>
-            Coding
-          </NavLink>
-        </span>
-        <span>
-          <NavLink className={NavStyle} to={"/Placify/jobs"}>
-            Jobs
-          </NavLink>
-        </span>
-        <span>
-          <NavLink to={"/Placify/tracker"} className={NavStyle}>
-            Tracker
-          </NavLink>
-        </span>
-        <span>
-          <NavLink to={"/Placify/about"} className={NavStyle}>
-            About
-          </NavLink>
-        </span>
+        <NavLink to={"/Placify/roadmaps"} className={NavStyle}>
+          Roadmap
+        </NavLink>
+
+        <NavLink to={"/Placify/resources"} className={NavStyle}>
+          Resources
+        </NavLink>
+
+        <NavLink to={"/placify/resume"} className={NavStyle}>
+          Resume
+        </NavLink>
+
+        <NavLink to={"/placify/ats"} className={NavStyle}>
+          ATS
+        </NavLink>
+
+        <NavLink to={"/Placify/interview"} className={NavStyle}>
+          Interview
+        </NavLink>
+        <NavLink to={"/Placify/coding"} className={NavStyle}>
+          Coding
+        </NavLink>
+        <NavLink className={NavStyle} to={"/Placify/jobs"}>
+          Jobs
+        </NavLink>
+        <NavLink to={"/Placify/tracker"} className={NavStyle}>
+          Tracker
+        </NavLink>
+
+        <NavLink to={"/Placify/about"} className={NavStyle}>
+          About
+        </NavLink>
       </div>
       <div className="flex justify-around w-[10%] items-center cursor-pointer">
         <span

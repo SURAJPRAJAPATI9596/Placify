@@ -17,7 +17,7 @@
   font-weight: 700;
 }
 /* for all button */
-button {
+button:not(.MuiButtonBase-root) {
   width: auto;
   padding-left: 20px;
   padding-right: 20px;
@@ -31,7 +31,7 @@ button {
   border-radius: 10px;
 }
 
-button:before {
+button:not(.MuiButtonBase-root)::before {
   content: "";
   background: linear-gradient(
     45deg,
@@ -59,19 +59,19 @@ button:before {
   border-radius: 10px;
 }
 
-button:active {
+button:not(.MuiButtonBase-root):active {
   color: #000;
 }
 
-button:active:after {
+button:not(.MuiButtonBase-root):active::after {
   background: transparent;
 }
 
-button:hover:before {
+button:not(.MuiButtonBase-root):hover::before {
   opacity: 1;
 }
 
-button:after {
+button:not(.MuiButtonBase-root)::after {
   z-index: -1;
   content: "";
   position: absolute;
@@ -92,5 +92,13 @@ button:after {
   }
   100% {
     background-position: 0 0;
+  }
+}
+
+/* for no print */
+
+@media print {
+  .no-print {
+    display: none !important;
   }
 }

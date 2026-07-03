@@ -1,117 +1,92 @@
 import React from "react";
-import { X } from "lucide-react";
-import animation from "./../../../styles/CardAnimation";
 
+const options = [
+  "Applications Sent",
+  "OA Cleared",
+  "Technical Interview",
+  "HR Interview",
+  "Offer Received",
+  "Rejected",
+];
 const InputModel = ({
-  editId,
-  setOpen,
-  changeHandler,
-  form,
-  columns,
-  saveApplication,
+  editingId,
+  handleSubmit,
+  setFormData,
+  setShowForm,
+  formData,
 }) => {
   return (
-    <div
-      data-aos={animation.card}
-      className="
-fixed
-inset-0
-z-9999
-bg-black/70
-flex
-items-center
-justify-center
-p-5
-"
-    >
-      <div
-        className="
-bg-(--bg-primary)
-text-(--text-primary)
-w-full
-max-w-md
-rounded-2xl
-p-6
-"
+    <div className="bg-(--card-bg) border border-(--border-color) rounded-3xl p-8 mb-12 ">
+      <h3 className="text-2xl font-semibold mb-6 text-(--text-primary)">
+        {editingId ? "Edit Application" : "Add New Application"}
+      </h3>
+
+      <form
+        onSubmit={handleSubmit}
+        className="grid md:grid-cols-2 gap-6 text-(--text-primary)"
       >
-        <div
-          className="
-flex
-justify-between
-items-center
-"
+        <input
+          type="text"
+          placeholder="Company Name *"
+          value={formData.company}
+          onChange={(e) =>
+            setFormData({ ...formData, company: e.target.value })
+          }
+          className="p-4 rounded-2xl border border-(--border-color) bg-(--bg-primary)"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Role / Position *"
+          value={formData.role}
+          onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+          className="p-4 rounded-2xl border border-(--border-color) bg-(--bg-primary)"
+          required
+        />
+        <input
+          type="date"
+          value={formData.date}
+          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+          className="p-4 rounded-2xl border border-(--border-color) bg-(--bg-primary)"
+          required
+        />
+
+        <select
+          value={formData.stage}
+          onChange={(e) => setFormData({ ...formData, stage: e.target.value })}
+          className="p-4 rounded-2xl border border-(--border-color) bg-(--bg-primary)"
         >
-          <h2 className="text-xl font-bold">
-            {editId ? "Edit" : "Add"}
-            Application
-          </h2>
+          {options.map((value) => (
+            <option>{value}</option>
+          ))}
+        </select>
 
-          <button onClick={() => setOpen(false)}>
-            <X />
-          </button>
-        </div>
+        <input
+          type="text"
+          placeholder="Next Action"
+          value={formData.action}
+          onChange={(e) => setFormData({ ...formData, action: e.target.value })}
+          className="md:col-span-2 p-4 rounded-2xl border border-(--border-color) bg-(--bg-primary)"
+        />
 
-        <div className="space-y-4 mt-5">
-          <Input
-            name="role"
-            value={form.role}
-            placeholder="Role"
-            onChange={changeHandler}
-          />
-
-          <Input
-            name="company"
-            value={form.company}
-            placeholder="Company"
-            onChange={changeHandler}
-          />
-
-          <select
-            name="status"
-            value={form.status}
-            onChange={changeHandler}
-            className="Input"
-          >
-            {columns.map((x) => (
-              <option key={x}>{x}</option>
-            ))}
-          </select>
-
-          <Input
-            name="time"
-            value={form.time}
-            placeholder="Time"
-            onChange={changeHandler}
-          />
-
+        <div className="md:col-span-2 flex gap-4 pt-4">
           <button
-            onClick={saveApplication}
-            className="
-bg-blue-600
-w-full
-py-3
-rounded-xl
-"
+            type="submit"
+            className="flex-1 bg-(--primary-violet) text-white py-4 rounded-2xl font-medium hover:bg-(--secondary-violet)] transition"
           >
-            Save
+            {editingId ? "Update" : "Save"}
+          </button>
+          <button
+            type="button"
+            onClick={() => setShowForm(false)}
+            className="flex-1 border border-(--border-color) py-4 rounded-2xl font-medium hover:bg-(--card-bg) transition"
+          >
+            Cancel
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
-
-const Input = ({ ...props }) => (
-  <input
-    {...props}
-    className="
-w-full
-p-3
-rounded-xl
-bg-transparent
-border
-"
-  />
-);
 
 export default InputModel;
