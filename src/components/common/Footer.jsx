@@ -19,13 +19,13 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-[#0A0A0A] text-white pt-20 pb-12 border-t border-white/10">
+    <footer className="bg-[#0A0A0A] text-white pt-20 pb-12 border-t border-white/10 ">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-12 gap-16">
           {/* BRAND SECTION */}
           <div className="md:col-span-5">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center text-2xl font-bold">
+              <div className="w-10 h-10 bg-linear-to-br from-violet-500 to-fuchsia-500 rounded-2xl flex items-center justify-center text-2xl font-bold">
                 P
               </div>
               <span className="text-4xl font-bold tracking-tighter">
@@ -39,7 +39,7 @@ const Footer = () => {
               land their dream jobs.
             </p>
 
-            <div className="flex gap-5 mt-10">
+            <div className="flex gap-5 mt-10 ">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}

@@ -9,7 +9,7 @@ const Navbar = ({ dark, setDark }) => {
   return (
     <div
       className="bg-(--bg-primary) text-(--text-primary) flex-row justify-around  h-12.5 items-center text-[14px] hidden lg:flex z-50  
-fixed inset-0"
+fixed top-0 left-0 w-full"
     >
       <span className="text-[30px] cursor-pointer">
         <NavLink to={"/Placify/"}>Placify</NavLink>
