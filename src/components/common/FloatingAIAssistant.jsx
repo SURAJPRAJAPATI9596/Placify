@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import axios from "axios";
 import {
   FaRobot,
   FaPaperPlane,
@@ -8,6 +9,8 @@ import {
 } from "react-icons/fa";
 
 const FloatingAIAssistant = () => {
+  const messagesEndRef = useRef(null);
+  const messagesContainerRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -20,6 +23,20 @@ const FloatingAIAssistant = () => {
   const [inputValue, setInputValue] = useState("");
   const [isTyping, setIsTyping] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
+  //auto scroll
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, isTyping]);
+
+  useEffect(() => {
+    if (isOpen) {
+      // Small delay to ensure DOM is rendered
+      setTimeout(scrollToBottom, 100);
+    }
+  }, [isOpen]);
 
   // Auto hide tooltip after 8 seconds
   useEffect(() => {
@@ -36,7 +53,7 @@ const FloatingAIAssistant = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (!inputValue.trim()) return;
 
     setMessages((prev) => [...prev, { type: "user", content: inputValue }]);
@@ -45,6 +62,20 @@ const FloatingAIAssistant = () => {
     setIsTyping(true);
 
     // Simulate AI response
+
+    const fetData = async () => {
+      const response = await axios.post("/api/v1/ai/", {
+        message: userMessage,
+      });
+      return response;
+    };
+    let data = await fetData();
+    data = data.data.message;
+    setMessages((prev) => [
+      ...prev,
+      { content: data.content, type: data.role },
+    ]);
+    setIsTyping(false);
   };
 
   const handleKeyPress = (e) => {
@@ -112,7 +143,10 @@ const FloatingAIAssistant = () => {
             </div>
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-(--bg-primary) text-(--text-primary)">
+            <div
+              ref={messagesContainerRef}
+              className="flex-1 overflow-y-auto p-6 space-y-6 bg-(--bg-primary) text-(--text-primary)"
+            >
               {messages.map((msg, index) => (
                 <div
                   key={index}
@@ -146,12 +180,13 @@ const FloatingAIAssistant = () => {
                   ></div>
                 </div>
               )}
+              <div ref={messagesEndRef} />
             </div>
 
             {/* Input Area */}
             <div className="p-5 border-t border-(--border-color) bg-(--card-bg)">
               <div className="flex gap-3">
-                <input
+                <textarea
                   type="text"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
