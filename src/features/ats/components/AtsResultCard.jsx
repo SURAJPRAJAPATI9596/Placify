@@ -1,7 +1,7 @@
 import React from "react";
 import ProgressBar from "./ProgressBar";
 
-const AtsResultCard = ({ title, score, dark }) => {
+const AtsResultCard = ({ title = "test", score, dark }) => {
   return (
     <div
       data-aos="fade-up"
@@ -26,12 +26,7 @@ text-xl
         {title}
       </p>
 
-      <ProgressBar
-        score={parseInt(score)}
-        circleSize={45}
-        textSize="2xl"
-        dark={dark}
-      />
+      <ProgressBar score={score} textSize="2xl" dark={dark} />
     </div>
   );
 };

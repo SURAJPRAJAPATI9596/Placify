@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
-const FileUploader = ({ dark, sendFile }) => {
+const FileUploader = ({ setSelectedFile }) => {
   const [file, setFile] = useState(null);
   return (
     <div className="p-6 rounded-xl border bg-(--bg-primary) text-(--text-primary) text-center ">
@@ -20,12 +20,11 @@ const FileUploader = ({ dark, sendFile }) => {
         onDrop={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          setFile(e.dataTransfer.files[0]);
-          sendFile(e.dataTransfer.files[0]);
+          setSelectedFile(e.dataTransfer.files[0]);
         }}
       >
         {file ? (
-          <p className="text-lg">Choose file uploaded</p>
+          <p className="text-lg text-green-700">Thanks! We got resume</p>
         ) : (
           <p className="text-lg">📄 Drag & Drop your resume</p>
         )}
@@ -49,7 +48,7 @@ const FileUploader = ({ dark, sendFile }) => {
               accept=".pdf,.doc,.docx"
               onChange={(e) => {
                 setFile(e.target.files[0]);
-                sendFile(e.target.files[0]);
+                setSelectedFile(e.target.files[0]);
               }}
             />
           </label>

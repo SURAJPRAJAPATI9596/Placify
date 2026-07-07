@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import {
@@ -37,19 +38,14 @@ const MailBox = () => {
     setIsSubmitting(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1200));
-      setSubmitStatus("success");
-
-      setTimeout(() => {
-        setFormData({ email: "", subject: "", message: "" });
-        setSubmitStatus(null);
-      }, 2500);
+      const response = await axios.post("/api/v1/email/", { formData });
     } catch (error) {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
   };
+
   return (
     <div className="md:col-span-3">
       <h4 className="font-semibold text-2xl mb-2">Get in touch</h4>

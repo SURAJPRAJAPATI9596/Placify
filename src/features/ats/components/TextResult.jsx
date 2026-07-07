@@ -17,92 +17,39 @@ border-white/10
   </div>
 );
 
-const TextResult = ({ dark }) => {
+const TextResult = ({ atsData }) => {
   return (
     <div className="grid md:grid-cols-2 gap-8 mt-10">
       <Card title="Keywords Found">
-        {["React", "JavaScript", "HTML", "CSS", "Tailwind"].map((x) => (
+        {atsData.keywordsFound?.map((x) => (
           <p key={x}>✅ {x}</p>
         ))}
       </Card>
 
       <Card title="Missing Keywords">
-        {["TypeScript", "Redux", "Docker"].map((x) => (
+        {atsData.missingKeywords?.map((x) => (
           <p key={x}>❌ {x}</p>
         ))}
       </Card>
-      <Card dark={dark} title="Strengths">
-        {[
-          "Well structured resume",
-          "Strong projects",
-          "Good skills",
-          "ATS friendly format",
-        ].map((x) => (
+      <Card title="Strengths">
+        {atsData.strengths?.map((x) => (
           <p key={x}>✓ {x}</p>
         ))}
       </Card>
 
-      <Card dark={dark} title="Improvements">
-        {[
-          "Add certifications",
-          "Add achievements",
-          "Mention measurable results",
-        ].map((x) => (
+      <Card title="Improvements">
+        {atsData.improvements?.map((x) => (
           <p key={x}>⚠ {x}</p>
         ))}
       </Card>
+      <Card title="Suggested Skills">
+        {atsData.suggestedSkills?.map((x) => (
+          <p key={x}>💡 {x}</p>
+        ))}
+      </Card>
+      <Card title="Placify Feedback">{atsData.overallFeedback}</Card>
     </div>
   );
 };
 
 export default TextResult;
-
-// (<div className="grid md:grid-cols-2 gap-8 mt-10">
-//           <Card title="Keywords Found">
-//             {["React", "JavaScript", "HTML", "CSS", "Tailwind"].map((x) => (
-//               <p key={x}>✅ {x}</p>
-//             ))}
-//           </Card>
-
-//           <Card title="Missing Keywords">
-//             {["TypeScript", "Redux", "Docker"].map((x) => (
-//               <p key={x}>❌ {x}</p>
-//             ))}
-//           </Card>
-//           <Card dark={dark} title="Strengths">
-//             {[
-//               "Well structured resume",
-//               "Strong projects",
-//               "Good skills",
-//               "ATS friendly format",
-//             ].map((x) => (
-//               <p key={x}>✓ {x}</p>
-//             ))}
-//           </Card>
-
-//           <Card dark={dark} title="Improvements">
-//             {[
-//               "Add certifications",
-//               "Add achievements",
-//               "Mention measurable results",
-//             ].map((x) => (
-//               <p key={x}>⚠ {x}</p>
-//             ))}
-//           </Card>
-//         </div>
-// ) = ({ title, children }) => (
-//   <div
-//     className="
-// p-6
-// rounded-xl
-// bg-(--bg-primary)
-// text-(--text-primary)
-// border
-// border-white/10
-// "
-//   >
-//     <h2 className="text-2xl font-bold mb-5">{title}</h2>
-
-//     <div className="space-y-3">{children}</div>
-//   </div>
-// );

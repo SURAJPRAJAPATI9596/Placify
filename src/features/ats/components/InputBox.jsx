@@ -1,6 +1,12 @@
 import React from "react";
 
-const InputBox = () => {
+const InputBox = ({ setJobDes, handleSubmit, selectedFile, jobDes }) => {
+  const isDisabled = () => {
+    if (!selectedFile || !jobDes) {
+      return true;
+    } else false;
+  };
+
   return (
     <div
       className="
@@ -12,10 +18,18 @@ const InputBox = () => {
           "
     >
       <h2 className="text-2xl font-bold mb-5 text-center">Job Description</h2>
-
-      <textarea
-        placeholder="Paste job description here..."
-        className="
+      <form
+        encType="multipart/form-data"
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <textarea
+          onChange={(e) => {
+            setJobDes(e.target.value);
+          }}
+          placeholder="Paste job description here..."
+          className="
             w-full
             h-48
             p-4
@@ -24,20 +38,25 @@ const InputBox = () => {
             border
             outline-none
             "
-      />
+        />
 
-      <button
-        className="
+        <button
+          onClick={() => {
+            handleSubmit();
+          }}
+          className={`
+             ${isDisabled() ? "bg-blue-400 opacity-50 cursor-not-allowed!" : ""}
           mt-5
-          w-full
+          w-full!
           bg-blue-600
           text-white
           py-3
           rounded-xl
-          "
-      >
-        Analyze Resume
-      </button>
+          `}
+        >
+          Analyze Resume
+        </button>
+      </form>
     </div>
   );
 };

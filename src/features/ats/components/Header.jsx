@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = ({ dark }) => {
+const Header = () => {
   return (
     <section className="text-center max-w-3xl mx-auto mb-12">
       <h1 className="text-4xl font-bold">PLACIFY ATS CHECKER</h1>

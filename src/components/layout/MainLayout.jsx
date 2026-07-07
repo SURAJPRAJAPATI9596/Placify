@@ -21,8 +21,8 @@ const MainLayout = ({ dark, setDark, open, toggleMenu }) => {
         <FlashMessage
           show={true}
           type="success"
-          title="Test"
-          message="This test was just for check that You are premium user or not"
+          title="Welcome to placify!"
+          message="Hey user thanks for visiting placify how we can help you!"
           duration={100000}
           onClose={() => {}}
           position="top-center"

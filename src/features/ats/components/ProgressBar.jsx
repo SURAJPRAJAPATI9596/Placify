@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const ProgressBar = ({
-  score = 84,
+  score = 100,
   circleSize = 50,
   textSize = "2xl",
   dark,
@@ -77,7 +77,7 @@ justify-center
         >
           <h1 className={`text-${textSize} font-bold`}>{progress}%</h1>
 
-          <p className="text-sm opacity-70">Match</p>
+          <p className="text-sm opacity-70 text-shadow-white">Match</p>
         </div>
       </div>
     </div>
