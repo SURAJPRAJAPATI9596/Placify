@@ -3,7 +3,7 @@ import MainLayout from "../components/layout/MainLayout";
 import Home from "../features/Home/Home";
 import About from "../features/about/About";
 import Ats from "./../features/ats/pages/Ats";
-import Resume from "../features/resume/Resume";
+import Resume from "../features/resume/pages/Resume";
 import Roadmaps from "../features/roadmap/pages/Roadmaps";
 import RoadmapDetail from "../features/roadmap/pages/RoadmapDetail";
 import Interview from "../features/interview/pages/interview";

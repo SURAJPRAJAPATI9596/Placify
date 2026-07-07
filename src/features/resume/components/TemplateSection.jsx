@@ -15,18 +15,18 @@ text-(--text-primary)
       <h2 className="text-2xl font-bold">Choose Template</h2>
 
       <div className="flex gap-5 mt-5 flex-wrap">
-        {templateButton.map((item, index) => (
+        {templateButton?.map((item, index) => (
           <button
             onClick={() => {
               setTemplateButton((prev) =>
-                prev.map((template, i) => ({
+                prev?.map((template, i) => ({
                   ...template,
                   selected: i === index,
                 })),
               );
             }}
             key={index}
-            className={`
+            className={`MuiButtonBase-root
               ${item.selected ? "bg-blue-600" : ""}
 cursor-pointer
               px-6

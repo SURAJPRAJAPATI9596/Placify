@@ -1,19 +1,19 @@
 import React from "react";
 
-const DeveloperTemplate = ({ resumeRef, fields, data }) => {
+const DeveloperTemplate = ({ resumeRef, fields, resumeData }) => {
   return (
     <div ref={resumeRef} className="bg-black text-green-400 p-10 font-mono">
       {fields.Personal && (
         <div>
-          <h1 className="text-4xl">{data.personal?.name}</h1>
+          <h1 className="text-4xl">{resumeData.personal?.name}</h1>
 
-          <p>{data.personal?.github}</p>
+          <p>{resumeData.personal?.github}</p>
         </div>
       )}
 
       {fields.Skills && (
         <Block title="Tech Stack">
-          {data.skills?.map((s, i) => (
+          {resumeData.skills?.map((s, i) => (
             <p key={i}>
               {">"} {s}
             </p>
@@ -23,7 +23,7 @@ const DeveloperTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Projects && (
         <Block title="Projects">
-          {data.projects?.map((p, i) => (
+          {resumeData.projects?.map((p, i) => (
             <div key={i}>
               <h3>{p.name}</h3>
 
@@ -35,7 +35,7 @@ const DeveloperTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Experience && (
         <Block title="Experience">
-          {data.experience?.map((e, i) => (
+          {resumeData.experience?.map((e, i) => (
             <p key={i}>
               {e.role}@{e.company}
             </p>

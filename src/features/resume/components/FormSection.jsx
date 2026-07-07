@@ -2,73 +2,7 @@ import React, { useEffect, useState } from "react";
 import Section from "./Section";
 import Input from "./Input";
 
-const FormSection = ({ fields, sendData }) => {
-  const [resumeData, setResumeData] = useState({
-    personal: {
-      name: "",
-      email: "",
-      phone: "",
-      location: "",
-      github: "",
-      linkedin: "",
-      Github: "",
-    },
-
-    summary: "",
-
-    skills: [],
-
-    projects: [
-      {
-        name: "",
-        tech: "",
-        description: "",
-      },
-    ],
-
-    experience: [
-      {
-        company: "",
-        role: "",
-        description: "",
-      },
-    ],
-
-    education: [
-      {
-        degree: "",
-        college: "",
-        year: "",
-        cgpa: "",
-      },
-    ],
-
-    certifications: [
-      {
-        name: "",
-        organization: "",
-        date: "",
-        credentialId: "",
-        url: "",
-      },
-    ],
-
-    achievements: [
-      {
-        title: "",
-        description: "",
-        date: "",
-      },
-    ],
-
-    languages: [
-      {
-        name: "",
-        level: "",
-      },
-    ],
-  });
-
+const FormSection = ({ fields, resumeData, setResumeData }) => {
   const handleChange = (section, field, value) => {
     setResumeData((prev) => ({
       ...prev,
@@ -181,15 +115,11 @@ const FormSection = ({ fields, sendData }) => {
     }));
   };
 
-  useEffect(() => {
-    sendData(resumeData);
-  }, [resumeData]);
-
   return (
     <div className="space-y-6">
       {/* PERSONAL */}
 
-      {fields.Personal && (
+      {fields?.Personal && (
         <Section title="Personal Details">
           <Input
             placeholder="Full Name"
@@ -199,13 +129,13 @@ const FormSection = ({ fields, sendData }) => {
 
           <Input
             placeholder="Email"
-            value={resumeData.personal.email}
+            value={resumeData?.personal.email}
             onChange={(e) => handleChange("personal", "email", e.target.value)}
           />
 
           <Input
             placeholder="linkedin"
-            value={resumeData.personal.linkedin}
+            value={resumeData?.personal.linkedin}
             onChange={(e) =>
               handleChange("personal", "linkedin", e.target.value)
             }
@@ -213,18 +143,18 @@ const FormSection = ({ fields, sendData }) => {
 
           <Input
             placeholder="github"
-            value={resumeData.personal.github}
+            value={resumeData?.personal.github}
             onChange={(e) => handleChange("personal", "github", e.target.value)}
           />
           <Input
             placeholder="Phone"
-            value={resumeData.personal.phone}
+            value={resumeData?.personal.phone}
             onChange={(e) => handleChange("personal", "phone", e.target.value)}
           />
 
           <Input
             placeholder="Location"
-            value={resumeData.personal.location}
+            value={resumeData?.personal.location}
             onChange={(e) =>
               handleChange("personal", "location", e.target.value)
             }
@@ -234,10 +164,10 @@ const FormSection = ({ fields, sendData }) => {
 
       {/* SUMMARY */}
 
-      {fields.Summary && (
+      {fields?.Summary && (
         <Section title="Summary">
           <textarea
-            value={resumeData.summary}
+            value={resumeData?.summary}
             onChange={(e) => {
               setResumeData((prev) => ({
                 ...prev,
@@ -253,9 +183,9 @@ const FormSection = ({ fields, sendData }) => {
 
       {/* SKILLS */}
 
-      {fields.Skills && (
+      {fields?.Skills && (
         <Section title="Skills">
-          {resumeData.skills.map((skill, index) => (
+          {resumeData?.skills.map((skill, index) => (
             <Input
               key={index}
               placeholder="React Javascript Node"
@@ -291,9 +221,9 @@ rounded-xl
 
       {/* PROJECTS */}
 
-      {fields.Projects && (
+      {fields?.Projects && (
         <Section title="Projects">
-          {resumeData.projects.map((item, index) => (
+          {resumeData?.projects.map((item, index) => (
             <div key={index} className="space-y-3">
               <Input
                 placeholder="Project Name"
@@ -364,9 +294,9 @@ rounded-xl
       )}
       {/* EXPERIENCE */}
 
-      {fields.Experience && (
+      {fields?.Experience && (
         <Section title="Experience">
-          {resumeData.experience.map((item, index) => (
+          {resumeData?.experience.map((item, index) => (
             <div key={index} className="space-y-3">
               <Input
                 value={item.company}
@@ -433,9 +363,9 @@ rounded-xl
 
       {/* EDUCATION */}
 
-      {fields.Education && (
+      {fields?.Education && (
         <Section title="Education">
-          {resumeData.education.map((item, index) => (
+          {resumeData?.education.map((item, index) => (
             <div key={index} className="flex flex-col gap-y-2">
               <Input
                 placeholder="Degree"
@@ -512,9 +442,9 @@ rounded-xl
 
       {/* CERTIFICATIONS */}
 
-      {fields.Certifications && (
+      {fields?.Certifications && (
         <Section title="Certifications">
-          {resumeData.certifications.map((item, index) => (
+          {resumeData?.certifications.map((item, index) => (
             <div key={index} className="grid grid-cols-1 gap-2">
               <Input
                 placeholder={"Name"}
@@ -604,9 +534,9 @@ rounded-xl
         </Section>
       )}
 
-      {fields.Achievements && (
+      {fields?.Achievements && (
         <Section title="Achievements">
-          {resumeData.achievements.map((item, index) => (
+          {resumeData?.achievements?.map((item, index) => (
             <div key={index} className="grid grid-cols-1 gap-2">
               <Input
                 placeholder="title"
@@ -669,9 +599,9 @@ rounded-xl
 
       {/* LANGUAGES */}
 
-      {fields.Languages && (
+      {fields?.Languages && (
         <Section title="Languages">
-          {resumeData.languages.map((item, index) => (
+          {resumeData?.languages.map((item, index) => (
             <div key={index} className="grid grid-cols-1 gap-2">
               <Input
                 placeholder="name"

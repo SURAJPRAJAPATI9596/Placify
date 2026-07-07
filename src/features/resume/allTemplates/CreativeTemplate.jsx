@@ -1,6 +1,6 @@
 import React from "react";
 
-const CreativeTemplate = ({ resumeRef, fields, data }) => {
+const CreativeTemplate = ({ resumeRef, fields, resumeData }) => {
   return (
     <div
       ref={resumeRef}
@@ -15,9 +15,9 @@ rounded-xl
     >
       {fields.Personal && (
         <div>
-          <h1 className="text-5xl font-bold">{data.personal?.name}</h1>
+          <h1 className="text-5xl font-bold">{resumeData.personal?.name}</h1>
 
-          <p>{data.personal?.email}</p>
+          <p>{resumeData.personal?.email}</p>
         </div>
       )}
 
@@ -25,7 +25,7 @@ rounded-xl
         <div className="mt-8">
           <h2>ABOUT ME</h2>
 
-          <p>{data.summary}</p>
+          <p>{resumeData.summary}</p>
         </div>
       )}
 
@@ -33,7 +33,7 @@ rounded-xl
         <div>
           <h2>Achievements</h2>
 
-          {data.achievements?.map((a, i) => (
+          {resumeData.achievements?.map((a, i) => (
             <p key={i}>{a.title}</p>
           ))}
         </div>

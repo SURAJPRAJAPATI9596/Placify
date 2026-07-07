@@ -1,9 +1,6 @@
 import React from "react";
 
-const DefaultTemplate = ({ resumeRef, fields, data }) => {
-  {
-    console.log(data.education);
-  }
+const DefaultTemplate = ({ resumeRef, fields, resumeData }) => {
   return (
     <div ref={resumeRef} className="pl-6">
       {/* PERSONAL */}
@@ -11,34 +8,34 @@ const DefaultTemplate = ({ resumeRef, fields, data }) => {
       {fields.Personal && (
         <div className="text-center">
           <h1 className="text-4xl font-bold">
-            {data.personal?.name || "Your Name"}
+            {resumeData.personal?.name || "Your Name"}
           </h1>
 
           <h3 className="text-xl mt-2">
-            {data.personal?.role || "Frontend Developer"}
+            {resumeData.personal?.role || "Frontend Developer"}
           </h3>
 
           <p className="mt-3">
-            {data.personal?.email}
+            {resumeData.personal?.email}
 
             {" | "}
 
-            {data.personal?.phone}
+            {resumeData.personal?.phone}
 
             {" | "}
 
-            {data.personal?.location}
+            {resumeData.personal?.location}
           </p>
 
           <div className="mt-3">
-            {data.personal?.github && (
-              <span>Github : {data.personal.github}</span>
+            {resumeData.personal?.github && (
+              <span>Github : {resumeData.personal.github}</span>
             )}
 
             {" | "}
 
-            {data.personal?.linkedin && (
-              <span>LinkedIn : {data.personal.linkedin}</span>
+            {resumeData.personal?.linkedin && (
+              <span>LinkedIn : {resumeData.personal.linkedin}</span>
             )}
           </div>
         </div>
@@ -50,7 +47,7 @@ const DefaultTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Summary && (
         <Section title="SUMMARY">
-          <p>{data.summary || "Your professional summary"}</p>
+          <p>{resumeData.summary || "Your professional summary"}</p>
         </Section>
       )}
 
@@ -59,8 +56,8 @@ const DefaultTemplate = ({ resumeRef, fields, data }) => {
       {fields.Skills && (
         <Section title="SKILLS">
           <div className="flex flex-wrap gap-2">
-            {data.skills?.length
-              ? data.skills.map((skill, index) => (
+            {resumeData.skills?.length
+              ? resumeData.skills.map((skill, index) => (
                   <span
                     key={index}
                     className="
@@ -82,7 +79,7 @@ const DefaultTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Projects && (
         <Section title="PROJECTS">
-          {data.projects?.map((project, index) => (
+          {resumeData.projects?.map((project, index) => (
             <div key={index} className="mb-5">
               <h3 className="font-bold text-xl">
                 {project.name || "Project Name"}
@@ -100,7 +97,7 @@ const DefaultTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Experience && (
         <Section title="EXPERIENCE">
-          {data.experience?.map((item, index) => (
+          {resumeData.experience?.map((item, index) => (
             <div key={index} className="mb-5">
               <h3 className="font-bold">{item.role}</h3>
 
@@ -116,7 +113,7 @@ const DefaultTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Education && (
         <Section title="EDUCATION">
-          {data.education?.map((item, index) => (
+          {resumeData.education?.map((item, index) => (
             <div key={index} className="mb-4">
               <h3 className="font-bold">{item.degree}</h3>
 
@@ -138,7 +135,7 @@ const DefaultTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Certifications && (
         <Section title="CERTIFICATIONS">
-          {data.certifications?.map((item, index) => (
+          {resumeData.certifications?.map((item, index) => (
             <div key={index}>
               <h3 className="font-bold">{item.name}</h3>
 
@@ -154,7 +151,7 @@ const DefaultTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Achievements && (
         <Section title="ACHIEVEMENTS">
-          {data.achievements?.map((item, index) => (
+          {resumeData.achievements?.map((item, index) => (
             <div key={index}>
               <h3 className="font-bold">{item.title}</h3>
 
@@ -168,7 +165,7 @@ const DefaultTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Languages && (
         <Section title="LANGUAGES">
-          {data.languages?.map((item, index) => (
+          {resumeData.languages?.map((item, index) => (
             <p key={index}>
               {item.name}
 

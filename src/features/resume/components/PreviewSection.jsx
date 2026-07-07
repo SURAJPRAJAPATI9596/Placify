@@ -1,5 +1,5 @@
 import { useReactToPrint } from "react-to-print";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   DefaultTemplate,
   ModernTemplate,
@@ -9,12 +9,21 @@ import {
   CreativeTemplate,
 } from "./../allTemplates/index";
 
-const PreviewSection = ({ data = {}, fields = {}, templateButton = [] }) => {
+const PreviewSection = ({
+  setPrint,
+  resumeData = {},
+  fields = {},
+  templateButton = [],
+}) => {
   const resumeRef = useRef(null);
   const handlePrint = useReactToPrint({
     contentRef: resumeRef,
-    documentTitle: data.personal?.name + "_Placify_Resume" || "Resume",
+    documentTitle: resumeData.personal?.name + "_Placify_Resume" || "Resume",
   });
+  useEffect(() => {
+    setPrint(() => handlePrint);
+  }, [handlePrint]);
+
   const selectedTemplate = templateButton.find((item) => item.selected)?.name;
 
   return (
@@ -30,30 +39,7 @@ const PreviewSection = ({ data = {}, fields = {}, templateButton = [] }) => {
       border
       "
     >
-      {selectedTemplate === "Professional" && (
-        <ProfessionalTemplate
-          data={data}
-          fields={fields}
-          resumeRef={resumeRef}
-        />
-      )}
-      {selectedTemplate === "Default" && (
-        <DefaultTemplate data={data} fields={fields} resumeRef={resumeRef} />
-      )}
-      {selectedTemplate === "Minimal" && (
-        <MinimalTemplate data={data} fields={fields} resumeRef={resumeRef} />
-      )}
-      {selectedTemplate === "Modern" && (
-        <ModernTemplate data={data} fields={fields} resumeRef={resumeRef} />
-      )}
-      {selectedTemplate === "Developer" && (
-        <DeveloperTemplate data={data} fields={fields} resumeRef={resumeRef} />
-      )}
-      {selectedTemplate === "Creative" && (
-        <CreativeTemplate data={data} fields={fields} resumeRef={resumeRef} />
-      )}
-      <hr />
-      <div className="flex gap-x-28 mt-2 pl-10 pr-10">
+      {/* <div className="flex gap-x-28 mt-2 pl-10 pr-10">
         <button
           onClick={handlePrint}
           className="
@@ -66,32 +52,50 @@ const PreviewSection = ({ data = {}, fields = {}, templateButton = [] }) => {
         >
           Download PDF
         </button>
-
-        <button
-          onClick={handlePrint}
-          className="
-          
-          w-full
-          bg-blue-600
-          text-white
-          py-3
-          rounded-xl
-          "
-        >
-          AI-reWrite
-        </button>
-        <button
-          onClick={handlePrint}
-          className="
-        w-full
-        bg-blue-600
-        text-white
-        py-3
-        rounded-xl
-        "
-        >
-          Original
-        </button>
+      </div> */}
+      <div>
+        {selectedTemplate === "Professional" && (
+          <ProfessionalTemplate
+            resumeData={resumeData}
+            fields={fields}
+            resumeRef={resumeRef}
+          />
+        )}
+        {selectedTemplate === "Default" && (
+          <DefaultTemplate
+            resumeData={resumeData}
+            fields={fields}
+            resumeRef={resumeRef}
+          />
+        )}
+        {selectedTemplate === "Minimal" && (
+          <MinimalTemplate
+            resumeData={resumeData}
+            fields={fields}
+            resumeRef={resumeRef}
+          />
+        )}
+        {selectedTemplate === "Modern" && (
+          <ModernTemplate
+            resumeData={resumeData}
+            fields={fields}
+            resumeRef={resumeRef}
+          />
+        )}
+        {selectedTemplate === "Developer" && (
+          <DeveloperTemplate
+            resumeData={resumeData}
+            fields={fields}
+            resumeRef={resumeRef}
+          />
+        )}
+        {selectedTemplate === "Creative" && (
+          <CreativeTemplate
+            resumeData={resumeData}
+            fields={fields}
+            resumeRef={resumeRef}
+          />
+        )}
       </div>
     </div>
   );

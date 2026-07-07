@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProfessionalTemplate = ({ resumeRef, fields, data }) => {
+const ProfessionalTemplate = ({ resumeRef, fields, resumeData }) => {
   return (
     <div
       ref={resumeRef}
@@ -16,37 +16,37 @@ const ProfessionalTemplate = ({ resumeRef, fields, data }) => {
         <div className="flex justify-between border-b pb-8">
           <div>
             <h1 className="text-5xl font-bold">
-              {data.personal?.name || "Your Name"}
+              {resumeData.personal?.name || "Your Name"}
             </h1>
 
             <p className="text-xl mt-2">
-              {data.personal?.role || "Professional"}
+              {resumeData.personal?.role || "Professional"}
             </p>
 
             <p className="mt-4">
-              {data.personal?.email}
+              {resumeData.personal?.email}
 
               {" | "}
 
-              {data.personal?.phone}
+              {resumeData.personal?.phone}
 
               {" | "}
 
-              {data.personal?.location}
+              {resumeData.personal?.location}
             </p>
 
             <div className="mt-2">
-              {data.personal?.github}
+              {resumeData.personal?.github}
 
               {" | "}
 
-              {data.personal?.linkedin}
+              {resumeData.personal?.linkedin}
             </div>
           </div>
 
-          {data.personal?.photo && (
+          {resumeData.personal?.photo && (
             <img
-              src={data.personal.photo}
+              src={resumeData.personal.photo}
               className="
               w-36
               h-36
@@ -60,13 +60,13 @@ const ProfessionalTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Summary && (
         <Section title="Professional Summary">
-          <p>{data.summary || "Your summary"}</p>
+          <p>{resumeData.summary || "Your summary"}</p>
         </Section>
       )}
 
       {fields.Experience && (
         <Section title="Work Experience">
-          {data.experience?.map((item, index) => (
+          {resumeData.experience?.map((item, index) => (
             <div key={index} className="mb-5">
               <h3 className="font-bold text-xl">{item.role}</h3>
 
@@ -80,7 +80,7 @@ const ProfessionalTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Projects && (
         <Section title="Projects">
-          {data.projects?.map((item, index) => (
+          {resumeData.projects?.map((item, index) => (
             <div key={index} className="mb-5">
               <h3 className="font-bold">{item.name}</h3>
 
@@ -94,7 +94,7 @@ const ProfessionalTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Education && (
         <Section title="Education">
-          {data.education?.map((item, index) => (
+          {resumeData.education?.map((item, index) => (
             <div key={index}>
               <h3 className="font-bold">{item.degree}</h3>
 
@@ -115,7 +115,7 @@ const ProfessionalTemplate = ({ resumeRef, fields, data }) => {
       {fields.Skills && (
         <Section title="Skills">
           <div className="flex flex-wrap gap-2">
-            {data.skills?.map((skill, index) => (
+            {resumeData.skills?.map((skill, index) => (
               <span
                 key={index}
                 className="
@@ -134,7 +134,7 @@ const ProfessionalTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Certifications && (
         <Section title="Certifications">
-          {data.certifications?.map((c, index) => (
+          {resumeData.certifications?.map((c, index) => (
             <p key={index}>
               {c.name}
 
@@ -148,7 +148,7 @@ const ProfessionalTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Achievements && (
         <Section title="Achievements">
-          {data.achievements?.map((a, index) => (
+          {resumeData.achievements?.map((a, index) => (
             <div key={index}>
               <b>{a.title}</b>
 
@@ -160,7 +160,7 @@ const ProfessionalTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Languages && (
         <Section title="Languages">
-          {data.languages?.map((l, index) => (
+          {resumeData.languages?.map((l, index) => (
             <p key={index}>
               {l.name}
 

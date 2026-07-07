@@ -1,6 +1,6 @@
 import React from "react";
 
-const ModernTemplate = ({ resumeRef, fields, data }) => {
+const ModernTemplate = ({ resumeRef, fields, resumeData }) => {
   return (
     <div ref={resumeRef} className="bg-white p-10 text-gray-800">
       {/* HEADER */}
@@ -9,24 +9,26 @@ const ModernTemplate = ({ resumeRef, fields, data }) => {
         <div className="flex justify-between items-center border-b pb-6">
           <div>
             <h1 className="text-5xl font-bold text-blue-600">
-              {data.personal?.name || "Your Name"}
+              {resumeData.personal?.name || "Your Name"}
             </h1>
 
-            <p className="text-xl mt-2">{data.personal?.role || "Developer"}</p>
-
-            <p className="mt-3">
-              {data.personal?.email}
-              {" | "}
-              {data.personal?.phone}
+            <p className="text-xl mt-2">
+              {resumeData.personal?.role || "Developer"}
             </p>
 
-            <p>{data.personal?.location}</p>
+            <p className="mt-3">
+              {resumeData.personal?.email}
+              {" | "}
+              {resumeData.personal?.phone}
+            </p>
+
+            <p>{resumeData.personal?.location}</p>
           </div>
 
           {/* PHOTO SUPPORT */}
-          {data.personal?.photo && (
+          {resumeData.personal?.photo && (
             <img
-              src={data.personal.photo}
+              src={resumeData.personal.photo}
               className="w-32 h-32 rounded-full object-cover"
             />
           )}
@@ -34,13 +36,15 @@ const ModernTemplate = ({ resumeRef, fields, data }) => {
       )}
 
       {fields.Summary && (
-        <Section title="Profile">{data.summary || "Your summary"}</Section>
+        <Section title="Profile">
+          {resumeData.summary || "Your summary"}
+        </Section>
       )}
 
       {fields.Skills && (
         <Section title="Skills">
           <div className="flex flex-wrap gap-3">
-            {data.skills?.map((skill, i) => (
+            {resumeData.skills?.map((skill, i) => (
               <span key={i} className="bg-blue-100 px-4 py-2 rounded">
                 {skill}
               </span>
@@ -51,7 +55,7 @@ const ModernTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Projects && (
         <Section title="Projects">
-          {data.projects?.map((p, i) => (
+          {resumeData.projects?.map((p, i) => (
             <div key={i} className="mb-5">
               <h3 className="font-bold text-xl">{p.name}</h3>
 
@@ -65,7 +69,7 @@ const ModernTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Experience && (
         <Section title="Experience">
-          {data.experience?.map((e, i) => (
+          {resumeData.experience?.map((e, i) => (
             <div key={i}>
               <h3 className="font-bold">{e.role}</h3>
 
@@ -79,7 +83,7 @@ const ModernTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Education && (
         <Section title="Education">
-          {data.education?.map((e, i) => (
+          {resumeData.education?.map((e, i) => (
             <div key={i}>
               <h3 className="font-bold">{e.degree}</h3>
 
@@ -95,7 +99,7 @@ const ModernTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Certifications && (
         <Section title="Certificates">
-          {data.certifications?.map((c, i) => (
+          {resumeData.certifications?.map((c, i) => (
             <p key={i}>
               {c.name}
               {" - "}
@@ -107,7 +111,7 @@ const ModernTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Achievements && (
         <Section title="Achievements">
-          {data.achievements?.map((a, i) => (
+          {resumeData.achievements?.map((a, i) => (
             <div key={i}>
               <b>{a.title}</b>
               <p>{a.description}</p>
@@ -118,7 +122,7 @@ const ModernTemplate = ({ resumeRef, fields, data }) => {
 
       {fields.Languages && (
         <Section title="Languages">
-          {data.languages?.map((l, i) => (
+          {resumeData.languages?.map((l, i) => (
             <p key={i}>
               {l.name} - {l.level}
             </p>
