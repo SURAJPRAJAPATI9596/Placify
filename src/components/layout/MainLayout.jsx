@@ -16,7 +16,7 @@ const MainLayout = ({ dark, setDark, open, toggleMenu }) => {
       />
       {/* flex-1  z-0  min-h-screen overflow-y-hidden relative */}
       {/* <main className="flex-1 pt-16 relative"></main> */}
-      <main className="flex-1  relative overflow-y-hidden">
+      <main className="flex-1  relative overflow-y-hidden!">
         <FloatingAIAssistant />
         <FlashMessage
           show={true}

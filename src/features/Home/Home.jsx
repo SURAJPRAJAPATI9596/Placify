@@ -9,8 +9,8 @@ import RoadmapPreview from "./components/RoadmapPreview";
 import FAQSection from "./components/FAQSection";
 const Home = ({ dark, setDark }) => {
   return (
-    <div className="bg-(--bg-primary) text-(--text-primary)">
-      <Hero dark={dark} setDark={setDark} />
+    <div className="bg-(--bg-primary) text-(--text-primary) w-full overflow-y-hidden!">
+      <Hero />
       <Features />
       <NumberHilight NumberListData={NumberListData} />
       <RoadmapPreview />

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import HeroImage from "../../../components/ui/HeroImage";
 import { NavLink } from "react-router-dom";
 
-const Hero = ({ dark, setDark }) => {
+const Hero = () => {
   return (
     <section
-      className="min-h-screen relative min-w-screen overflow-hidden px-2 pt-14 lg:px-24 flex items-center    bg-(--bg-primary)
+      className="min-h-screen relative w-full overflow-hidden px-2 pt-14 lg:px-24 flex items-center    bg-(--bg-primary)
     text-(--text-primary) mt-8"
     >
       {/* glow */}

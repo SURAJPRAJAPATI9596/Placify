@@ -7,7 +7,7 @@ const Features = () => {
   return (
     <section
       data-aos={animation.card}
-      className="bg-(--bg-primary) text-(--text-primary) w-screen pt-24 sm:pl-10 sm:pr-10"
+      className="bg-(--bg-primary) text-(--text-primary) w-full pt-24 sm:pl-10 sm:pr-10"
     >
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-5xl font-bold">
