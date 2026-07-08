@@ -1,9 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import FunnelCard from "../components/FunnelCard";
 import { Plus, Download, Edit2, Trash2 } from "lucide-react";
 import InputModel from "../components/InputModel";
 import FilterBar from "./../components/FilterBar";
 import { useReactToPrint } from "react-to-print";
+import axios from "axios";
 
 const countStage = (data, stageName) => {
   let count = 0;
@@ -40,34 +41,17 @@ const PlacementTracker = () => {
     action: "",
   });
 
-  const [applications, setApplications] = useState([
-    {
-      id: 1,
-      company: "Google",
-      role: "Software Engineer Intern",
-      date: "2025-01-02",
-      stage: "Applications Sent",
-      action: "Wait for OA",
-    },
-    {
-      id: 2,
-      company: "Microsoft",
-      role: "Frontend Developer",
-      date: "2025-01-03",
-      stage: "OA Cleared",
-      action: "Prepare DSA",
-    },
-    {
-      id: 3,
-      company: "Amazon",
-      role: "Backend Intern",
-      date: "2025-01-04",
-      stage: "Technical Interview",
-      action: "Practice LLD",
-    },
-  ]);
+  const [applications, setApplications] = useState([]);
+  useEffect(() => {
+    const fetData = async () => {
+      const response = await axios.get("/api/v1/trackers");
 
-  const filteredData = applications.filter((app) => {
+      setApplications(response.data.data);
+    };
+    fetData();
+  }, []);
+
+  const filteredData = applications?.filter((app) => {
     const search = filterData.search.trim().toLowerCase();
     const filter = filterData.filter.trim().toLowerCase();
 
@@ -128,38 +112,22 @@ const PlacementTracker = () => {
   };
 
   // Open Edit Form
-  const openEditForm = (app) => {
+  const openEditForm = (app, id) => {
     setFormData(app);
     setEditingId(app.id);
     setShowForm(true);
   };
 
   // Handle Add/Edit Submit
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.company || !formData.role || !formData.date) return;
-
-    if (editingId) {
-      setApplications(
-        applications.map((app) =>
-          app.id === editingId ? { ...app, ...formData } : app,
-        ),
-      );
-    } else {
-      const newApp = { id: Date.now(), ...formData };
-      setApplications([newApp, ...applications]);
-    }
-
-    setShowForm(false);
-    setEditingId(null);
-  };
 
   // Delete Application
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this application?")) {
       setApplications(applications.filter((app) => app.id !== id));
     }
     setDeleteId(null);
+    const response = axios.delete(`/api/v1/trackers/${id}`);
+    console.log(response);
   };
 
   return (
@@ -183,98 +151,104 @@ const PlacementTracker = () => {
         </button>
       </div>
 
-      {/* Add / Edit Form */}
-      {showForm && (
-        <InputModel
-          editingId={editingId}
-          handleSubmit={handleSubmit}
-          setFormData={setFormData}
-          setShowForm={setShowForm}
-          formData={formData}
-        />
-      )}
-
       {/* Funnel Statistics */}
       <div className="mb-16">
         <h2 className="text-2xl font-semibold mb-8 text-(--text-primary)">
           Funnel Statistics
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-6 gap-6 ">
-          {funnelData.map((item, i) => (
+          {funnelData?.map((item, i) => (
             <FunnelCard item={item} key={i} />
           ))}
         </div>
       </div>
 
-      {/* Application History */}
-      <div>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold text-(--text-primary)">
-            Application History
-          </h2>
-          <button
-            className="flex items-center gap-2 px-5 py-3 border border-(--border-color) rounded-2xl hover:bg-(--card-bg) transition"
-            onClick={handlePrint}
-          >
-            <Download size={18} /> Export
-          </button>
-        </div>
-        <FilterBar handleChange={handleChange} />
-        <div className="bg-(--card-bg) border border- (--border-color) rounded-3xl overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" ref={printRef}>
-            {filteredData.map((app) => (
-              <div
-                key={app.id}
-                className="bg-(--card-bg) border border-(--border-color) rounded-2xl p-6 shadow-sm hover:shadow-md transition"
-              >
-                <div className="flex justify-between items-start">
-                  <div>
-                    <h3 className="text-lg font-bold text-(--text-primary)">
-                      {app.company}
-                    </h3>
+      {/* Add / Edit Form */}
+      {showForm ? (
+        <InputModel
+          applications={applications}
+          setApplications={setApplications}
+          setEditingId={setEditingId}
+          setShowForm={setShowForm}
+          editingId={editingId}
+          setFormData={setFormData}
+          setShowForm={setShowForm}
+          formData={formData}
+        />
+      ) : (
+        <div>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-semibold text-(--text-primary)">
+              Application History
+            </h2>
+            <button
+              className="flex items-center gap-2 px-5 py-3 border border-(--border-color) rounded-2xl hover:bg-(--card-bg) transition"
+              onClick={handlePrint}
+            >
+              <Download size={18} /> Export
+            </button>
+          </div>
+          <FilterBar handleChange={handleChange} />
+          <div className="bg-(--card-bg) border border- (--border-color) rounded-3xl overflow-hidden">
+            <div
+              className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+              ref={printRef}
+            >
+              {filteredData?.map((app) => (
+                <div
+                  key={app.id}
+                  className="bg-(--card-bg) border border-(--border-color) rounded-2xl p-6 shadow-sm hover:shadow-md transition"
+                >
+                  <div className="flex justify-between items-start">
+                    <div>
+                      <h3 className="text-lg font-bold text-(--text-primary)">
+                        {app.company}
+                      </h3>
 
-                    <p className="text-sm text-(--text-primary) opacity-70">
-                      {app.role}
+                      <p className="text-sm text-(--text-primary) opacity-70">
+                        {app.role}
+                      </p>
+                    </div>
+
+                    <span className="px-3 py-1 rounded-full text-sm bg-(--primary-bg)">
+                      {app.stage}
+                    </span>
+                  </div>
+
+                  <div className="mt-5 space-y-2 text-sm text-(--text-primary)">
+                    <p>
+                      <strong>Applied:</strong> {app.date}
+                    </p>
+
+                    <p>
+                      <strong>Next Action:</strong> {app.action || "No Action"}
                     </p>
                   </div>
 
-                  <span className="px-3 py-1 rounded-full text-sm bg-(--primary-bg)">
-                    {app.stage}
-                  </span>
+                  <div className="flex justify-end gap-4 mt-6">
+                    <button
+                      onClick={() => openEditForm(app, app._id)}
+                      className="flex items-center gap-2 no-print MuiButtonBase-root"
+                    >
+                      <Edit2 size={18} />
+                      Edit
+                    </button>
+
+                    <button
+                      onClick={() => handleDelete(app._id)}
+                      className="flex items-center gap-2 text-red-500 no-print MuiButtonBase-root"
+                    >
+                      <Trash2 size={18} />
+                      Delete
+                    </button>
+                  </div>
                 </div>
-
-                <div className="mt-5 space-y-2 text-sm text-(--text-primary)">
-                  <p>
-                    <strong>Applied:</strong> {app.date}
-                  </p>
-
-                  <p>
-                    <strong>Next Action:</strong> {app.action || "No Action"}
-                  </p>
-                </div>
-
-                <div className="flex justify-end gap-4 mt-6">
-                  <button
-                    onClick={() => openEditForm(app)}
-                    className="flex items-center gap-2 no-print"
-                  >
-                    <Edit2 size={18} />
-                    Edit
-                  </button>
-
-                  <button
-                    onClick={() => handleDelete(app.id)}
-                    className="flex items-center gap-2 text-red-500 no-print"
-                  >
-                    <Trash2 size={18} />
-                    Delete
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>{" "}
+              ))}
+            </div>{" "}
+          </div>
         </div>
-      </div>
+      )}
+      {/* Application History */}
     </div>
   );
 };

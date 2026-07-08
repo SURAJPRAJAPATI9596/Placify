@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 const options = [
   "Applications Sent",
@@ -8,13 +9,44 @@ const options = [
   "Offer Received",
   "Rejected",
 ];
+
 const InputModel = ({
+  applications,
   editingId,
-  handleSubmit,
+  setEditingId,
   setFormData,
   setShowForm,
   formData,
+  setApplications,
 }) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.company || !formData.role || !formData.date) return;
+
+    if (editingId) {
+      setApplications(
+        applications.map((app) =>
+          app.id === editingId ? { ...app, ...formData } : app,
+        ),
+      );
+
+      const response = await axios.put(
+        `/api/v1/trackers/${editingId}`,
+        formData,
+      );
+      console.log(response);
+    }
+    // else {
+    //   const newApp = { id: Date.now(), ...formData };
+    //   setApplications([newApp, ...applications]);
+    // }
+
+    setShowForm(false);
+    setEditingId(null);
+    //axios call
+    const response = await axios.post("/api/v1/trackers", formData);
+    console.log(response);
+  };
   return (
     <div className="bg-(--card-bg) border border-(--border-color) rounded-3xl p-8 mb-12 ">
       <h3 className="text-2xl font-semibold mb-6 text-(--text-primary)">
