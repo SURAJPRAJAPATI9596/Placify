@@ -1,257 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Search, Filter, CheckCircle, Clock } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Problems = () => {
   const [search, setSearch] = useState("");
+  const [problems, setProblems] = useState([]);
 
-  const problems = [
-    {
-      id: 1,
-      title: "Two Sum",
-      difficulty: "Easy",
-      topic: "Array",
-      company: "Google",
-      status: "Solved",
-    },
+  const fetchProblems = async () => {
+    const response = await axios.get("/api/v1/coding");
+    const data = await response.data.data;
+    setProblems(data);
+  };
 
-    {
-      id: 2,
-      title: "LRU Cache",
-      difficulty: "Hard",
-      topic: "Design",
-      company: "Amazon",
-      status: "Attempted",
-    },
-
-    {
-      id: 3,
-      title: "Reverse Linked List",
-      difficulty: "Medium",
-      topic: "Linked List",
-      company: "Microsoft",
-      status: "Solved",
-    },
-
-    {
-      id: 4,
-      title: "Binary Tree Level Order",
-      difficulty: "Medium",
-      topic: "Tree",
-      company: "Meta",
-      status: "Pending",
-    },
-    {
-      id: 1,
-      title: "Two Sum",
-      difficulty: "Easy",
-      topic: "Array",
-      company: "Google",
-      status: "Solved",
-    },
-
-    {
-      id: 2,
-      title: "LRU Cache",
-      difficulty: "Hard",
-      topic: "Design",
-      company: "Amazon",
-      status: "Attempted",
-    },
-
-    {
-      id: 3,
-      title: "Reverse Linked List",
-      difficulty: "Medium",
-      topic: "Linked List",
-      company: "Microsoft",
-      status: "Solved",
-    },
-
-    {
-      id: 4,
-      title: "Binary Tree Level Order",
-      difficulty: "Medium",
-      topic: "Tree",
-      company: "Meta",
-      status: "Pending",
-    },
-    {
-      id: 1,
-      title: "Two Sum",
-      difficulty: "Easy",
-      topic: "Array",
-      company: "Google",
-      status: "Solved",
-    },
-
-    {
-      id: 2,
-      title: "LRU Cache",
-      difficulty: "Hard",
-      topic: "Design",
-      company: "Amazon",
-      status: "Attempted",
-    },
-
-    {
-      id: 3,
-      title: "Reverse Linked List",
-      difficulty: "Medium",
-      topic: "Linked List",
-      company: "Microsoft",
-      status: "Solved",
-    },
-
-    {
-      id: 4,
-      title: "Binary Tree Level Order",
-      difficulty: "Medium",
-      topic: "Tree",
-      company: "Meta",
-      status: "Pending",
-    },
-    {
-      id: 1,
-      title: "Two Sum",
-      difficulty: "Easy",
-      topic: "Array",
-      company: "Google",
-      status: "Solved",
-    },
-
-    {
-      id: 2,
-      title: "LRU Cache",
-      difficulty: "Hard",
-      topic: "Design",
-      company: "Amazon",
-      status: "Attempted",
-    },
-
-    {
-      id: 3,
-      title: "Reverse Linked List",
-      difficulty: "Medium",
-      topic: "Linked List",
-      company: "Microsoft",
-      status: "Solved",
-    },
-
-    {
-      id: 4,
-      title: "Binary Tree Level Order",
-      difficulty: "Medium",
-      topic: "Tree",
-      company: "Meta",
-      status: "Pending",
-    },
-    {
-      id: 1,
-      title: "Two Sum",
-      difficulty: "Easy",
-      topic: "Array",
-      company: "Google",
-      status: "Solved",
-    },
-
-    {
-      id: 2,
-      title: "LRU Cache",
-      difficulty: "Hard",
-      topic: "Design",
-      company: "Amazon",
-      status: "Attempted",
-    },
-
-    {
-      id: 3,
-      title: "Reverse Linked List",
-      difficulty: "Medium",
-      topic: "Linked List",
-      company: "Microsoft",
-      status: "Solved",
-    },
-
-    {
-      id: 4,
-      title: "Binary Tree Level Order",
-      difficulty: "Medium",
-      topic: "Tree",
-      company: "Meta",
-      status: "Pending",
-    },
-    {
-      id: 1,
-      title: "Two Sum",
-      difficulty: "Easy",
-      topic: "Array",
-      company: "Google",
-      status: "Solved",
-    },
-
-    {
-      id: 2,
-      title: "LRU Cache",
-      difficulty: "Hard",
-      topic: "Design",
-      company: "Amazon",
-      status: "Attempted",
-    },
-
-    {
-      id: 3,
-      title: "Reverse Linked List",
-      difficulty: "Medium",
-      topic: "Linked List",
-      company: "Microsoft",
-      status: "Solved",
-    },
-
-    {
-      id: 4,
-      title: "Binary Tree Level Order",
-      difficulty: "Medium",
-      topic: "Tree",
-      company: "Meta",
-      status: "Pending",
-    },
-    {
-      id: 1,
-      title: "Two Sum",
-      difficulty: "Easy",
-      topic: "Array",
-      company: "Google",
-      status: "Solved",
-    },
-
-    {
-      id: 2,
-      title: "LRU Cache",
-      difficulty: "Hard",
-      topic: "Design",
-      company: "Amazon",
-      status: "Attempted",
-    },
-
-    {
-      id: 3,
-      title: "Reverse Linked List",
-      difficulty: "Medium",
-      topic: "Linked List",
-      company: "Microsoft",
-      status: "Solved",
-    },
-
-    {
-      id: 4,
-      title: "Binary Tree Level Order",
-      difficulty: "Medium",
-      topic: "Tree",
-      company: "Meta",
-      status: "Pending",
-    },
-  ];
+  useEffect(() => {
+    fetchProblems();
+  }, []);
 
   const difficultyColor = (level) => {
     if (level === "Easy") return "text-green-400 bg-green-400/10";
@@ -379,11 +143,11 @@ border-white/10
           </div>
 
           <div className="overflow-scroll h-screen  overflow-x-hidden ">
-            {filtered.map((problem) => (
+            {filtered?.map((problem) => (
               <NavLink
-                to={`/Placify/problem/${problem.id}`}
+                to={`/Placify/problem/${problem._id}`}
                 className="cursor-pointer"
-                key={problem.id}
+                key={problem._id}
               >
                 <div
                   className="
@@ -399,7 +163,7 @@ border-white/10
 "
                 >
                   <div>
-                    {problem.status === "Solved" ? (
+                    {problem?.status === "Solved" ? (
                       <CheckCircle className="text-green-400" />
                     ) : (
                       <Clock className="text-gray-400" />
@@ -430,20 +194,24 @@ ${difficultyColor(problem.difficulty)}
                   </div>
 
                   <div className="col-span-2">
-                    <span
-                      className="
+                    {problem.topic.map((value, index) => (
+                      <span
+                        className="
 bg-blue-500/20
 px-3
 py-1
 rounded-full
 text-sm
 "
-                    >
-                      {problem.topic}
-                    </span>
+                      >
+                        {value}
+                      </span>
+                    ))}
                   </div>
 
-                  <div>{problem.company}</div>
+                  {problem.companies.map((value, inexe) => (
+                    <div>{value}</div>
+                  ))}
                 </div>
               </NavLink>
             ))}
@@ -456,26 +224,31 @@ text-sm
           className="
 md:hidden
 mt-8
-space-y-5
 "
         >
           {filtered.map((problem) => (
-            <div
-              key={problem.id}
-              className="
+            <NavLink
+              to={`/Placify/problem/${problem._id}`}
+              className="cursor-pointer"
+              key={problem._id}
+            >
+              <div
+                className="
 bg-white/10
+mt-5
 rounded-2xl
 p-5
 "
-            >
-              <h2 className="text-xl font-bold">{problem.title}</h2>
+              >
+                <h2 className="text-xl font-bold">{problem.title}</h2>
 
-              <p className="mt-3">{problem.topic}</p>
+                <p className="mt-3">{problem.topic}</p>
 
-              <p>{problem.company}</p>
-
-              <span
-                className={`
+                {problem.companies.map((value, index) => (
+                  <p key={index}>{value}</p>
+                ))}
+                <span
+                  className={`
 inline-block
 mt-3
 px-3
@@ -483,22 +256,23 @@ py-1
 rounded-full
 ${difficultyColor(problem.difficulty)}
 `}
-              >
-                {problem.difficulty}
-              </span>
-
-              <button
-                className="
+                >
+                  {problem.difficulty}
+                </span>
+                {/* 
+                <button
+                  className="
 mt-5
 w-full
 bg-blue-600
 py-3
 rounded-xl
 "
-              >
-                Solve
-              </button>
-            </div>
+                >
+                  Solve
+                </button> */}
+              </div>
+            </NavLink>
           ))}
         </div>
       </div>

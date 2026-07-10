@@ -1,24 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import CodeEditor from "./CodeEditor";
+import axios from "axios";
 import { Play, Send, GripVertical } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const ProblemDetail = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
   const [leftWidth, setLeftWidth] = useState(45);
-
-  const [language, setLanguage] = useState("JavaScript");
-
-  const [code, setCode] = useState(
-    `function twoSum(nums,target){
-
-  // write solution
-
-}`,
-  );
-
-  const languages = ["JavaScript", "Python", "Java", "C++"];
-
+  const [problem, setProblem] = useState({});
   const startResize = (e) => {
     e.preventDefault();
 
@@ -48,6 +39,13 @@ const ProblemDetail = () => {
 
     window.addEventListener("mouseup", stop);
   };
+  useEffect(() => {
+    const fetchProblem = async () => {
+      const response = await axios.get(`/api/v1/coding/problems/${id}`);
+      setProblem(response.data.data);
+    };
+    fetchProblem();
+  }, []);
 
   return (
     <div
@@ -77,7 +75,7 @@ text-3xl
 font-bold
 "
           >
-            Two Sum
+            {problem?.title}
           </h1>
           <button
             onClick={() => {
@@ -89,7 +87,7 @@ font-bold
             }}
             className="group flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/10 border border-white/10 hover:bg-blue-600 hover:border-blue-500 transition-all duration-300 shadow-lg hover:shadow-blue-500/30 text-sm font-semibold"
           >
-            Problems
+            {"</>"}
           </button>
         </div>
 
@@ -130,8 +128,7 @@ leading-7
 opacity-80
 "
         >
-          Given an integer array nums, return indices of two numbers such that
-          they add up to target.
+          {problem?.description}
         </p>
 
         <h2
@@ -152,7 +149,7 @@ rounded-xl
 mt-3
 "
         >
-          Input: nums=[2,7,11,15] target=9 Output: [0,1]
+          {problem?.example}
         </pre>
 
         <h2
@@ -171,25 +168,17 @@ mt-4
 space-y-3
 "
         >
-          <div
-            className="
+          {problem?.testCases?.map((value, index) => (
+            <div
+              className="
 bg-white/10
 p-4
 rounded-xl
 "
-          >
-            Case 1<span className="text-green-400">Passed</span>
-          </div>
-
-          <div
-            className="
-bg-white/10
-p-4
-rounded-xl
-"
-          >
-            Case 2<span className="text-yellow-400">Pending</span>
-          </div>
+            >
+              Case {index + 1} : <span className="text-green-400">{value}</span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -211,120 +200,7 @@ justify-center
       </div>
 
       {/* RIGHT PANEL */}
-
-      <div
-        style={{
-          width: `${100 - leftWidth}%`,
-        }}
-        className="
-flex
-flex-col
-"
-      >
-        {/* EDITOR HEADER */}
-
-        <div
-          className="
-h-14
-flex
-items-center
-justify-between
-px-5
-border-b
-border-white/10
-"
-        >
-          <h2 className="font-bold">Code</h2>
-
-          <select
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-            className="
-bg-white/10
-px-4
-py-2
-rounded-lg
-outline-none
-"
-          >
-            {languages.map((x) => (
-              <option key={x} className="text-black">
-                {x}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        {/* EDITOR */}
-
-        <textarea
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          className="
-flex-1
-bg-black
-text-green-400
-p-6
-font-mono
-outline-none
-resize-none
-"
-        />
-
-        {/* ACTIONS */}
-
-        <div
-          className="
-p-4
-flex
-gap-4
-border-t
-border-white/10
-"
-        >
-          <button
-            className="
-bg-green-600
-px-6
-py-3
-rounded-xl
-flex
-gap-2
-"
-          >
-            <Play size={18} />
-            Run
-          </button>
-
-          <button
-            className="
-bg-blue-600
-px-6
-py-3
-rounded-xl
-flex
-gap-2
-"
-          >
-            <Send size={18} />
-            Submit
-          </button>
-        </div>
-
-        {/* OUTPUT */}
-
-        <div
-          className="
-h-32
-bg-black
-p-5
-"
-        >
-          <h3>Output</h3>
-
-          <p className="text-green-400 mt-2">Your result appears here</p>
-        </div>
-      </div>
+      <CodeEditor leftWidth={leftWidth} id={id} problem={problem} />
     </div>
   );
 };

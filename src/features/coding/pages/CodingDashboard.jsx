@@ -23,7 +23,7 @@ const CodingDashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] pb-20 min-w-screen">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] pb-20 w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-20 lg:pt-24">
         {/* HERO SECTION */}
         <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between mb-12 lg:mb-16 gap-6 lg:gap-8">
