@@ -25,6 +25,7 @@ const PlacementTracker = () => {
     search: "",
     filter: "",
   });
+
   const handlePrint = useReactToPrint({
     contentRef: printRef,
     documentTitle: "Placify_Placement_report",
@@ -42,15 +43,14 @@ const PlacementTracker = () => {
   });
 
   const [applications, setApplications] = useState([]);
+  const fetchData = async () => {
+    const response = await axios.get("/api/v1/trackers");
+
+    setApplications(response.data.data);
+  };
   useEffect(() => {
-    const fetData = async () => {
-      const response = await axios.get("/api/v1/trackers");
-
-      setApplications(response.data.data);
-    };
-    fetData();
+    fetchData();
   }, []);
-
   const filteredData = applications?.filter((app) => {
     const search = filterData.search.trim().toLowerCase();
     const filter = filterData.filter.trim().toLowerCase();
@@ -112,9 +112,9 @@ const PlacementTracker = () => {
   };
 
   // Open Edit Form
-  const openEditForm = (app, id) => {
+  const openEditForm = (app, _id) => {
     setFormData(app);
-    setEditingId(app.id);
+    setEditingId(app._id);
     setShowForm(true);
   };
 
@@ -123,16 +123,17 @@ const PlacementTracker = () => {
   // Delete Application
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this application?")) {
-      setApplications(applications.filter((app) => app.id !== id));
+      setApplications(applications.filter((app) => app._id !== id));
     }
     setDeleteId(null);
-    const response = axios.delete(`/api/v1/trackers/${id}`);
+    const response = await axios.delete(`/api/v1/trackers/${id}`);
+    await fetchData();
     console.log(response);
   };
 
   return (
     <div className="max-w-screen mx-auto px-6 py-40 bg-(--bg-primary) min-h-screen ">
-      <div className="flex justify-between items-end mb-10">
+      <div className=" flex-col lg:flex-row mt- items-end mb-10 w-full">
         <div>
           <h1 className="text-5xl font-bold text-(--text-primary)">
             Placement Tracker
@@ -144,10 +145,10 @@ const PlacementTracker = () => {
 
         <button
           onClick={openAddForm}
-          className="flex items-center gap-3 bg-(--primary-violet) hover:bg-(--secondary-violet) text-white px-6 py-4 rounded-2xl font-medium transition-all active:scale-95"
+          className=" relative flex items-center gap-3 bg-(--primary-violet) hover:bg-(--secondary-violet) text-white px-6 py-4 rounded-2xl font-medium transition-all active:scale-95 mr-40 mt-10"
         >
           <Plus size={24} />
-          Add New Application
+          New
         </button>
       </div>
 
@@ -166,6 +167,7 @@ const PlacementTracker = () => {
       {/* Add / Edit Form */}
       {showForm ? (
         <InputModel
+          fetchData={fetchData}
           applications={applications}
           setApplications={setApplications}
           setEditingId={setEditingId}

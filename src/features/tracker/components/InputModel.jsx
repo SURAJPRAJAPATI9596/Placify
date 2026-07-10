@@ -11,6 +11,7 @@ const options = [
 ];
 
 const InputModel = ({
+  fetchData,
   applications,
   editingId,
   setEditingId,
@@ -34,19 +35,20 @@ const InputModel = ({
         `/api/v1/trackers/${editingId}`,
         formData,
       );
+      await fetchData();
+      console.log(response);
+    } else {
+      //axios call
+      const response = await axios.post("/api/v1/trackers", formData);
+      console.log(formData);
+      await fetchData();
+
       console.log(response);
     }
-    // else {
-    //   const newApp = { id: Date.now(), ...formData };
-    //   setApplications([newApp, ...applications]);
-    // }
 
     setShowForm(false);
-    setEditingId(null);
-    //axios call
-    const response = await axios.post("/api/v1/trackers", formData);
-    console.log(response);
   };
+  //setEditingId(null);
   return (
     <div className="bg-(--card-bg) border border-(--border-color) rounded-3xl p-8 mb-12 ">
       <h3 className="text-2xl font-semibold mb-6 text-(--text-primary)">
@@ -88,8 +90,8 @@ const InputModel = ({
           onChange={(e) => setFormData({ ...formData, stage: e.target.value })}
           className="p-4 rounded-2xl border border-(--border-color) bg-(--bg-primary)"
         >
-          {options.map((value) => (
-            <option>{value}</option>
+          {options.map((value, index) => (
+            <option key={index}>{value}</option>
           ))}
         </select>
 
