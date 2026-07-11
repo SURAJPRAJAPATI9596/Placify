@@ -49,7 +49,7 @@ const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
         <Route path="/Placify/coding" element={<CodingTabs />} />
         <Route path="/Placify/problem/:id" element={<ProblemDetail />} />
         <Route
-          path="/Placify/coding/submission"
+          path="/Placify/coding/submission/:id"
           element={<CodeSubmissionResult />}
         />
         <Route path="/Placify/Problems" element={<Problems />} />

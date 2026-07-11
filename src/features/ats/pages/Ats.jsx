@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import ProgressBar from "../components/ProgressBar";
-import FileUploader from "../components/FileUploader";
-import AtsResultCard from "../components/AtsResultCard";
-import InputBox from "../components/InputBox";
-import KewordMatchPersentage from "../components/KewordMatchPersentage";
-import TextResult from "../components/textResult";
+import ProgressBar from "./../components/ProgressBar";
+import FileUploader from "./../components/FileUploader";
+import AtsResultCard from "./../components/AtsResultCard";
+import InputBox from "./../components/InputBox";
+import KewordMatchPersentage from "./../components/KewordMatchPersentage";
+import TextResult from "./../components/TextResult";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import axios from "axios";

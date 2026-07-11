@@ -26,8 +26,11 @@ import {
   AiOutlineCheck,
   AiOutlineClose,
 } from "react-icons/ai";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const CodeSubmissionResult = () => {
+  const { id } = useParams();
   const [isCodeExpanded, setIsCodeExpanded] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -62,14 +65,7 @@ const CodeSubmissionResult = () => {
       "Study time-space tradeoffs",
       "Try similar problems on arrays",
     ],
-    performanceInsights: {
-      fasterThan: "94%",
-      memoryBetterThan: "87%",
-      acceptanceRate: "76.4%",
-      difficulty: "Beginner-Friendly",
-      xpEarned: 250,
-      streakUpdated: "5 days",
-    },
+
     badges: [
       "Accepted",
       "Fast Solution",
@@ -77,19 +73,7 @@ const CodeSubmissionResult = () => {
       "100% Test Cases",
       "Clean Code",
     ],
-    nextActions: [
-      "Solve Similar Problem",
-      "View Editorial",
-      "Try Harder Problem",
-      "Practice Topic",
-      "Back to Problem",
-      "View All Problems",
-    ],
-    timeline: {
-      problemStarted: "2024-01-15 14:15:00",
-      codeSubmitted: "2024-01-15 14:30:25",
-      executionFinished: "2024-01-15 14:30:28",
-    },
+
     submittedCode: `function twoSum(nums, target) {
   const map = new Map();
   
@@ -105,48 +89,12 @@ const CodeSubmissionResult = () => {
   
   return [];
 }`,
-    testCases: [
-      {
-        id: 1,
-        status: "passed",
-        time: "2ms",
-        memory: "1.2MB",
-        expected: "[0,1]",
-        output: "[0,1]",
-      },
-      {
-        id: 2,
-        status: "passed",
-        time: "3ms",
-        memory: "1.4MB",
-        expected: "[1,2]",
-        output: "[1,2]",
-      },
-      {
-        id: 3,
-        status: "passed",
-        time: "2ms",
-        memory: "1.1MB",
-        expected: "[0,1]",
-        output: "[0,1]",
-      },
-      {
-        id: 4,
-        status: "hidden-passed",
-        time: "4ms",
-        memory: "1.8MB",
-        expected: "Hidden",
-        output: "Passed",
-      },
-      {
-        id: 5,
-        status: "hidden-passed",
-        time: "5ms",
-        memory: "2.0MB",
-        expected: "Hidden",
-        output: "Passed",
-      },
-    ],
+  };
+  const handleSubmit = async () => {
+    const response = await axios.post(
+      `/api/v1/coding/problems/submission/${id}`,
+    );
+    console.log(response);
   };
 
   const getStatusIcon = () => {
@@ -243,7 +191,7 @@ const CodeSubmissionResult = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] p-4 md:p-8 mt-10ck">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] p-4 md:p-8 mt-10">
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Top Result Banner */}
         <div
@@ -386,7 +334,29 @@ const CodeSubmissionResult = () => {
 
           {/* Test Case Results */}
           <div className="bg-[var(--card-bg)] rounded-xl p-6 shadow-lg">
-            <h3 className="font-bold mb-4">Test Cases</h3>
+            <div className="bg-[var(--card-bg)] rounded-xl p-6 shadow-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <FaClock className="text-blue-500 text-xl" />
+                <h3 className="font-bold">Time Complexity</h3>
+              </div>
+              <p className="text-3xl font-mono text-blue-500">
+                {submissionData.timeComplexity}
+              </p>
+              <p className="text-sm opacity-60 mt-2">
+                Estimated based on your solution
+              </p>
+            </div>
+            <div className="bg-[var(--card-bg)] rounded-xl p-6 shadow-lg">
+              <div className="flex items-center gap-2 mb-2">
+                <FaMemory className="text-purple-500 text-xl" />
+                <h3 className="font-bold">Space Complexity</h3>
+              </div>
+              <p className="text-3xl font-mono text-purple-500">
+                {submissionData.spaceComplexity}
+              </p>
+              <p className="text-sm opacity-60 mt-2">Memory usage analysis</p>
+            </div>
+            {/* <h3 className="font-bold mb-4">Test Cases</h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead className="border-b border-[var(--border-color)]">
@@ -427,7 +397,7 @@ const CodeSubmissionResult = () => {
                   })}
                 </tbody>
               </table>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -466,30 +436,6 @@ const CodeSubmissionResult = () => {
         </div>
 
         {/* Time & Space Complexity */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-[var(--card-bg)] rounded-xl p-6 shadow-lg">
-            <div className="flex items-center gap-2 mb-2">
-              <FaClock className="text-blue-500 text-xl" />
-              <h3 className="font-bold">Time Complexity</h3>
-            </div>
-            <p className="text-3xl font-mono text-blue-500">
-              {submissionData.timeComplexity}
-            </p>
-            <p className="text-sm opacity-60 mt-2">
-              Estimated based on your solution
-            </p>
-          </div>
-          <div className="bg-[var(--card-bg)] rounded-xl p-6 shadow-lg">
-            <div className="flex items-center gap-2 mb-2">
-              <FaMemory className="text-purple-500 text-xl" />
-              <h3 className="font-bold">Space Complexity</h3>
-            </div>
-            <p className="text-3xl font-mono text-purple-500">
-              {submissionData.spaceComplexity}
-            </p>
-            <p className="text-sm opacity-60 mt-2">Memory usage analysis</p>
-          </div>
-        </div>
 
         {/* AI Review */}
         <div className="bg-gradient-to-br from-[var(--card-bg)] to-[var(--border-color)]/10 rounded-2xl p-8 shadow-xl border border-[var(--border-color)]">
@@ -545,44 +491,6 @@ const CodeSubmissionResult = () => {
         </div>
 
         {/* Performance Insights */}
-        <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
-          <div className="bg-[var(--card-bg)] rounded-xl p-4 shadow-lg text-center">
-            <p className="text-sm opacity-60">Faster than</p>
-            <p className="text-2xl font-bold text-green-500">
-              {submissionData.performanceInsights.fasterThan}
-            </p>
-          </div>
-          <div className="bg-[var(--card-bg)] rounded-xl p-4 shadow-lg text-center">
-            <p className="text-sm opacity-60">Memory better than</p>
-            <p className="text-2xl font-bold text-blue-500">
-              {submissionData.performanceInsights.memoryBetterThan}
-            </p>
-          </div>
-          <div className="bg-[var(--card-bg)] rounded-xl p-4 shadow-lg text-center">
-            <p className="text-sm opacity-60">Acceptance Rate</p>
-            <p className="text-2xl font-bold text-purple-500">
-              {submissionData.performanceInsights.acceptanceRate}
-            </p>
-          </div>
-          <div className="bg-[var(--card-bg)] rounded-xl p-4 shadow-lg text-center">
-            <p className="text-sm opacity-60">Difficulty</p>
-            <p className="text-2xl font-bold text-orange-500">
-              {submissionData.performanceInsights.difficulty}
-            </p>
-          </div>
-          <div className="bg-[var(--card-bg)] rounded-xl p-4 shadow-lg text-center">
-            <p className="text-sm opacity-60">XP Earned</p>
-            <p className="text-2xl font-bold text-yellow-500">
-              +{submissionData.performanceInsights.xpEarned}
-            </p>
-          </div>
-          <div className="bg-[var(--card-bg)] rounded-xl p-4 shadow-lg text-center">
-            <p className="text-sm opacity-60">Streak</p>
-            <p className="text-2xl font-bold text-red-500">
-              {submissionData.performanceInsights.streakUpdated}
-            </p>
-          </div>
-        </div>
 
         {/* Badges */}
         <div className="bg-[var(--card-bg)] rounded-xl p-6 shadow-lg">
@@ -601,16 +509,6 @@ const CodeSubmissionResult = () => {
         </div>
 
         {/* Next Actions */}
-        <div className="flex flex-wrap gap-3">
-          {submissionData.nextActions.map((action, index) => (
-            <button
-              key={index}
-              className="px-6 py-2 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] hover:border-blue-500 hover:bg-blue-500/10 transition-all duration-300 font-medium hover:scale-105"
-            >
-              {action}
-            </button>
-          ))}
-        </div>
 
         {/* Submitted Code */}
         <div className="bg-[var(--card-bg)] rounded-xl shadow-lg overflow-hidden">
@@ -649,38 +547,6 @@ const CodeSubmissionResult = () => {
         </div>
 
         {/* Timeline */}
-        <div className="bg-[var(--card-bg)] rounded-xl p-6 shadow-lg">
-          <h3 className="font-bold mb-4">Timeline</h3>
-          <div className="space-y-3">
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-              <p className="text-sm">
-                Problem Started:{" "}
-                <span className="font-mono">
-                  {submissionData.timeline.problemStarted}
-                </span>
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
-              <p className="text-sm">
-                Code Submitted:{" "}
-                <span className="font-mono">
-                  {submissionData.timeline.codeSubmitted}
-                </span>
-              </p>
-            </div>
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              <p className="text-sm">
-                Execution Finished:{" "}
-                <span className="font-mono">
-                  {submissionData.timeline.executionFinished}
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
 
         {/* Motivational Section */}
         <div className="bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-xl p-6 border border-[var(--border-color)] text-center">
@@ -700,5 +566,115 @@ const CodeSubmissionResult = () => {
     </div>
   );
 };
-
 export default CodeSubmissionResult;
+{
+  {
+    /* <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+          <div className="bg-[var(--card-bg)] rounded-xl p-4 shadow-lg text-center">
+            <p className="text-sm opacity-60">Faster than</p>
+            <p className="text-2xl font-bold text-green-500">
+              {submissionData.performanceInsights.fasterThan}
+            </p>
+          </div>
+          <div className="bg-[var(--card-bg)] rounded-xl p-4 shadow-lg text-center">
+            <p className="text-sm opacity-60">Memory better than</p>
+            <p className="text-2xl font-bold text-blue-500">
+              {submissionData.performanceInsights.memoryBetterThan}
+            </p>
+          </div>
+          <div className="bg-[var(--card-bg)] rounded-xl p-4 shadow-lg text-center">
+            <p className="text-sm opacity-60">Acceptance Rate</p>
+            <p className="text-2xl font-bold text-purple-500">
+              {submissionData.performanceInsights.acceptanceRate}
+            </p>
+          </div>
+          <div className="bg-[var(--card-bg)] rounded-xl p-4 shadow-lg text-center">
+            <p className="text-sm opacity-60">Difficulty</p>
+            <p className="text-2xl font-bold text-orange-500">
+              {submissionData.performanceInsights.difficulty}
+            </p>
+          </div>
+          <div className="bg-[var(--card-bg)] rounded-xl p-4 shadow-lg text-center">
+            <p className="text-sm opacity-60">XP Earned</p>
+            <p className="text-2xl font-bold text-yellow-500">
+              +{submissionData.performanceInsights.xpEarned}
+            </p>
+          </div>
+          <div className="bg-[var(--card-bg)] rounded-xl p-4 shadow-lg text-center">
+            <p className="text-sm opacity-60">Streak</p>
+            <p className="text-2xl font-bold text-red-500">
+              {submissionData.performanceInsights.streakUpdated}
+            </p>
+          </div>
+        </div> */
+  }
+  {
+    /* <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="bg-[var(--card-bg)] rounded-xl p-6 shadow-lg">
+      <div className="flex items-center gap-2 mb-2">
+        <FaClock className="text-blue-500 text-xl" />
+        <h3 className="font-bold">Time Complexity</h3>
+      </div>
+      <p className="text-3xl font-mono text-blue-500">
+        {submissionData.timeComplexity}
+      </p>
+      <p className="text-sm opacity-60 mt-2">
+        Estimated based on your solution
+      </p>
+    </div>
+    <div className="bg-[var(--card-bg)] rounded-xl p-6 shadow-lg">
+      <div className="flex items-center gap-2 mb-2">
+        <FaMemory className="text-purple-500 text-xl" />
+        <h3 className="font-bold">Space Complexity</h3>
+      </div>
+      <p className="text-3xl font-mono text-purple-500">
+        {submissionData.spaceComplexity}
+      </p>
+      <p className="text-sm opacity-60 mt-2">Memory usage analysis</p>
+    </div>
+  </div> */
+  }
+  /* <div className="flex flex-wrap gap-3">
+  {submissionData.nextActions.map((action, index) => (
+    <button
+      key={index}
+      className="px-6 py-2 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] hover:border-blue-500 hover:bg-blue-500/10 transition-all duration-300 font-medium hover:scale-105"
+    >
+      {action}
+    </button>
+  ))}
+</div> */
+}
+
+/* <div className="bg-[var(--card-bg)] rounded-xl p-6 shadow-lg">
+<h3 className="font-bold mb-4">Timeline</h3>
+        <div className="space-y-3">
+        <div className="flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+            <p className="text-sm">
+              Problem Started:{" "}
+              <span className="font-mono">
+                {submissionData.timeline.problemStarted}
+              </span>
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-yellow-500"></div>
+            <p className="text-sm">
+              Code Submitted:{" "}
+              <span className="font-mono">
+              {submissionData.timeline.codeSubmitted}
+              </span>
+            </p>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-green-500"></div>
+            <p className="text-sm">
+            Execution Finished:{" "}
+            <span className="font-mono">
+                {submissionData.timeline.executionFinished}
+              </span>
+            </p>
+          </div>
+          </div>
+      </div> */

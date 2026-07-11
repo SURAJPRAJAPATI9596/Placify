@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Play, Send, GripVertical } from "lucide-react";
 import { useState } from "react";
 import axios from "axios";
@@ -106,7 +106,7 @@ gap-2
           <Play size={18} />
           Run
         </button>
-        <NavLink to={"/Placify/coding/submission"}>
+        <NavLink to={`/Placify/coding/submission/ ${id}`}>
           <button
             className="
 bg-blue-600
@@ -127,26 +127,28 @@ gap-2
 
       <div
         className="
-h-32
+h-40
 bg-black
 p-5
 "
       >
         <h3>Output</h3>
 
-        {result ? (
+        <div>
+          {result?.status === "true" ? (
+            <p className="text-green-400 mt-2">Your solution is correct</p>
+          ) : (
+            <p className="text-green-400 mt-2">Your solution is not correct</p>
+          )}
+          <p className="text-green-400 mt-2">{result?.status}</p>
           <div>
-            {result?.success ? (
-              <p className="text-green-400 mt-2">Your solution is correct</p>
-            ) : (
-              <p className="text-green-400 mt-2">
-                Your solution is not correct
+            {result?.compilation?.errors?.map((value, index) => (
+              <p key={index} className="text-green-400 mt-2">
+                {value}
               </p>
-            )}
+            ))}
           </div>
-        ) : (
-          <div>Your result will aprea here</div>
-        )}
+        </div>
       </div>
     </div>
   );

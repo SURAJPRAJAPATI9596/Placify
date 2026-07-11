@@ -81,7 +81,7 @@ font-bold
             onClick={() => {
               navigate("/Placify/coding", {
                 state: {
-                  tab: 1,
+                  tab: 2,
                 },
               });
             }}
