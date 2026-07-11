@@ -279,7 +279,7 @@ mt-6
 "
               >
                 {module.topics.map((topic) => (
-                  <NavLink to={"/Placify/roadmaps/detail/topic"}>
+                  <NavLink to={"/roadmaps/detail/topic"}>
                     <div
                       key={topic}
                       className="

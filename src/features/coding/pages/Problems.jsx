@@ -145,7 +145,7 @@ border-white/10
           <div className="overflow-scroll h-screen  overflow-x-hidden ">
             {filtered?.map((problem) => (
               <NavLink
-                to={`/Placify/problem/${problem._id}`}
+                to={`/problem/${problem._id}`}
                 className="cursor-pointer"
                 key={problem._id}
               >
@@ -228,7 +228,7 @@ mt-8
         >
           {filtered.map((problem) => (
             <NavLink
-              to={`/Placify/problem/${problem._id}`}
+              to={`/problem/${problem._id}`}
               className="cursor-pointer"
               key={problem._id}
             >

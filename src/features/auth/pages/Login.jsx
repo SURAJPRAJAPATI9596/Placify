@@ -571,7 +571,7 @@ export default function Login() {
                 <p className="text-center text-xs opacity-60 mt-7">
                   Don't have an account?{" "}
                   <NavLink
-                    to={"/Placify/register"}
+                    to={"/register"}
                     className="font-semibold opacity-100 hover:underline placify-focus-ring rounded"
                     style={{ color: BRAND_FROM }}
                   >

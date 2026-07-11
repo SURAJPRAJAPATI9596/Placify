@@ -106,7 +106,7 @@ gap-2
           <Play size={18} />
           Run
         </button>
-        <NavLink to={`/Placify/coding/submission/ ${id}`}>
+        <NavLink to={`/coding/submission/ ${id}`}>
           <button
             className="
 bg-blue-600

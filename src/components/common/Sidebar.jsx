@@ -18,46 +18,46 @@ const Sidebar = ({ dark, setDark, open, toggleMenu }) => {
       {open && (
         <div className=" lg:hidden border-b-blue-50 bg-(--bg-primary) text-(--text-primary) flex flex-col justify-between items-start h-screen  w-50  text-[14px] z-50 fixed">
           <span className="text-[30px] cursor-pointer mt-10 ml-[10%]">
-            <NavLink to={"/Placify/"} className={`NavStyle cursor-pointer`}>
+            <NavLink to={"/"} className={`NavStyle cursor-pointer`}>
               Placify
             </NavLink>
           </span>
           <div className="ml-[10%] h-[50%] flex flex-col cursor-pointer justify-around">
             <span>Dashboard</span>
             <span>
-              <NavLink to={"/placify/roadmaps "} className={NavStyle}>
+              <NavLink to={"/roadmaps "} className={NavStyle}>
                 Roadmap
               </NavLink>
             </span>
             <span>Resources</span>
             <span>
-              <NavLink to={"/placify/resume"} className={NavStyle}>
+              <NavLink to={"/resume"} className={NavStyle}>
                 Resume
               </NavLink>
             </span>
             <span>
-              <NavLink to={"/placify/ats"} className={NavStyle}>
+              <NavLink to={"/ats"} className={NavStyle}>
                 ATS
               </NavLink>
             </span>
             <span>
-              <NavLink to={"/Placify/interview"} className={NavStyle}>
+              <NavLink to={"/interview"} className={NavStyle}>
                 Interview
               </NavLink>
             </span>
             <span>
-              <NavLink to={"/Placify/coding"} className={NavStyle}>
+              <NavLink to={"/coding"} className={NavStyle}>
                 Coding
               </NavLink>
             </span>
             <span>Jobs </span>
             <span>
-              <NavLink to={"/Placify/tracker"} className={NavStyle}>
+              <NavLink to={"/tracker"} className={NavStyle}>
                 Tracker
               </NavLink>
             </span>
             <span>
-              <NavLink to={"/Placify/about"} className={NavStyle}>
+              <NavLink to={"/about"} className={NavStyle}>
                 About
               </NavLink>
             </span>

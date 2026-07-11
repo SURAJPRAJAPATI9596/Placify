@@ -79,7 +79,7 @@ font-bold
           </h1>
           <button
             onClick={() => {
-              navigate("/Placify/coding", {
+              navigate("/coding", {
                 state: {
                   tab: 2,
                 },

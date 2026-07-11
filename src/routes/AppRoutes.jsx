@@ -34,31 +34,28 @@ const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
           />
         }
       >
-        <Route path="/Placify/" element={<Home />} />
-        <Route path="/Placify/about" element={<About />} />
-        <Route path="/Placify/ats" element={<Ats />} />
-        <Route path="/Placify/resume" element={<Resume />} />
-        <Route path="/Placify/roadmaps" element={<Roadmaps />} />
-        <Route path="/Placify/roadmaps/detail" element={<RoadmapDetail />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/ats" element={<Ats />} />
+        <Route path="/resume" element={<Resume />} />
+        <Route path="/roadmaps" element={<Roadmaps />} />
+        <Route path="/roadmaps/detail" element={<RoadmapDetail />} />
+        <Route path="/roadmaps/detail/topic" element={<TopicComponents />} />
+        <Route path="/interview" element={<Interview />} />
+        <Route path="/tracker" element={<Tracker />} />
+        <Route path="/coding" element={<CodingTabs />} />
+        <Route path="/problem/:id" element={<ProblemDetail />} />
         <Route
-          path="/Placify/roadmaps/detail/topic"
-          element={<TopicComponents />}
-        />
-        <Route path="/Placify/interview" element={<Interview />} />
-        <Route path="/Placify/tracker" element={<Tracker />} />
-        <Route path="/Placify/coding" element={<CodingTabs />} />
-        <Route path="/Placify/problem/:id" element={<ProblemDetail />} />
-        <Route
-          path="/Placify/coding/submission/:id"
+          path="/coding/submission/:id"
           element={<CodeSubmissionResult />}
         />
-        <Route path="/Placify/Problems" element={<Problems />} />
-        <Route path="/Placify/profile" element={<ProfileMenu />} />
-        <Route path="/Placify/jobs" element={<Jobs />} />
-        <Route path="/Placify/dashboard" element={<Dashboard />} />
-        <Route path="/Placify/resources" element={<Resources />} />
-        <Route path="/Placify/register" element={<Register />} />
-        <Route path="/Placify/login" element={<Login />} />
+        <Route path="/Problems" element={<Problems />} />
+        <Route path="/profile" element={<ProfileMenu />} />
+        <Route path="/jobs" element={<Jobs />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/resources" element={<Resources />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Route>
     </Routes>
   );

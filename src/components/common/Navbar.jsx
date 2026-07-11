@@ -12,43 +12,43 @@ const Navbar = ({ dark, setDark }) => {
 fixed top-0 left-0 w-full"
     >
       <span className="text-[30px] cursor-pointer">
-        <NavLink to={"/Placify/"}>Placify</NavLink>
+        <NavLink to={"/"}>Placify</NavLink>
       </span>
       <div className="w-[60%] flex justify-around cursor-pointer">
-        <NavLink to={"/Placify/dashboard"} className={NavStyle}>
+        <NavLink to={"/dashboard"} className={NavStyle}>
           Dashboard
         </NavLink>
 
-        <NavLink to={"/Placify/roadmaps"} className={NavStyle}>
+        <NavLink to={"/roadmaps"} className={NavStyle}>
           Roadmap
         </NavLink>
 
-        <NavLink to={"/Placify/resources"} className={NavStyle}>
+        <NavLink to={"/resources"} className={NavStyle}>
           Resources
         </NavLink>
 
-        <NavLink to={"/placify/resume"} className={NavStyle}>
+        <NavLink to={"/resume"} className={NavStyle}>
           Resume
         </NavLink>
 
-        <NavLink to={"/placify/ats"} className={NavStyle}>
+        <NavLink to={"/ats"} className={NavStyle}>
           ATS
         </NavLink>
 
-        <NavLink to={"/Placify/interview"} className={NavStyle}>
+        <NavLink to={"/interview"} className={NavStyle}>
           Interview
         </NavLink>
-        <NavLink to={"/Placify/coding"} className={NavStyle}>
+        <NavLink to={"/coding"} className={NavStyle}>
           Coding
         </NavLink>
-        <NavLink className={NavStyle} to={"/Placify/jobs"}>
+        <NavLink className={NavStyle} to={"/jobs"}>
           Jobs
         </NavLink>
-        <NavLink to={"/Placify/tracker"} className={NavStyle}>
+        <NavLink to={"/tracker"} className={NavStyle}>
           Tracker
         </NavLink>
 
-        <NavLink to={"/Placify/about"} className={NavStyle}>
+        <NavLink to={"/about"} className={NavStyle}>
           About
         </NavLink>
       </div>
@@ -61,7 +61,7 @@ fixed top-0 left-0 w-full"
         >
           {dark ? <CiLight /> : <MdOutlineDarkMode />}
         </span>
-        <NavLink to={"/Placify/login"}>
+        <NavLink to={"/login"}>
           <button className="h-8! ">login</button>
         </NavLink>
         {/* <ProfileDialog /> */}
