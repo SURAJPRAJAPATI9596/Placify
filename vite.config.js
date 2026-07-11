@@ -7,6 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
+        //target: "http://localhost:8080",
         target: "https://placifybackend-1.onrender.com",
         changeOrigin: true,
       },
