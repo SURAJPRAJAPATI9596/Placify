@@ -7,7 +7,7 @@ import KewordMatchPersentage from "./../components/KewordMatchPersentage";
 import TextResult from "./../components/TextResult";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import axios from "axios";
+import api from "./.././../../services/api";
 import ProgressLoader from "../../../components/common/loaders/ProgressLoader";
 
 const Ats = () => {
@@ -64,7 +64,7 @@ const Ats = () => {
     formData.append("jobDes", jobDes);
 
     try {
-      const response = await axios.post("/api/v1/ai/ats", formData);
+      const response = await api.post("/api/v1/ai/ats", formData);
       let data = response.data.atsResult.content;
       data = JSON.parse(data);
       setAtsData(data);

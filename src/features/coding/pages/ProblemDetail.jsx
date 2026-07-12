@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CodeEditor from "./CodeEditor";
-import axios from "axios";
+import api from "../../../services/api";
 import { Play, Send, GripVertical } from "lucide-react";
 import { NavLink, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +41,7 @@ const ProblemDetail = () => {
   };
   useEffect(() => {
     const fetchProblem = async () => {
-      const response = await axios.get(`/api/v1/coding/problems/${id}`);
+      const response = await api.get(`/api/v1/coding/problems/${id}`);
       setProblem(response.data.data);
     };
     fetchProblem();

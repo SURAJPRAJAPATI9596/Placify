@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Search, Filter, CheckCircle, Clock } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
+import api from "../../../services/api";
 
 const Problems = () => {
   const [search, setSearch] = useState("");
   const [problems, setProblems] = useState([]);
 
   const fetchProblems = async () => {
-    const response = await axios.get("/api/v1/coding");
+    const response = await api.get("/api/v1/coding");
     const data = await response.data.data;
     setProblems(data);
   };
