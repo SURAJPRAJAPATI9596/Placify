@@ -4,7 +4,7 @@ import TemplateSection from "../components/TemplateSection";
 import FormSection from "../components/FormSection";
 import PreviewSection from "../components/PreviewSection";
 import FlashMessage from "./../../../components/common/FlashMessage";
-import axios from "axios";
+import api from "./../../../services/api";
 
 const Resume = () => {
   const [print, setPrint] = useState(null);
@@ -121,7 +121,7 @@ const Resume = () => {
   };
   const handleRewrite = async () => {
     try {
-      const response = await axios.post("/api/v1/ai/resume", resumeData);
+      const response = await api.post("/api/v1/ai/resume", resumeData);
       let data = response.data.resume.content;
       data = JSON.parse(data);
       setResumeData(data);

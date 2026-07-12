@@ -4,7 +4,7 @@ import { Plus, Download, Edit2, Trash2 } from "lucide-react";
 import InputModel from "../components/InputModel";
 import FilterBar from "./../components/FilterBar";
 import { useReactToPrint } from "react-to-print";
-import axios from "axios";
+import api from "./../../../services/api";
 
 const countStage = (data, stageName) => {
   let count = 0;
@@ -44,7 +44,7 @@ const PlacementTracker = () => {
 
   const [applications, setApplications] = useState([]);
   const fetchData = async () => {
-    const response = await axios.get("/api/v1/trackers");
+    const response = await api.get("/api/v1/trackers");
 
     setApplications(response.data.data);
   };

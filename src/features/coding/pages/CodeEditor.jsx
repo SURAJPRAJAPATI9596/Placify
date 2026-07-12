@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Play, Send, GripVertical } from "lucide-react";
 import { useState } from "react";
-import axios from "axios";
+import api from "./../../../services/api";
 import { NavLink } from "react-router-dom";
 const CodeEditor = ({ leftWidth, id, problem }) => {
   const [language, setLanguage] = useState("JavaScript");
@@ -10,7 +10,7 @@ const CodeEditor = ({ leftWidth, id, problem }) => {
   const [code, setCode] = useState("");
 
   const handleRun = async () => {
-    const response = await axios.post(`/api/v1/coding/problems/${id}`, {
+    const response = await api.post(`/api/v1/coding/problems/${id}`, {
       code: code,
       problem: problem,
     });
