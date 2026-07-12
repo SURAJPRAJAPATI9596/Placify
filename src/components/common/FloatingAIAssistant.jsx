@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
+import api from "./../../services/api";
 import {
   FaRobot,
   FaPaperPlane,
@@ -37,6 +37,7 @@ const FloatingAIAssistant = () => {
       setTimeout(scrollToBottom, 100);
     }
   }, [isOpen]);
+  //fetching data function from ai
 
   // Auto hide tooltip after 8 seconds
   useEffect(() => {
@@ -53,6 +54,7 @@ const FloatingAIAssistant = () => {
     return () => clearInterval(interval);
   }, []);
 
+  //sending message function
   const sendMessage = async () => {
     if (!inputValue.trim()) return;
 
@@ -63,14 +65,10 @@ const FloatingAIAssistant = () => {
 
     // Simulate AI response
 
-    const fetData = async () => {
-      const response = await axios.post("/api/v1/ai/", {
-        message: userMessage,
-      });
-      return response;
-    };
-    let data = await fetData();
-    data = data.data.message;
+    const response = await api.post("/api/v1/ai/", {
+      message: userMessage,
+    });
+    const data = response?.data.message;
     setMessages((prev) => [
       ...prev,
       { content: data.content, type: data.role },
