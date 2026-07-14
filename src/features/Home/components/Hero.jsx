@@ -86,7 +86,7 @@ flex-wrap
 "
           >
             <NavLink
-              to={"/Placify/register"}
+              to={"/register"}
               className="
  bg-purple-600!
 lg:px-8

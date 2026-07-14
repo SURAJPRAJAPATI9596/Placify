@@ -16,57 +16,59 @@ const Sidebar = ({ dark, setDark, open, toggleMenu }) => {
       />
 
       {open && (
-        <div className=" lg:hidden border-b-blue-50 bg-(--bg-primary) text-(--text-primary) flex flex-col justify-between items-start h-screen  w-50  text-[14px] z-50 fixed">
-          <span className="text-[30px] cursor-pointer mt-10 ml-[10%]">
-            <NavLink to={"/"} className={`NavStyle cursor-pointer`}>
+        <div className=" lg:hidden border-b-blue-50 bg-(--bg-primary) text-(--text-primary) flex flex-col justify-items-start items-start gap-y-[10%] h-screen  w-50  text-[14px] z-50 fixed">
+          <div className="flex flex-col gap-y-10">
+            <NavLink
+              to={"/"}
+              className={`NavStyle cursor-pointer text-3xl  mt-10 ml-[10%]`}
+            >
               Placify
             </NavLink>
-          </span>
-          <div className="ml-[10%] h-[50%] flex flex-col cursor-pointer justify-around">
-            <span>Dashboard</span>
-            <span>
-              <NavLink to={"/roadmaps "} className={NavStyle}>
+
+            <div className="ml-[10%] h-[50%] flex flex-col justify-around items-start">
+              <NavLink to="/dashboard" className={NavStyle}>
+                Dashboard
+              </NavLink>
+
+              <NavLink to="/roadmaps" className={NavStyle}>
                 Roadmap
               </NavLink>
-            </span>
-            <span>Resources</span>
-            <span>
-              <NavLink to={"/resume"} className={NavStyle}>
+
+              <NavLink to="/resources" className={NavStyle}>
+                Resources
+              </NavLink>
+
+              <NavLink to="/resume" className={NavStyle}>
                 Resume
               </NavLink>
-            </span>
-            <span>
-              <NavLink to={"/ats"} className={NavStyle}>
+
+              <NavLink to="/ats" className={NavStyle}>
                 ATS
               </NavLink>
-            </span>
-            <span>
-              <NavLink to={"/interview"} className={NavStyle}>
+
+              <NavLink to="/interview" className={NavStyle}>
                 Interview
               </NavLink>
-            </span>
-            <span>
-              <NavLink to={"/coding"} className={NavStyle}>
+
+              <NavLink to="/coding" className={NavStyle}>
                 Coding
               </NavLink>
-            </span>
-            <span>Jobs </span>
-            <span>
-              <NavLink to={"/tracker"} className={NavStyle}>
+
+              <NavLink to="/jobs" className={NavStyle}>
+                Jobs
+              </NavLink>
+
+              <NavLink to="/tracker" className={NavStyle}>
                 Tracker
               </NavLink>
-            </span>
-            <span>
-              <NavLink to={"/about"} className={NavStyle}>
+
+              <NavLink to="/about" className={NavStyle}>
                 About
               </NavLink>
-            </span>
+            </div>
           </div>
-          <div className="items-center cursor-pointer flex flex-row justify-around w-full">
-            <span className="text-3xl">
-              {" "}
-              <ProfileDialog />
-            </span>
+          <div className="items-center cursor-pointer flex flex-row justify-around w-full text-3xl">
+            <ProfileDialog />
           </div>
         </div>
       )}

@@ -233,7 +233,7 @@ const RoadmapPreview = () => {
 
         {/* Bottom CTA */}
         <div className="mt-10 text-center" data-aos={animation.card}>
-          <NavLink to={"/placify/roadmaps"}>
+          <NavLink to={"/roadmaps"}>
             <button className="bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white px-12 py-5 rounded-2xl text-xl font-semibold hover:scale-105 transition">
               Explore All Roadmaps →
             </button>
