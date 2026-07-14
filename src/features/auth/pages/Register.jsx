@@ -79,6 +79,7 @@ function getPasswordStrength(checks, password) {
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function Register() {
+  const [userName, setuserName] = useState("");
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -92,6 +93,7 @@ export default function Register() {
 
   const [touched, setTouched] = useState({
     fullName: false,
+    userName: false,
     email: false,
     password: false,
     confirmPassword: false,
@@ -107,7 +109,7 @@ export default function Register() {
     [passwordChecks, password],
   );
 
-  const isNameValid = fullName.trim().length > 0;
+  const isNameValid = userName.trim().length > 0;
   const isEmailValid = EMAIL_REGEX.test(email);
   const isPasswordValid = Object.values(passwordChecks).every(Boolean);
   const doPasswordsMatch =
@@ -124,16 +126,16 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isFormValid || isSubmitting) return;
-    // setIsSubmitting(true);
-    // Placeholder submit handler — wire up to real API later.
+    setIsSubmitting(true);
     const response = await api.post("/api/v1/auth", {
       fullName: fullName,
+      userName: userName,
       email: email,
       password: password,
     });
     console.log(response);
-    // setIsSubmitting(false);
-    // setSubmitted(true);
+    setIsSubmitting(false);
+    response?.data.success ? setSubmitted(true) : setSubmitted(false);
   };
 
   const handleSocialLogin = (provider) => {
@@ -376,7 +378,7 @@ export default function Register() {
                 </div>
                 <h2 className="text-xl font-semibold mb-2">Account created</h2>
                 <p className="text-sm opacity-60 leading-relaxed">
-                  Welcome to Placify, {fullName.split(" ")[0] || "there"}. Let's
+                  Welcome to Placify, {userName.split(" ")[0] || "there"}. Let's
                   get your profile set up next.
                 </p>
               </div>
@@ -406,16 +408,38 @@ export default function Register() {
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       onBlur={() => markTouched("fullName")}
-                      placeholder="Aditi Sharma"
+                      placeholder="suraj prajapati"
                       className={`placify-input w-full rounded-xl border bg-[var(--bg-primary)] px-4 py-2.5 text-sm outline-none placeholder:opacity-40 ${
                         touched.fullName && !isNameValid
                           ? "border-red-500"
                           : "border-[var(--border-color)] focus:border-[var(--text-primary)]/30"
                       }`}
                     />
-                    {touched.fullName && !isNameValid && (
+                  </div>
+                  {/* user name */}
+                  <div className="mb-4">
+                    <label
+                      htmlFor="userName"
+                      className="block text-xs font-medium mb-1.5 opacity-70"
+                    >
+                      User Name
+                    </label>
+                    <input
+                      id="userName"
+                      type="text"
+                      value={userName}
+                      onChange={(e) => setuserName(e.target.value)}
+                      onBlur={() => markTouched("userName")}
+                      placeholder="surajprajapatijob@9596@placify"
+                      className={`placify-input w-full rounded-xl border bg-[var(--bg-primary)] px-4 py-2.5 text-sm outline-none placeholder:opacity-40 ${
+                        touched.userName && !isNameValid
+                          ? "border-red-500"
+                          : "border-[var(--border-color)] focus:border-[var(--text-primary)]/30"
+                      }`}
+                    />
+                    {touched.userName && !isNameValid && (
                       <p className="text-xs text-red-500 mt-1.5 flex items-center gap-1">
-                        <FiX size={12} /> Full name cannot be empty
+                        <FiX size={12} /> User Name must be unique
                       </p>
                     )}
                   </div>

@@ -457,7 +457,7 @@ export default function Login() {
                       <button
                         type="button"
                         onClick={() => setShowPassword((v) => !v)}
-                        className="absolute right-3.5 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-90 transition-opacity placify-focus-ring rounded"
+                        className=" MuiButtonBase-root absolute right-3.5 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-90 transition-opacity placify-focus-ring rounded"
                         aria-label={
                           showPassword ? "Hide password" : "Show password"
                         }
