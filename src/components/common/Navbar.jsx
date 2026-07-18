@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import NavStyle from "../../utils/NavStylel";
 import ProfileMenu from "../../features/profile/ProfileMenu";
 import ProfileDialog from "../../features/profile/ProfileDialog";
-const Navbar = ({ dark, setDark }) => {
+const Navbar = ({ user, dark, setDark }) => {
   return (
     <div
       className="bg-(--bg-primary) text-(--text-primary) flex-row justify-around  h-12.5 items-center text-[14px] hidden lg:flex z-50  
@@ -61,10 +61,13 @@ fixed top-0 left-0 w-full"
         >
           {dark ? <CiLight /> : <MdOutlineDarkMode />}
         </span>
-        <NavLink to={"/login"}>
-          <button className="h-8! ">login</button>
-        </NavLink>
-        {/* <ProfileDialog /> */}
+        {!user?.isLoggedIn ? (
+          <NavLink to={"/login"}>
+            <button className="h-8! ">login</button>
+          </NavLink>
+        ) : (
+          <ProfileDialog />
+        )}
       </div>
     </div>
   );

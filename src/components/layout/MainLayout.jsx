@@ -4,11 +4,12 @@ import Sidebar from "../common/Sidebar";
 import { Outlet } from "react-router-dom";
 import FloatingAIAssistant from "../common/FloatingAIAssistant";
 import FlashMessage from "../common/FlashMessage";
-const MainLayout = ({ dark, setDark, open, toggleMenu }) => {
+const MainLayout = ({ user, dark, setDark, open, toggleMenu }) => {
   return (
     <div className="min-h-screen flex flex-col ">
-      <Navbar dark={dark} setDark={setDark} />
+      <Navbar dark={dark} setDark={setDark} user={user} />
       <Sidebar
+        user={user}
         open={open}
         toggleMenu={toggleMenu}
         dark={dark}

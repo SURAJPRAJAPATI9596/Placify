@@ -136,6 +136,7 @@ const ProfileMenu = () => {
 
       <div className="space-y-3">
         <button
+          MuiButtonBase-root
           className="
           w-full
           bg-blue-600
@@ -153,6 +154,7 @@ const ProfileMenu = () => {
 
         <button
           className="
+          MuiButtonBase-root
           w-full
           bg-white/10
           py-3
@@ -169,6 +171,7 @@ const ProfileMenu = () => {
 
         <button
           className="
+          MuiButtonBase-root
           w-full
           bg-red-500/10
           text-red-400

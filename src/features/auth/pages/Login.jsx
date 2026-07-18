@@ -1,4 +1,9 @@
 import React, { useState, useMemo, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+
+import FlashMessage from "./../../../components/common/FlashMessage";
+import api from "./../../../services/api";
+
 import {
   FiEye,
   FiEyeOff,
@@ -41,33 +46,33 @@ const FEATURES = [
 //   { value: "95%", label: "Placement Success" },
 // ];
 
-const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 export default function Login() {
-  const [email, setEmail] = useState("");
+  const [userName, setuserName] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [formError, setFormError] = useState("");
-
-  const [touched, setTouched] = useState({ email: false, password: false });
-
+  const [err, setErr] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [touched, setTouched] = useState({ userName: false, password: false });
+  const navigate = useNavigate();
   const markTouched = useCallback((field) => {
     setTouched((prev) => ({ ...prev, [field]: true }));
   }, []);
 
-  const isEmailValid = EMAIL_REGEX.test(email);
+  // Checks that username is not empty and does not contain spaces anywhere
+  const isuserNameValid = userName.trim().length > 0 && !/\s/.test(userName);
   const isPasswordValid = password.length > 0;
-  const isFormValid = isEmailValid && isPasswordValid;
+  const isFormValid = isuserNameValid && isPasswordValid;
 
-  const emailError = useMemo(() => {
-    if (!touched.email) return "";
-    if (email.trim().length === 0) return "Email is required";
-    if (!isEmailValid) return "Enter a valid email address";
+  const userNameError = useMemo(() => {
+    if (!touched.userName) return "";
+    if (userName.trim().length === 0) return "Username is required";
+    if (/\s/.test(userName)) return "Username cannot contain spaces";
     return "";
-  }, [touched.email, email, isEmailValid]);
+  }, [touched.userName, userName]);
 
   const passwordError = useMemo(() => {
     if (!touched.password) return "";
@@ -75,24 +80,37 @@ export default function Login() {
     return "";
   }, [touched.password, password]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setTouched({ email: true, password: true });
+    setTouched({ userName: true, password: true });
     if (!isFormValid || isSubmitting) return;
-
+    setLoginSuccess(true);
     setFormError("");
     setIsSubmitting(true);
-    // Placeholder submit handler — wire up to real auth API here.
-    setTimeout(() => {
+    setErr(null);
+    try {
+      const response = await api.post(
+        "/api/v1/auth/login",
+        {
+          username: userName,
+          password: password,
+        },
+        { withCredentials: true },
+      );
       setIsSubmitting(false);
-      setLoginSuccess(true);
-      // Placeholder redirect — replace with real navigation (e.g. react-router).
-      setTimeout(() => {
-        console.log("Redirecting to /dashboard ...");
-      }, 1200);
-    }, 1500);
-  };
+      setLoginSuccess(false);
+      setSuccessMessage(response?.data?.message);
+      // ;surajKumar@9596
 
+      if (response?.data.success) {
+        navigate("/");
+      }
+    } catch (err) {
+      setErr(err?.response?.data);
+      setIsSubmitting(false);
+      setLoginSuccess(false);
+    }
+  };
   const handleSocialLogin = (provider) => {
     // Placeholder social auth handler.
     console.log(`Continue with ${provider} — connect real OAuth here.`);
@@ -106,6 +124,28 @@ export default function Login() {
 
   return (
     <div className="min-h-screen w-full bg-[var(--bg-primary)] text-[var(--text-primary)] flex items-stretch ">
+      {err && (
+        <FlashMessage
+          show={!err?.success}
+          type="warning"
+          title="Login err"
+          message={err?.message}
+          duration={1000}
+          onClose={() => {}}
+          position="top-center"
+        />
+      )}
+      {successMessage && (
+        <FlashMessage
+          show={true}
+          type="success"
+          title="welcome"
+          message={successMessage}
+          duration={100000}
+          onClose={() => {}}
+          position="top-center"
+        />
+      )}
       <style>{`
         @keyframes placify-float {
           0%, 100% { transform: translateY(0px); }
@@ -339,215 +379,192 @@ export default function Login() {
             className="placify-card-enter rounded-3xl border border-[var(--border-color)] bg-[var(--card-bg)]/95 backdrop-blur-xl shadow-xl shadow-black/[0.04] p-6 sm:p-9"
             style={{ backdropFilter: "blur(20px)" }}
           >
-            {loginSuccess ? (
-              <div
-                className="py-10 text-center"
-                role="status"
-                aria-live="polite"
-              >
-                <div
-                  className="w-14 h-14 rounded-full mx-auto mb-5 flex items-center justify-center"
-                  style={{
-                    background: `linear-gradient(135deg, ${BRAND_FROM}, ${BRAND_TO})`,
-                  }}
-                >
-                  <span
-                    className="w-6 h-6 rounded-full border-2 border-white/40 border-t-white"
-                    style={{ animation: "placify-spin 0.8s linear infinite" }}
-                  />
-                </div>
-                <h2 className="text-xl font-semibold mb-2">Signing you in</h2>
-                <p className="text-sm opacity-60 leading-relaxed">
-                  Redirecting you to your dashboard...
+            <>
+              <div className="mb-7">
+                <h2 className="text-2xl font-bold tracking-tight mb-1.5">
+                  Sign In
+                </h2>
+                <p className="text-sm opacity-55">
+                  Welcome back to Placify. Please sign in to continue.
                 </p>
               </div>
-            ) : (
-              <>
-                <div className="mb-7">
-                  <h2 className="text-2xl font-bold tracking-tight mb-1.5">
-                    Sign In
-                  </h2>
-                  <p className="text-sm opacity-55">
-                    Welcome back to Placify. Please sign in to continue.
-                  </p>
+
+              {formError && (
+                <div
+                  role="alert"
+                  className="mb-5 rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-2.5 text-xs text-red-500 flex items-center gap-2"
+                >
+                  <FiX size={13} className="shrink-0" />
+                  {formError}
+                </div>
+              )}
+
+              <form noValidate>
+                {/* userName */}
+                <div className="mb-4">
+                  <label
+                    htmlFor="userName"
+                    className="block text-xs font-medium mb-1.5 opacity-70"
+                  >
+                    Username
+                  </label>
+                  <input
+                    id="userName"
+                    type="text"
+                    autoComplete="username"
+                    value={userName}
+                    onChange={(e) => setuserName(e.target.value)}
+                    onBlur={() => markTouched("userName")}
+                    placeholder="Enter your username"
+                    aria-invalid={!!userNameError}
+                    aria-describedby={
+                      userNameError ? "userName-error" : undefined
+                    }
+                    className={`placify-input placify-focus-ring w-full rounded-xl border bg-[var(--bg-primary)] px-4 py-2.5 text-sm outline-none placeholder:opacity-40 ${
+                      userNameError
+                        ? "border-red-500"
+                        : "border-[var(--border-color)] focus:border-[var(--text-primary)]/30"
+                    }`}
+                  />
+                  {userNameError && (
+                    <p
+                      id="userName-error"
+                      className="text-xs text-red-500 mt-1.5 flex items-center gap-1"
+                    >
+                      <FiX size={12} /> {userNameError}
+                    </p>
+                  )}
                 </div>
 
-                {formError && (
-                  <div
-                    role="alert"
-                    className="mb-5 rounded-xl border border-red-500/30 bg-red-500/5 px-4 py-2.5 text-xs text-red-500 flex items-center gap-2"
-                  >
-                    <FiX size={13} className="shrink-0" />
-                    {formError}
-                  </div>
-                )}
-
-                <form onSubmit={handleSubmit} noValidate>
-                  {/* Email */}
-                  <div className="mb-4">
+                {/* Password */}
+                <div className="mb-3">
+                  <div className="flex items-center justify-between mb-1.5">
                     <label
-                      htmlFor="email"
-                      className="block text-xs font-medium mb-1.5 opacity-70"
+                      htmlFor="password"
+                      className="block text-xs font-medium opacity-70"
                     >
-                      Email Address
+                      Password
                     </label>
+                    <a
+                      href="/auth/forgot-password"
+                      onClick={handleForgotPassword}
+                      className="text-xs font-medium hover:underline placify-focus-ring rounded"
+                      style={{ color: BRAND_FROM }}
+                    >
+                      Forgot Password?
+                    </a>
+                  </div>
+                  <div className="relative">
                     <input
-                      id="email"
-                      type="email"
-                      autoComplete="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      onBlur={() => markTouched("email")}
-                      placeholder="you@example.com"
-                      aria-invalid={!!emailError}
-                      aria-describedby={emailError ? "email-error" : undefined}
-                      className={`placify-input placify-focus-ring w-full rounded-xl border bg-[var(--bg-primary)] px-4 py-2.5 text-sm outline-none placeholder:opacity-40 ${
-                        emailError
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      autoComplete="current-password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      onBlur={() => markTouched("password")}
+                      placeholder="Enter your password"
+                      aria-invalid={!!passwordError}
+                      aria-describedby={
+                        passwordError ? "password-error" : undefined
+                      }
+                      className={`placify-input placify-focus-ring w-full rounded-xl border bg-[var(--bg-primary)] px-4 py-2.5 pr-11 text-sm outline-none placeholder:opacity-40 ${
+                        passwordError
                           ? "border-red-500"
                           : "border-[var(--border-color)] focus:border-[var(--text-primary)]/30"
                       }`}
                     />
-                    {emailError && (
-                      <p
-                        id="email-error"
-                        className="text-xs text-red-500 mt-1.5 flex items-center gap-1"
-                      >
-                        <FiX size={12} /> {emailError}
-                      </p>
-                    )}
+                    <button
+                      type="button"
+                      onClick={() => setShowPassword((v) => !v)}
+                      className=" MuiButtonBase-root absolute right-3.5 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-90 transition-opacity placify-focus-ring rounded"
+                      aria-label={
+                        showPassword ? "Hide password" : "Show password"
+                      }
+                      aria-pressed={showPassword}
+                    >
+                      {showPassword ? (
+                        <FiEyeOff size={16} />
+                      ) : (
+                        <FiEye size={16} />
+                      )}
+                    </button>
                   </div>
+                  {passwordError && (
+                    <p
+                      id="password-error"
+                      className="text-xs text-red-500 mt-1.5 flex items-center gap-1"
+                    >
+                      <FiX size={12} /> {passwordError}
+                    </p>
+                  )}
+                </div>
 
-                  {/* Password */}
-                  <div className="mb-3">
-                    <div className="flex items-center justify-between mb-1.5">
-                      <label
-                        htmlFor="password"
-                        className="block text-xs font-medium opacity-70"
-                      >
-                        Password
-                      </label>
-                      <a
-                        href="/auth/forgot-password"
-                        onClick={handleForgotPassword}
-                        className="text-xs font-medium hover:underline placify-focus-ring rounded"
-                        style={{ color: BRAND_FROM }}
-                      >
-                        Forgot Password?
-                      </a>
-                    </div>
-                    <div className="relative">
-                      <input
-                        id="password"
-                        type={showPassword ? "text" : "password"}
-                        autoComplete="current-password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        onBlur={() => markTouched("password")}
-                        placeholder="Enter your password"
-                        aria-invalid={!!passwordError}
-                        aria-describedby={
-                          passwordError ? "password-error" : undefined
-                        }
-                        className={`placify-input placify-focus-ring w-full rounded-xl border bg-[var(--bg-primary)] px-4 py-2.5 pr-11 text-sm outline-none placeholder:opacity-40 ${
-                          passwordError
-                            ? "border-red-500"
-                            : "border-[var(--border-color)] focus:border-[var(--text-primary)]/30"
-                        }`}
+                {/* Remember me */}
+                <div className="mb-6">
+                  <label className="flex items-center gap-2.5 cursor-pointer w-fit">
+                    <input
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                      className="w-4 h-4 rounded accent-current cursor-pointer placify-focus-ring"
+                      style={{ accentColor: BRAND_FROM }}
+                    />
+                    <span className="text-xs opacity-70">Remember Me</span>
+                  </label>
+                </div>
+
+                {/* Submit */}
+                <button
+                  onClick={handleSubmit}
+                  disabled={!isFormValid || isSubmitting}
+                  className="placify-btn-primary placify-focus-ring w-full rounded-xl py-3 text-sm font-semibold text-white flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
+                  style={{
+                    background: `linear-gradient(135deg, var(--primary, ${BRAND_FROM}), var(--primary-hover, ${BRAND_TO}))`,
+                    boxShadow: isFormValid
+                      ? `0 8px 24px -8px ${BRAND_FROM}66`
+                      : "none",
+                  }}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span
+                        className="w-4 h-4 rounded-full border-2 border-white/40 border-t-white"
+                        style={{
+                          animation: "placify-spin 0.7s linear infinite",
+                        }}
                       />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword((v) => !v)}
-                        className=" MuiButtonBase-root absolute right-3.5 top-1/2 -translate-y-1/2 opacity-50 hover:opacity-90 transition-opacity placify-focus-ring rounded"
-                        aria-label={
-                          showPassword ? "Hide password" : "Show password"
-                        }
-                        aria-pressed={showPassword}
-                      >
-                        {showPassword ? (
-                          <FiEyeOff size={16} />
-                        ) : (
-                          <FiEye size={16} />
-                        )}
-                      </button>
-                    </div>
-                    {passwordError && (
-                      <p
-                        id="password-error"
-                        className="text-xs text-red-500 mt-1.5 flex items-center gap-1"
-                      >
-                        <FiX size={12} /> {passwordError}
-                      </p>
-                    )}
+                      Signing In...
+                    </>
+                  ) : (
+                    <>
+                      Sign In
+                      <FiArrowRight size={15} />
+                    </>
+                  )}
+                </button>
+
+                {/* Trust section */}
+                <div className="mt-5 space-y-1.5">
+                  <div className="flex items-center gap-1.5 text-[11px] opacity-50">
+                    <FiLock size={11} /> Secure Login
                   </div>
-
-                  {/* Remember me */}
-                  <div className="mb-6">
-                    <label className="flex items-center gap-2.5 cursor-pointer w-fit">
-                      <input
-                        type="checkbox"
-                        checked={rememberMe}
-                        onChange={(e) => setRememberMe(e.target.checked)}
-                        className="w-4 h-4 rounded accent-current cursor-pointer placify-focus-ring"
-                        style={{ accentColor: BRAND_FROM }}
-                      />
-                      <span className="text-xs opacity-70">Remember Me</span>
-                    </label>
+                  <div className="flex items-center gap-1.5 text-[11px] opacity-50">
+                    <FiShield size={11} /> Encrypted Authentication
                   </div>
-
-                  {/* Submit */}
-                  <button
-                    type="submit"
-                    disabled={!isFormValid || isSubmitting}
-                    className="placify-btn-primary placify-focus-ring w-full rounded-xl py-3 text-sm font-semibold text-white flex items-center justify-center gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
-                    style={{
-                      background: `linear-gradient(135deg, var(--primary, ${BRAND_FROM}), var(--primary-hover, ${BRAND_TO}))`,
-                      boxShadow: isFormValid
-                        ? `0 8px 24px -8px ${BRAND_FROM}66`
-                        : "none",
-                    }}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <span
-                          className="w-4 h-4 rounded-full border-2 border-white/40 border-t-white"
-                          style={{
-                            animation: "placify-spin 0.7s linear infinite",
-                          }}
-                        />
-                        Signing In...
-                      </>
-                    ) : (
-                      <>
-                        Sign In
-                        <FiArrowRight size={15} />
-                      </>
-                    )}
-                  </button>
-
-                  {/* Trust section */}
-                  <div className="mt-5 space-y-1.5">
-                    <div className="flex items-center gap-1.5 text-[11px] opacity-50">
-                      <FiLock size={11} /> Secure Login
-                    </div>
-                    <div className="flex items-center gap-1.5 text-[11px] opacity-50">
-                      <FiShield size={11} /> Encrypted Authentication
-                    </div>
-                    <div className="flex items-center gap-1.5 text-[11px] opacity-50">
-                      <FiLock size={11} /> Your information is protected
-                    </div>
+                  <div className="flex items-center gap-1.5 text-[11px] opacity-50">
+                    <FiLock size={11} /> Your information is protected
                   </div>
+                </div>
 
-                  {/* Divider */}
-                  <div className="flex items-center gap-3 my-6">
-                    <div className="h-px flex-1 bg-[var(--border-color)]" />
-                    <span className="text-[11px] opacity-40 font-medium">
-                      OR
-                    </span>
-                    <div className="h-px flex-1 bg-[var(--border-color)]" />
-                  </div>
+                {/* Divider */}
+                <div className="flex items-center gap-3 my-6">
+                  <div className="h-px flex-1 bg-[var(--border-color)]" />
+                  <span className="text-[11px] opacity-40 font-medium">OR</span>
+                  <div className="h-px flex-1 bg-[var(--border-color)]" />
+                </div>
 
-                  {/* Social login */}
-                  {/* <div className="space-y-2.5">
+                {/* Social login */}
+                {/* <div className="space-y-2.5">
                     <button
                       type="button"
                       onClick={() => handleSocialLogin("Google")}
@@ -565,21 +582,21 @@ export default function Login() {
                       Continue with GitHub
                     </button>
                   </div> */}
-                </form>
+              </form>
 
-                {/* Create account link */}
-                <p className="text-center text-xs opacity-60 mt-7">
-                  Don't have an account?{" "}
-                  <NavLink
-                    to={"/register"}
-                    className="font-semibold opacity-100 hover:underline placify-focus-ring rounded"
-                    style={{ color: BRAND_FROM }}
-                  >
-                    Create Account
-                  </NavLink>
-                </p>
-              </>
-            )}
+              {/* Create account link */}
+              <p className="text-center text-xs opacity-60 mt-7">
+                Don't have an account?{" "}
+                <NavLink
+                  to={"/register"}
+                  className="font-semibold opacity-100 hover:underline placify-focus-ring rounded"
+                  style={{ color: BRAND_FROM }}
+                >
+                  Create Account
+                </NavLink>
+              </p>
+            </>
+            )
           </div>
         </div>
       </div>

@@ -19,7 +19,9 @@ import Resources from "../features/resources/pages/Resources";
 import TopicComponents from "../features/roadmap/pages/TopicComponent";
 import Register from "./../features/auth/pages/Register";
 import Login from "../features/auth/pages/Login";
-const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
+import PrivacyPolicy from "./../features/rule/PrivacyPolicy";
+import TermsAndConditions from "./../features/rule/TermsAndConditions";
+const AppRoutes = ({ dark, setDark, open, toggleMenu, user }) => {
   return (
     <Routes>
       {/* Public pages */}
@@ -27,6 +29,7 @@ const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
       <Route
         element={
           <MainLayout
+            user={user}
             dark={dark}
             setDark={setDark}
             open={open}
@@ -56,6 +59,8 @@ const AppRoutes = ({ dark, setDark, open, toggleMenu }) => {
         <Route path="/resources" element={<Resources />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/termsAndConditions" element={<TermsAndConditions />} />
+        <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
       </Route>
     </Routes>
   );

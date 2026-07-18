@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useCallback } from "react";
 import api from "./../../../services/api";
-
 import {
   FiEye,
   FiEyeOff,
@@ -636,14 +635,14 @@ export default function Register() {
                         style={{ accentColor: BRAND_FROM }}
                       />
                       <span className="text-xs opacity-70 leading-relaxed">
-                        I agree to the{" "}
-                        <a
-                          href="#terms"
+                        I agree to the
+                        <NavLink
+                          to={"/termsAndConditions"}
                           className="font-medium underline underline-offset-2 opacity-100 hover:opacity-70"
                           style={{ color: BRAND_FROM }}
                         >
                           Terms &amp; Conditions
-                        </a>
+                        </NavLink>
                       </span>
                     </label>
                     <label className="flex items-start gap-2.5 cursor-pointer group">
@@ -656,13 +655,13 @@ export default function Register() {
                       />
                       <span className="text-xs opacity-70 leading-relaxed">
                         I agree to the{" "}
-                        <a
-                          href="#privacy"
+                        <NavLink
+                          to={"/privacyPolicy"}
                           className="font-medium underline underline-offset-2 opacity-100 hover:opacity-70"
                           style={{ color: BRAND_FROM }}
                         >
                           Privacy Policy
-                        </a>
+                        </NavLink>
                       </span>
                     </label>
                   </div>
